@@ -234,6 +234,8 @@
   }
   .hero__inner{position:relative;max-width:680px;}
   .hero h1{font-size:clamp(30px,5vw,50px);color:#fff;line-height:1.08;letter-spacing:-.015em;text-wrap:balance;}
+  .hero h1.hero-brand{font-size:clamp(38px,7vw,68px);font-weight:800;line-height:1.02;letter-spacing:-.02em;color:var(--orange-400);}
+  .hero-tagline{font-size:clamp(18px,2.6vw,24px);font-weight:600;color:#fff;margin-top:14px;letter-spacing:-.01em;}
   .hero h1 .accent{color:var(--orange-400);}
   .hero h1 .sub{display:block;font-size:.62em;font-weight:600;color:#C9D7E8;margin-top:12px;letter-spacing:-.01em;}
   .hero p.lead{margin-top:20px;font-size:17px;line-height:1.6;color:#C9D7E8;max-width:540px;}
@@ -642,9 +644,9 @@
 
   <section class="hero">
     <div class="container hero__inner">
-      <div class="eyebrow" id="heroEyebrow" data-nl="WegMaster Rijopleidingen" data-en="WegMaster Rijopleidingen">WegMaster Rijopleidingen</div>
-      <span class="seo-hidden">Rijschool Amersfoort &amp; Soest — rijlessen auto, taxi en vrachtwagen in Amersfoort, Soest en omgeving.</span>
-      <h1 id="heroTitle" data-nl='Rijschool <span class="accent">Amersfoort &amp; Soest</span><span class="sub">Jouw rijbewijs, onze route.</span>' data-en='Driving school <span class="accent">Amersfoort &amp; Soest</span><span class="sub">Your licence, our route.</span>'>Rijschool <span class="accent">Amersfoort &amp; Soest</span><span class="sub">Jouw rijbewijs, onze route.</span></h1>
+      <h1 id="heroTitle" class="hero-brand" data-nl="WegMaster Rijopleidingen" data-en="WegMaster Rijopleidingen">WegMaster Rijopleidingen</h1>
+      <h2 class="seo-hidden">Rijschool Amersfoort &amp; Soest — rijlessen auto, taxi en vrachtwagen in Amersfoort, Soest en omgeving. Gratis proefles, spoedcursus rijbewijs, automaat rijles.</h2>
+      <p class="hero-tagline" data-nl="Jouw rijbewijs, onze route." data-en="Your licence, our route.">Jouw rijbewijs, onze route.</p>
       <p class="lead" id="heroSub"
          data-nl="Persoonlijke rijlessen met een gratis proefles. Bepaal samen met je instructeur het tempo naar je examen — 7 dagen per week, ook een versneld traject binnen 30 dagen."
          data-en="Personal driving lessons with a free trial lesson. Set your pace toward the exam together with your instructor — 7 days a week, fast-track option within 30 days.">
