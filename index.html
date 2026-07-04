@@ -287,6 +287,26 @@
   .mission-band h2{font-size:clamp(22px,3vw,28px);color:#fff;}
   .mission-band p{margin-top:14px;font-size:15.5px;line-height:1.65;color:#C9D7E8;}
 
+  /* ---------- Automaat & Schakel highlight band ---------- */
+  .transmission-band{background:linear-gradient(135deg,var(--navy-900,#0f2136),var(--navy-950));
+    border:1px solid rgba(242,169,59,.35);border-radius:20px;padding:24px 22px;text-align:center;
+    max-width:640px;margin:0 auto;position:relative;overflow:hidden;}
+  .transmission-band::before{content:"";position:absolute;inset:0;border-radius:20px;pointer-events:none;
+    box-shadow:inset 0 0 70px -40px rgba(242,169,59,.4);}
+  .transmission-band .eyebrow{justify-content:center;margin-bottom:9px;color:var(--orange-400);}
+  .transmission-band h2{font-size:clamp(19px,2.4vw,24px);color:#fff;margin-bottom:9px;}
+  .transmission-band p{font-size:13.5px;line-height:1.55;color:#C9D7E8;max-width:500px;margin:0 auto 18px;}
+  .transmission-options{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .transmission-option{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.05);
+    border:1.5px solid rgba(242,169,59,.45);border-radius:14px;padding:12px 18px;min-width:210px;}
+  .transmission-option__icon{display:flex;align-items:center;justify-content:center;width:38px;height:38px;
+    border-radius:10px;background:rgba(242,169,59,.15);color:var(--orange-400);flex-shrink:0;}
+  .transmission-option__icon svg{width:21px;height:21px;}
+  .transmission-option__text{text-align:left;}
+  .transmission-option__title{color:#fff;font-weight:700;font-size:14.5px;}
+  .transmission-option__sub{color:#9FB4CB;font-size:12px;}
+  @media(max-width:560px){.transmission-option{width:100%;min-width:0;}}
+
   .section-head{max-width:600px;}
   .section-head h2{font-size:clamp(26px,3.4vw,34px);color:var(--navy-950);}
   .section-head p{margin-top:12px;font-size:15.5px;color:var(--ink-soft);line-height:1.6;}
@@ -771,6 +791,33 @@
 
   <section class="section--tight">
     <div class="container">
+      <div class="transmission-band">
+        <div class="eyebrow" data-nl="Automaat óf schakel" data-en="Automatic or manual">Automaat óf schakel</div>
+        <h2 data-nl="Leer rijden in automaat én schakel" data-en="Learn to drive automatic and manual">Leer rijden in automaat én schakel</h2>
+        <p data-nl="Bij WegMaster kies jij zelf: leer rijden in een automaat of handgeschakeld — precies wat het beste bij jou past."
+           data-en="At WegMaster you choose: learn in an automatic or a manual car — exactly what suits you best.">Bij WegMaster kies jij zelf: leer rijden in een automaat of handgeschakeld — precies wat het beste bij jou past.</p>
+        <div class="transmission-options">
+          <div class="transmission-option">
+            <span class="transmission-option__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 11l1.2-3.6A2 2 0 0 1 8.1 6h7.8a2 2 0 0 1 1.9 1.4L19 11M5 11h14v4.5A1.5 1.5 0 0 1 17.5 17h-.8a1.5 1.5 0 0 1-1.5-1.2H8.8A1.5 1.5 0 0 1 7.3 17h-.8A1.5 1.5 0 0 1 5 15.5V11Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+            <span class="transmission-option__text">
+              <span class="transmission-option__title" data-nl="Automaat" data-en="Automatic">Automaat</span>
+              <span class="transmission-option__sub" data-nl="Makkelijk & ontspannen leren" data-en="Easy & relaxed learning">Makkelijk & ontspannen leren</span>
+            </span>
+          </div>
+          <div class="transmission-option">
+            <span class="transmission-option__icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 8v8M9 10.5h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <span class="transmission-option__text">
+              <span class="transmission-option__title" data-nl="Schakel (handgeschakeld)" data-en="Manual">Schakel (handgeschakeld)</span>
+              <span class="transmission-option__sub" data-nl="Volledig rijbewijs B" data-en="Full category B licence">Volledig rijbewijs B</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
       <div class="mission-band">
         <div class="mission-band__icon" id="missionIcon"></div>
         <div class="eyebrow" id="missionEyebrow" style="color:var(--orange-400);" data-nl="Onze instructeurs" data-en="Our instructors">Onze instructeurs</div>
@@ -849,12 +896,6 @@
          data-en="Don't see your town? Just ask us — as a driving school covering Amersfoort and the surrounding area, we're happy to discuss it.">
         Sta je hier niet bij? Vraag het ons gerust — als rijschool in Amersfoort en omgeving denken we graag mee.
       </p>
-    </div>
-  </section>
-
-  <section class="stats-section">
-    <div class="container">
-      <div class="stats-grid" id="statsGrid"></div>
     </div>
   </section>
 
@@ -1008,7 +1049,7 @@
     <svg viewBox="0 0 24 24" fill="none"><path d="M6.5 4h3l1.5 4-2 1.5a11 11 0 0 0 5.5 5.5l1.5-2 4 1.5v3a1.5 1.5 0 0 1-1.6 1.5C11.8 18.6 5.4 12.2 5 6.1A1.5 1.5 0 0 1 6.5 4Z" stroke="white" stroke-width="1.6" stroke-linejoin="round"/></svg>
     <span data-nl="Bel ons" data-en="Call us">Bel ons</span>
   </a>
-  <a class="whatsapp" href="https://wa.me/31612452088" target="_blank" rel="noopener">
+  <a class="whatsapp" href="https://wa.me/31612452088?text=Hoi%20WegMaster%21%20Ik%20wil%20graag%20een%20gratis%20proefles%20inplannen%20%F0%9F%9A%97%0ANaam%3A%20%0ACategorie%20%28Auto/Taxi%29%3A%20%0APlaats%3A%20" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" fill="#08381C"><path d="M12 2.5a9.5 9.5 0 0 0-8.1 14.4L2.5 21.5l4.7-1.4A9.5 9.5 0 1 0 12 2.5Zm0 17.3a7.8 7.8 0 0 1-4-1.1l-.3-.2-2.6.8.8-2.5-.2-.3a7.8 7.8 0 1 1 6.3 3.3Zm4.3-5.8c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-1.5-.6-2.5-1.4-3.3-2.8-.1-.2-.1-.4.1-.5.2-.2.4-.5.6-.7.2-.2.2-.4.1-.6-.1-.2-.6-1.4-.8-1.9-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.8 2.9 4.5 4 2.6 1 2.6.7 3.1.6.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
     <span data-nl="WhatsApp" data-en="WhatsApp">WhatsApp</span>
   </a>
@@ -1149,7 +1190,7 @@ const STR = {
       {t:'Volg je lessen', d:'Vaste lesmomenten op tijden die jou passen — wij houden ons aan de planning.'},
       {t:'Naar het examen', d:''}
     ],
-    packagesT:'Lespakketten', packagesSub:'Kies het pakket dat bij je past. De actieprijs geldt zolang de campagne actief staat.',
+    packagesT:'Lespakketten', packagesSub:'De actieprijs geldt zolang de campagne actief staat.',
     lessonsLabel:'lessen', choosePkg:'Kies dit pakket', saveLabel:'Bespaar', priceLabel:'Prijs (€)',
     lessonsLabelCap:'Lessen', priceLabelCap:'Prijs', tapRowNote:'Tik op een pakket om je aan te melden.',
     pkgLetterTitle:'Pakket', taxiFeatureBook:'Inclusief theorieboek', taxiFeatureSupport:'Begeleiding bij vragen over de theorie',
@@ -1226,7 +1267,7 @@ const STR = {
       {t:'Take your lessons', d:'Fixed lesson times that work for you — we stick to the schedule.'},
       {t:'Toward the exam', d:''}
     ],
-    packagesT:'Lesson packages', packagesSub:'Choose the package that fits you. The discount applies while the campaign is active.',
+    packagesT:'Lesson packages', packagesSub:'The discount applies while the campaign is active.',
     lessonsLabel:'lessons', choosePkg:'Choose this package', saveLabel:'Save', priceLabel:'Price (€)',
     lessonsLabelCap:'Lessons', priceLabelCap:'Price', tapRowNote:'Tap a package to register.',
     pkgLetterTitle:'Package', taxiFeatureBook:'Theory book included', taxiFeatureSupport:'Support for theory questions',
@@ -1435,6 +1476,7 @@ function renderStories(){
 function renderStats(){
   const S = STR[lang];
   const grid = document.getElementById('statsGrid');
+  if(!grid) return; // stats section removed from the page
   // Real, verifiable facts — always shown.
   const items = [
     { value:5.0, suffix:'', decimals:1, label:S.statGoogle },
