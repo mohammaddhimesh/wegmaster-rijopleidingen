@@ -676,9 +676,9 @@
      admin panel can update them and bake the changes into a downloadable copy
      of this file (this is a static site — there's no backend/database). -->
 <script type="application/json" id="package-data">
-{"auto":[{"lessons":5,"price":300},{"lessons":10,"price":600},{"lessons":15,"price":900},{"lessons":20,"price":1200},{"lessons":30,"price":1800},{"lessons":40,"price":2400},{"lessons":50,"price":3000}],
+{"auto":[{"lessons":5,"price":325},{"lessons":10,"price":650},{"lessons":15,"price":975},{"lessons":20,"price":1300},{"lessons":30,"price":1950},{"lessons":40,"price":2600},{"lessons":50,"price":3250}],
 "taxi":[{"lessons":4,"price":950,"ownCarDiscount":150},{"lessons":6,"price":1100,"ownCarDiscount":150}],
-"vrachtwagen":[{"lessons":5,"price":300},{"lessons":10,"price":600},{"lessons":15,"price":900},{"lessons":20,"price":1200},{"lessons":30,"price":1800},{"lessons":40,"price":2400},{"lessons":50,"price":3000}]}
+"vrachtwagen":[{"lessons":5,"price":325},{"lessons":10,"price":650},{"lessons":15,"price":975},{"lessons":20,"price":1300},{"lessons":30,"price":1950},{"lessons":40,"price":2600},{"lessons":50,"price":3250}]}
 </script>
 <script type="application/json" id="onetime-data">
 {"examPrice":350,"inschrijfkosten":25,"theorieOnline":49,"theorieEenDag":99,"theorieExamen":48.75}
@@ -1092,14 +1092,14 @@
       <label id="adminAmountLabel">—</label>
       <div class="admin-amount">
         <span>€</span>
-        <input type="number" id="discountAmountInput" value="7" min="0" max="50">
+        <input type="number" id="discountAmountInput" value="5" min="0" max="50">
       </div>
     </div>
     <div class="admin-row">
       <label id="adminSpoedLabel">—</label>
       <div class="admin-amount">
         <span>€</span>
-        <input type="number" id="spoedAmountInput" value="300" min="0" max="2000" step="10">
+        <input type="number" id="spoedAmountInput" value="350" min="0" max="2000" step="10">
       </div>
     </div>
   </div>
@@ -1201,8 +1201,8 @@ const STR = {
     pkgTbd:'Nog te bepalen', adminOneTimeSectionT:'Eenmalige kosten',
     perLessonLabel:'per les',
     oneTimeCosts:'CBR-examenkosten worden apart doorberekend.',
-    lessonDuration:'Elke rijles duurt 45 minuten.',
-    focusedLessons:'Geconcentreerde rijlessen — zo haal je meer uit elke rit en boek je sneller vooruitgang.',
+    lessonDuration:'Elke rijles duurt 60 minuten.',
+    focusedLessons:'',
     spoedBadge:'+€300', spoedTitle:'Spoedcursus',
     spoedDesc:'Versneld je rijbewijs halen met een intensief lesschema — meer lessen per week, sneller rijklaar.',
     spoedFeat1:'Intensief lesschema — sneller je examen in',
@@ -1212,7 +1212,7 @@ const STR = {
     spoedToggleActive:'Spoedcursus actief', spoedAdminLabel:'Spoedtoeslag (€)',
     proeflesUur:'Gratis proefles van 1 uur — vrijblijvend kennismaken.',
     losseLesLabel:'Losse les',
-    losseLesPrice:60,
+    losseLesPrice:65,
     campaignOn:'Kortingsactie actief — bespaar €{amount} per les',
     adminTitle:'Beheer', adminToggleLabel:'Actie actief', adminAmountLabel:'Korting per les', adminApply:'Toepassen op site',
     adminIntroNote:'Alleen voor jou: hier pas je prijzen, lesaantallen en succesverhalen aan. Dit is een eenvoudige pincode, geen echte beveiliging — bewaar de link naar dit bestand prive.',
@@ -1278,8 +1278,8 @@ const STR = {
     pkgTbd:'Not yet decided', adminOneTimeSectionT:'One-time costs',
     perLessonLabel:'per lesson',
     oneTimeCosts:'CBR exam costs are charged separately.',
-    lessonDuration:'Every lesson lasts 45 minutes.',
-    focusedLessons:'Focused lessons — so you get more out of every drive and make faster progress.',
+    lessonDuration:'Every lesson lasts 60 minutes.',
+    focusedLessons:'',
     spoedBadge:'+€300', spoedTitle:'Fast-track course',
     spoedDesc:'Get your licence faster with an intensive lesson schedule — more lessons per week, ready sooner.',
     spoedFeat1:'Intensive schedule — reach your exam sooner',
@@ -1289,7 +1289,7 @@ const STR = {
     spoedToggleActive:'Fast-track active', spoedAdminLabel:'Fast-track surcharge (€)',
     proeflesUur:'Free 1-hour trial lesson — no obligation.',
     losseLesLabel:'Single lesson',
-    losseLesPrice:60,
+    losseLesPrice:65,
     campaignOn:'Discount campaign active — save €{amount} per lesson',
 
     adminTitle:'Manage', adminToggleLabel:'Campaign active', adminAmountLabel:'Discount per lesson', adminApply:'Apply to site',
@@ -1859,7 +1859,6 @@ function renderCategory(key){
       </div>
       <div class="lesson-info">
         <div class="lesson-info__duration">${S.lessonDuration}</div>
-        <div class="lesson-info__focus">${S.focusedLessons}</div>
         <div class="lesson-info__focus" style="margin-top:8px;">${S.proeflesUur}</div>
       </div>
       <div class="losse-les">
