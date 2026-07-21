@@ -172,6 +172,33 @@
   .btn--block{width:100%;}
 
   /* ---------- Header ---------- */
+  /* ---------- Spoedcursus top strip ---------- */
+  .spoed-strip{
+    display:flex;align-items:center;gap:12px;justify-content:center;
+    background:linear-gradient(90deg,var(--orange-500),#e59a3a);
+    color:#231505;padding:9px 16px;text-align:center;flex-wrap:wrap;
+    font-size:14px;line-height:1.35;position:relative;z-index:60;
+  }
+  .spoed-strip:hover{filter:brightness(1.05);}
+  .spoed-strip__pulse{
+    width:9px;height:9px;border-radius:50%;background:#1f7a3d;flex-shrink:0;
+    box-shadow:0 0 0 0 rgba(31,122,61,.7);animation:spoedPulse 2s infinite;
+  }
+  @keyframes spoedPulse{
+    0%{box-shadow:0 0 0 0 rgba(31,122,61,.65);}
+    70%{box-shadow:0 0 0 9px rgba(31,122,61,0);}
+    100%{box-shadow:0 0 0 0 rgba(31,122,61,0);}
+  }
+  .spoed-strip__text{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;}
+  .spoed-strip__text strong{font-weight:800;}
+  .spoed-strip__sub{opacity:.82;font-weight:600;}
+  .spoed-strip__cta{font-weight:800;text-decoration:underline;white-space:nowrap;}
+  @media(max-width:640px){
+    .spoed-strip{font-size:12.5px;gap:8px;padding:8px 12px;}
+    .spoed-strip__sub{display:block;width:100%;font-size:11.5px;}
+  }
+  @media(prefers-reduced-motion:reduce){.spoed-strip__pulse{animation:none;}}
+
   .site-header{
     position:sticky;top:0;z-index:50;background:var(--navy-950);
     border-bottom:1px solid var(--line-dark);
@@ -244,18 +271,20 @@
   /* ---------- Category chooser (hero) ---------- */
   .cat-chooser{margin-top:34px;}
   .cat-chooser__label{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:#8FA8C4;margin-bottom:12px;}
-  .cat-chooser__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:440px;}
+  .cat-chooser__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:560px;}
   .cat-pick{
     display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;
     background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.14);border-radius:14px;
-    padding:16px 8px;cursor:pointer;transition:.15s;color:#fff;text-decoration:none;
+    padding:24px 10px;cursor:pointer;transition:.15s;color:#fff;text-decoration:none;
   }
   .cat-pick:hover{background:rgba(243,128,30,.14);border-color:var(--orange-500);transform:translateY(-2px);}
-  .cat-pick__ic{width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:var(--orange-400);}
-  .cat-pick__ic svg{width:26px;height:26px;}
-  .cat-pick__name{font-size:13.5px;font-weight:700;}
+  .cat-pick__ic{width:64px;height:64px;display:flex;align-items:center;justify-content:center;color:var(--orange-400);
+    background:rgba(242,169,59,.12);border-radius:16px;}
+  .cat-pick__ic svg{width:44px;height:44px;}
+  .cat-pick__name{font-size:16px;font-weight:700;}
   .cat-pick__soon{font-size:10px;color:#8FA8C4;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.04em;}
-  @media(max-width:420px){.cat-pick__name{font-size:12px;}.cat-pick{padding:14px 4px;}}
+  @media(max-width:420px){.cat-pick__name{font-size:13.5px;}.cat-pick{padding:18px 4px;}
+    .cat-pick__ic{width:52px;height:52px;} .cat-pick__ic svg{width:36px;height:36px;}}
 
   /* ---------- Why us ---------- */
   .why-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:36px;}
@@ -391,10 +420,14 @@
 
   /* ---------- Packages (pricing table) ---------- */
   .campaign-banner{
-    display:flex;align-items:center;gap:10px;background:var(--orange-100);color:#9A4B0E;
-    border:1px solid #F6C690;border-radius:12px;padding:13px 18px;font-size:14px;font-weight:600;margin-bottom:28px;
+    display:flex;align-items:center;justify-content:center;gap:12px;
+    background:linear-gradient(90deg,var(--orange-500),#e59a3a);color:#231505;
+    border:none;border-radius:16px;padding:20px 22px;
+    font-size:clamp(18px,3.4vw,26px);font-weight:800;line-height:1.25;
+    margin-bottom:28px;text-align:center;letter-spacing:-.01em;
+    box-shadow:0 18px 40px -22px rgba(242,169,59,.9);
   }
-  .campaign-banner svg{width:18px;height:18px;flex-shrink:0;}
+  .campaign-banner svg{width:26px;height:26px;flex-shrink:0;}
   .price-table-wrap{
     background:#fff;border:2px solid var(--orange-500);border-radius:20px;
     padding:8px;margin-top:32px;box-shadow:var(--shadow);overflow:hidden;
@@ -443,8 +476,6 @@
     box-shadow:inset 0 0 60px -30px rgba(242,169,59,.5);}
   .spoed-card__head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px;}
   .spoed-card__title{color:#fff;font-family:var(--font-display);font-weight:700;font-size:23px;}
-  .spoed-card__badge{background:var(--orange-500);color:#1a1206;font-weight:800;font-size:15px;
-    font-family:var(--font-mono);padding:4px 12px;border-radius:999px;}
   .spoed-card__desc{color:#C9D6E5;font-size:14.5px;line-height:1.6;margin-bottom:16px;}
   .spoed-card__list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
   .spoed-card__list li{display:flex;align-items:flex-start;gap:10px;color:#EAF1F8;font-size:15px;font-weight:600;}
@@ -452,23 +483,6 @@
   .spoed-card__note{color:#8FA4BB;font-size:12px;line-height:1.5;margin-bottom:18px;}
   .spoed-card .btn{width:auto;}
 
-  /* ---------- Spoed live toggle (turns green when selected) ---------- */
-  .spoed-toggle{display:flex;align-items:center;gap:14px;width:100%;max-width:640px;
-    margin:0 0 18px;padding:15px 20px;border-radius:16px;cursor:pointer;text-align:left;
-    background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.18);
-    transition:background .18s,border-color .18s,box-shadow .18s;}
-  .spoed-toggle:hover{border-color:rgba(242,169,59,.55);}
-  .spoed-toggle__check{display:flex;align-items:center;justify-content:center;width:26px;height:26px;
-    border-radius:8px;flex-shrink:0;border:1.5px solid rgba(255,255,255,.3);transition:all .18s;}
-  .spoed-toggle__check svg{width:17px;height:17px;color:#fff;opacity:0;transition:opacity .18s;}
-  .spoed-toggle__text{display:flex;flex-direction:column;gap:2px;}
-  .spoed-toggle__label{color:#fff;font-weight:700;font-size:15.5px;}
-  .spoed-toggle__plus{color:var(--orange-400);font-family:var(--font-mono);font-weight:700;}
-  .spoed-toggle__hint{color:#9FB4CB;font-size:12.5px;}
-  .spoed-toggle.is-active{background:rgba(34,197,94,.16);border-color:#22C55E;box-shadow:0 0 0 1px #22C55E inset;}
-  .spoed-toggle.is-active .spoed-toggle__check{background:#22C55E;border-color:#22C55E;}
-  .spoed-toggle.is-active .spoed-toggle__check svg{opacity:1;}
-  .spoed-toggle.is-active .spoed-toggle__plus{color:#4ADE80;}
 
   /* ---------- Taxi package cards (Chauffeurspas-style) ---------- */
   .taxi-pkg-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:32px;}
@@ -595,6 +609,8 @@
   .hero-trust__item{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;color:#D7E3F1;}
   .hero-trust__item svg{width:16px;height:16px;flex-shrink:0;color:var(--orange-400);}
   .hero-trust__stars{color:#FFB84D;letter-spacing:1px;font-size:14px;}
+  .hero-trust__item--hl{background:rgba(242,169,59,.16);border:1px solid rgba(242,169,59,.5);
+    border-radius:999px;padding:5px 13px;color:#FFD9A3;}
   .cta-note{margin-top:12px;font-size:13px;color:#9FB4CB;display:flex;align-items:center;gap:7px;}
   .cta-note svg{width:15px;height:15px;color:var(--orange-400);flex-shrink:0;}
   .cta-note--dark{color:var(--ink-soft);}
@@ -611,7 +627,7 @@
   .reviews-band__divider{width:1px;align-self:stretch;background:var(--line-light);}
   .reviews-band__text{max-width:320px;text-align:left;}
   .reviews-band__text .g{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:14px;color:var(--navy-950);margin-bottom:6px;}
-  .reviews-band__text .g svg{width:18px;height:18px;}
+  .reviews-band__text .g svg{width:18px;height:18px;flex-shrink:0;}
   .reviews-band__text p{font-size:14px;color:var(--ink-soft);line-height:1.55;margin-bottom:14px;}
   @media(max-width:640px){
     .reviews-band{flex-direction:column;padding:26px 22px;}
@@ -619,7 +635,27 @@
     .reviews-band__text{text-align:center;}
   }
 
-  /* ---------- FAQ ---------- */
+
+  /* ---------- Google-style review carousel ---------- */
+  .greview{position:relative;background:#fff;border:1px solid var(--line-light);border-radius:20px;
+    padding:32px 28px 22px;box-shadow:0 24px 50px -32px rgba(11,27,46,.3);}
+  .greview__g{position:absolute;top:18px;right:20px;}
+  .greview__g svg{width:22px;height:22px;}
+  .greview__head{display:flex;align-items:center;gap:13px;margin-bottom:14px;}
+  .greview__avatar{width:46px;height:46px;border-radius:50%;color:#fff;font-weight:700;font-size:19px;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .greview__who{display:flex;flex-direction:column;gap:2px;}
+  .greview__name{font-weight:700;color:var(--navy-950);font-size:15.5px;}
+  .greview__stars{color:#F5A623;font-size:15px;letter-spacing:1px;}
+  .greview__text{color:var(--ink-soft);font-size:15px;line-height:1.65;min-height:72px;}
+  @media(max-width:560px){.greview{padding:26px 20px 18px;} .greview__text{font-size:14.5px;}}
+
+  /* ---------- No registration fees badge ---------- */
+  .no-fees{display:inline-flex;align-items:center;gap:9px;margin-top:16px;
+    background:rgba(34,197,94,.14);border:1px solid rgba(34,197,94,.45);
+    border-radius:12px;padding:11px 16px;color:#86EFAC;font-weight:600;font-size:14px;}
+  .no-fees svg{width:18px;height:18px;color:#22C55E;flex-shrink:0;}
+
   .faq-list{margin-top:30px;display:flex;flex-direction:column;gap:10px;}
   .faq-list details{
     background:#fff;border:1px solid var(--line-light);border-radius:14px;padding:18px 22px;
@@ -676,9 +712,9 @@
      admin panel can update them and bake the changes into a downloadable copy
      of this file (this is a static site — there's no backend/database). -->
 <script type="application/json" id="package-data">
-{"auto":[{"lessons":5,"price":325},{"lessons":10,"price":650},{"lessons":15,"price":975},{"lessons":20,"price":1300},{"lessons":30,"price":1950},{"lessons":40,"price":2600},{"lessons":50,"price":3250}],
+{"auto":[{"lessons":15,"price":900},{"lessons":20,"price":1200},{"lessons":25,"price":1500},{"lessons":30,"price":1800},{"lessons":40,"price":2400},{"lessons":45,"price":2700},{"lessons":50,"price":3000}],
 "taxi":[{"lessons":4,"price":950,"ownCarDiscount":150},{"lessons":6,"price":1100,"ownCarDiscount":150}],
-"vrachtwagen":[{"lessons":5,"price":325},{"lessons":10,"price":650},{"lessons":15,"price":975},{"lessons":20,"price":1300},{"lessons":30,"price":1950},{"lessons":40,"price":2600},{"lessons":50,"price":3250}]}
+"vrachtwagen":[{"lessons":15,"price":900},{"lessons":20,"price":1200},{"lessons":25,"price":1500},{"lessons":30,"price":1800},{"lessons":40,"price":2400},{"lessons":45,"price":2700},{"lessons":50,"price":3000}]}
 </script>
 <script type="application/json" id="onetime-data">
 {"examPrice":350,"inschrijfkosten":25,"theorieOnline":49,"theorieEenDag":99,"theorieExamen":48.75}
@@ -692,6 +728,16 @@
 <script type="application/json" id="testimonials-data">
 []
 </script>
+
+<!-- ========== SPOEDCURSUS TOP STRIP ========== -->
+<a href="#auto" data-route="auto" class="spoed-strip">
+  <span class="spoed-strip__pulse"></span>
+  <span class="spoed-strip__text">
+    <strong data-nl="Spoedcursus — direct beginnen" data-en="Fast-track course — start now">Spoedcursus — direct beginnen</strong>
+    <span class="spoed-strip__sub" data-nl="Geen wachtlijst · deze week nog starten" data-en="No waiting list · start this week">Geen wachtlijst · deze week nog starten</span>
+  </span>
+  <span class="spoed-strip__cta" data-nl="Bekijk →" data-en="View →">Bekijk →</span>
+</a>
 
 <!-- ========== HEADER ========== -->
 <header class="site-header">
@@ -767,12 +813,14 @@
       <div class="hero__actions">
         <a href="#register" data-register class="btn btn--primary" id="heroCta1" data-nl="Boek gratis proefles" data-en="Book free trial lesson">Boek gratis proefles</a>
       </div>
-      <p class="cta-note">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span data-nl="Gratis en volledig vrijblijvend — geen verplichting." data-en="Free and with no obligation whatsoever.">Gratis en volledig vrijblijvend — geen verplichting.</span>
+      <p class="cta-note"><span data-nl="Gratis en volledig vrijblijvend — geen verplichting." data-en="Free and with no obligation whatsoever.">Gratis en volledig vrijblijvend — geen verplichting.</span>
       </p>
 
       <div class="hero-trust">
+        <span class="hero-trust__item hero-trust__item--hl">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.6 9.1l5.8-.8L12 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          <span data-nl="95% slagingspercentage" data-en="95% pass rate">95% slagingspercentage</span>
+        </span>
         <span class="hero-trust__item">
           <span class="hero-trust__stars">★★★★★</span>
           <span data-nl="5.0 op Google" data-en="5.0 on Google">5.0 op Google</span>
@@ -923,15 +971,25 @@
   </section>
 
   <section id="testimonialSection">
-    <div class="container testimonial-wrap">
-      <div class="testimonial">
-        <svg class="quote-mark" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10c0-2.8 2-5 5-5v2.2c-1.7 0-3 1.3-3 3v.3h3V16H4v-4.5C4 11 5.6 10 7 10Zm9 0c0-2.8 2-5 5-5v2.2c-1.7 0-3 1.3-3 3v.3h3V16h-8v-4.5c0-.5.2-1 0 0Z"/></svg>
+    <div class="container" style="max-width:760px;">
+      <div class="section-head" style="text-align:center;margin:0 auto 26px;">
+        <h2 id="reviewsTitleEl">—</h2>
+        <p id="reviewsSubEl" class="muted">—</p>
+      </div>
+      <div class="greview">
+        <span class="greview__g">
+          <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.7-.1-1.4-.2-2.1H12v4h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.2-4.8 3.2-7.9Z"/><path fill="#34A853" d="M12 23c2.9 0 5.4-1 7.2-2.6l-3.6-2.7c-1 .7-2.3 1.1-3.6 1.1-2.8 0-5.1-1.9-6-4.4H2.3v2.8A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6 14.4a6.6 6.6 0 0 1 0-4.2V7.4H2.3a11 11 0 0 0 0 9.8L6 14.4Z"/><path fill="#EA4335" d="M12 5.5c1.6 0 3 .5 4.1 1.6l3.1-3.1A11 11 0 0 0 2.3 7.4L6 10.2c.9-2.6 3.2-4.7 6-4.7Z"/></svg>
+        </span>
         <div id="testimonialSlide"></div>
         <div class="testimonial__nav">
           <button id="testimonialPrev" aria-label="Vorige">‹</button>
           <div class="testimonial__dots" id="testimonialDots"></div>
           <button id="testimonialNext" aria-label="Volgende">›</button>
         </div>
+      </div>
+      <div style="text-align:center;margin-top:22px;">
+        <a href="https://maps.app.goo.gl/FLZcQC79SSUtatW49" target="_blank" rel="noopener" class="btn btn--ghost-dark btn--small"
+           data-nl="Lees alle reviews op Google" data-en="Read all reviews on Google">Lees alle reviews op Google</a>
       </div>
     </div>
   </section>
@@ -1092,14 +1150,7 @@
       <label id="adminAmountLabel">—</label>
       <div class="admin-amount">
         <span>€</span>
-        <input type="number" id="discountAmountInput" value="5" min="0" max="50">
-      </div>
-    </div>
-    <div class="admin-row">
-      <label id="adminSpoedLabel">—</label>
-      <div class="admin-amount">
-        <span>€</span>
-        <input type="number" id="spoedAmountInput" value="350" min="0" max="2000" step="10">
+        <input type="number" id="discountAmountInput" value="7" min="0" max="50">
       </div>
     </div>
   </div>
@@ -1201,15 +1252,13 @@ const STR = {
     pkgTbd:'Nog te bepalen', adminOneTimeSectionT:'Eenmalige kosten',
     perLessonLabel:'per les',
     oneTimeCosts:'CBR-examenkosten worden apart doorberekend.',
-    lessonDuration:'Elke rijles duurt 60 minuten.',
-    focusedLessons:'',
-    spoedBadge:'+€300', spoedTitle:'Spoedcursus',
+    noFees:'Géén inschrijfkosten — je betaalt alleen je lespakket.',
+    reviewsTitle:'Zij zijn al geslaagd',
+    reviewsSub:'Echte Google-reviews van onze leerlingen',
+    focusedLessons:'', spoedTitle:'Ook spoedcursus mogelijk',
     spoedDesc:'Versneld je rijbewijs halen met een intensief lesschema — meer lessen per week, sneller rijklaar.',
     spoedFeat1:'Intensief lesschema — sneller je examen in',
-    spoedFeat3:'Gratis herexamen bij een Spoedcursus*',
-    spoedNote:'*Eenmalig, bij het volgen van alle door de instructeur geadviseerde lessen.',
-    spoedToggleLabel:'Spoedcursus', spoedToggleHint:'Intensief lesschema + gratis herexamen',
-    spoedToggleActive:'Spoedcursus actief', spoedAdminLabel:'Spoedtoeslag (€)',
+    spoedFeat3:'Snel klaar met je rijbewijs — intensief lesschema',
     proeflesUur:'Gratis proefles van 1 uur — vrijblijvend kennismaken.',
     losseLesLabel:'Losse les',
     losseLesPrice:65,
@@ -1278,15 +1327,13 @@ const STR = {
     pkgTbd:'Not yet decided', adminOneTimeSectionT:'One-time costs',
     perLessonLabel:'per lesson',
     oneTimeCosts:'CBR exam costs are charged separately.',
-    lessonDuration:'Every lesson lasts 60 minutes.',
-    focusedLessons:'',
-    spoedBadge:'+€300', spoedTitle:'Fast-track course',
+    noFees:'No registration fees — you only pay for your lesson package.',
+    reviewsTitle:'They already passed',
+    reviewsSub:'Real Google reviews from our students',
+    focusedLessons:'', spoedTitle:'Fast-track course available',
     spoedDesc:'Get your licence faster with an intensive lesson schedule — more lessons per week, ready sooner.',
     spoedFeat1:'Intensive schedule — reach your exam sooner',
-    spoedFeat3:'Free re-exam with a fast-track course*',
-    spoedNote:'*One-time, provided you follow all lessons advised by your instructor.',
-    spoedToggleLabel:'Fast-track', spoedToggleHint:'Intensive schedule + free re-exam',
-    spoedToggleActive:'Fast-track active', spoedAdminLabel:'Fast-track surcharge (€)',
+    spoedFeat3:'Get your licence fast — intensive schedule',
     proeflesUur:'Free 1-hour trial lesson — no obligation.',
     losseLesLabel:'Single lesson',
     losseLesPrice:65,
@@ -1367,8 +1414,6 @@ let adminUnlocked = false;
 let lang = 'nl';
 let discountActive = document.getElementById('discountActiveInput').checked;
 let discountPerLesson = parseFloat(document.getElementById('discountAmountInput').value) || 0;
-let spoedSurcharge = parseFloat(document.getElementById('spoedAmountInput').value) || 0;
-let spoedActive = false; // live toggle on the category price table
 let currentCatKey = null;
 
 /* =========================================================
@@ -1440,7 +1485,6 @@ function applyStatic(){
   document.getElementById('adminDiscountSectionT').textContent = S.adminDiscountSectionT;
   document.getElementById('adminToggleLabel').textContent = S.adminToggleLabel;
   document.getElementById('adminAmountLabel').textContent = S.adminAmountLabel;
-  document.getElementById('adminSpoedLabel').textContent = S.spoedAdminLabel;
   document.getElementById('adminPkgSectionT').textContent = S.adminPkgSectionT;
   document.getElementById('adminOneTimeSectionT').textContent = S.adminOneTimeSectionT;
   document.getElementById('adminStatsSectionT').textContent = S.adminStatsSectionT;
@@ -1526,10 +1570,26 @@ function renderTestimonialSlider(){
     return;
   }
   if(wrap) wrap.style.display = '';
+  const S = STR[lang];
+  const tEl = document.getElementById('reviewsTitleEl');
+  const sEl = document.getElementById('reviewsSubEl');
+  if(tEl) tEl.textContent = S.reviewsTitle;
+  if(sEl) sEl.textContent = S.reviewsSub;
   if(testimonialIndex >= TESTIMONIALS.length) testimonialIndex = 0;
   const item = TESTIMONIALS[testimonialIndex];
   const quote = lang === 'nl' ? item.quote_nl : item.quote_en;
-  slideEl.innerHTML = `<p class="q">“${quote}”</p><p class="by">— ${item.name}</p>`;
+  const initial = (item.name || '?').trim().charAt(0).toUpperCase();
+  const hues = [212, 340, 150, 28, 265, 190];
+  const hue = hues[testimonialIndex % hues.length];
+  slideEl.innerHTML = `
+    <div class="greview__head">
+      <span class="greview__avatar" style="background:hsl(${hue} 62% 48%)">${initial}</span>
+      <span class="greview__who">
+        <span class="greview__name">${item.name}</span>
+        <span class="greview__stars">★★★★★</span>
+      </span>
+    </div>
+    <p class="greview__text">${quote}</p>`;
   dotsEl.innerHTML = TESTIMONIALS.map((_,i)=>`<span class="${i===testimonialIndex?'active':''}" data-dot="${i}"></span>`).join('');
 }
 
@@ -1785,12 +1845,11 @@ function renderCategory(key){
 
   const tableRows = !isTaxi ? cat.packages.map(p=>{
     const discount = discountActive ? p.lessons * discountPerLesson : 0;
-    const spoed = spoedActive ? spoedSurcharge : 0;
-    const original = p.price + spoed;
-    const final = p.price - discount + spoed;
+    const original = p.price;
+    const final = p.price - discount;
     const showStrike = discountActive; // strikethrough only meaningful with the discount campaign
     return `
-    <tr data-register data-register-cat="${key}" data-register-pkg="${p.lessons}"${spoedActive ? ' data-register-spoed="1"' : ''}>
+    <tr data-register data-register-cat="${key}" data-register-pkg="${p.lessons}">
       <td>${p.lessons}</td>
       <td>${showStrike ? `<span class="price-original">${fmtPrice(original)}</span><span class="price-final">${fmtPrice(final)}</span>` : `<span class="price-final">${fmtPrice(final)}</span>`}</td>
       <td class="row-arrow">${ICONS.arrow}</td>
@@ -1826,31 +1885,23 @@ function renderCategory(key){
           </ul>
         </div>
       </div>
+      <div class="no-fees">
+        ${ICONS.check}<span>${S.noFees}</span>
+      </div>
     </div>`;
 
   const packagesBlock = isTaxi
     ? `<div class="taxi-pkg-grid">${taxiCardsHtml}</div>`
     : `
+      ${discountActive ? `<div class="campaign-banner">${ICONS.flame}${S.campaignOn.replace('{amount}', discountPerLesson)}</div>` : ''}
       <div class="spoed-card" style="margin-top:28px;">
         <div class="spoed-card__head">
           <span class="spoed-card__title">${S.spoedTitle}</span>
-          <span class="spoed-card__badge">+${fmtPrice(spoedSurcharge)}</span>
         </div>
-        <p class="spoed-card__desc">${S.spoedDesc}</p>
         <ul class="spoed-card__list">
-          <li>${ICONS.check}<span>${S.spoedFeat1}</span></li>
           <li>${ICONS.check}<span>${S.spoedFeat3}</span></li>
         </ul>
-        <p class="spoed-card__note">${S.spoedNote}</p>
       </div>
-      ${discountActive ? `<div class="campaign-banner">${ICONS.flame}${S.campaignOn.replace('{amount}', discountPerLesson)}</div>` : ''}
-      <button type="button" class="spoed-toggle${spoedActive ? ' is-active' : ''}" data-spoed-toggle aria-pressed="${spoedActive ? 'true' : 'false'}">
-        <span class="spoed-toggle__check">${ICONS.check}</span>
-        <span class="spoed-toggle__text">
-          <span class="spoed-toggle__label">${spoedActive ? S.spoedToggleActive : S.spoedToggleLabel} <span class="spoed-toggle__plus">+${fmtPrice(spoedSurcharge)}</span></span>
-          <span class="spoed-toggle__hint">${S.spoedToggleHint}</span>
-        </span>
-      </button>
       <div class="price-table-wrap">
         <table class="price-table">
           <thead><tr><th>${S.lessonsLabelCap}</th><th>${S.priceLabelCap}</th><th></th></tr></thead>
@@ -1858,12 +1909,7 @@ function renderCategory(key){
         </table>
       </div>
       <div class="lesson-info">
-        <div class="lesson-info__duration">${S.lessonDuration}</div>
         <div class="lesson-info__focus" style="margin-top:8px;">${S.proeflesUur}</div>
-      </div>
-      <div class="losse-les">
-        <span class="losse-les__label">${S.losseLesLabel}</span>
-        <span class="losse-les__price">${fmtPrice(S.losseLesPrice)}</span>
       </div>
       <p class="packages-note" style="color:#8FA4BB;margin-top:22px;">${S.tapRowNote}</p>
       ${oneTimeHtml}
@@ -1962,19 +2008,6 @@ function scrollToSection(id){
 // Single delegated, capturing click handler — fires ahead of any
 // outer/host listener that might try to intercept the anchor click.
 document.addEventListener('click', function(e){
-  const spoedEl = e.target.closest('[data-spoed-toggle]');
-  if(spoedEl){
-    e.preventDefault();
-    e.stopPropagation();
-    spoedActive = !spoedActive;
-    if(currentCatKey) renderCategory(currentCatKey);
-    // keep the price table in view after re-render
-    requestAnimationFrame(()=>{
-      const t = document.querySelector('.spoed-toggle');
-      if(t) t.scrollIntoView({block:'center'});
-    });
-    return;
-  }
   const routeEl = e.target.closest('[data-route]');
   if(routeEl){
     e.preventDefault();
@@ -2112,8 +2145,6 @@ function readAdminFormsIntoState(){
   discountActive = document.getElementById('discountActiveInput').checked;
   const val = parseFloat(document.getElementById('discountAmountInput').value);
   discountPerLesson = isNaN(val) ? 0 : Math.max(0, val);
-  const sval = parseFloat(document.getElementById('spoedAmountInput').value);
-  spoedSurcharge = isNaN(sval) ? 0 : Math.max(0, sval);
 
   // packages
   document.querySelectorAll('#pkgEditContainer input').forEach(input=>{
@@ -2170,7 +2201,6 @@ function readAdminFormsIntoState(){
   const discInput = document.getElementById('discountActiveInput');
   if(discountActive) discInput.setAttribute('checked',''); else discInput.removeAttribute('checked');
   document.getElementById('discountAmountInput').setAttribute('value', String(discountPerLesson));
-  document.getElementById('spoedAmountInput').setAttribute('value', String(spoedSurcharge));
 }
 
 document.getElementById('adminApplyBtn').addEventListener('click', ()=>{
