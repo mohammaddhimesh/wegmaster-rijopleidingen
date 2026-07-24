@@ -1931,7 +1931,7 @@ function renderCategory(key){
     ? `<div class="taxi-pkg-grid">${taxiCardsHtml}</div>`
     : `
       ${discountActive ? `<div class="campaign-banner">${ICONS.flame}${S.campaignOn.replace('{amount}', discountPerLesson)}</div>` : ''}
-      <div class="spoed-card" style="margin-top:28px;">
+      <div class="spoed-card" id="spoedcursus" style="margin-top:28px;scroll-margin-top:90px;">
         <div class="spoed-card__head">
           <span class="spoed-card__title">${S.spoedTitle}</span>
         </div>
@@ -1998,6 +1998,13 @@ function showPageRoute(route){
   const catPage = document.getElementById('page-category');
   const regPage = document.getElementById('page-register');
 
+  // Alias: #spoedcursus opens the Auto page and scrolls to the spoed card.
+  let scrollTarget = null;
+  if(route === 'spoedcursus'){
+    scrollTarget = 'spoedcursus';
+    route = 'auto';
+  }
+
   homePage.hidden = true;
   catPage.hidden = true;
   regPage.hidden = true;
@@ -2019,7 +2026,14 @@ function showPageRoute(route){
 
   document.getElementById('mobilePanel').classList.remove('open');
   document.getElementById('menuBtn').setAttribute('aria-expanded','false');
-  window.scrollTo(0,0);
+  if(scrollTarget){
+    setTimeout(()=>{
+      const el = document.getElementById(scrollTarget);
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 80);
+  } else {
+    window.scrollTo(0,0);
+  }
   return route;
 }
 
@@ -2097,7 +2111,7 @@ window.addEventListener('popstate', ()=>{
    LANGUAGE TOGGLE
    ========================================================= */
 function resolveRoute(route){
-  if(CATS[route] || route === 'register') return route;
+  if(CATS[route] || route === 'register' || route === 'spoedcursus') return route;
   return 'home';
 }
 
