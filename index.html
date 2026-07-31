@@ -275,6 +275,16 @@
   .mobile-panel a{color:#E4ECF6;font-weight:600;font-size:16px;}
   .mobile-panel .btn{margin-top:6px;}
 
+  /* Mobiel: NL/EN kleiner + menuknop eronder, samen naast het logo */
+  @media(max-width:879.98px){
+    .nav-row{justify-content:flex-start;gap:12px;}
+    .nav-right{flex-direction:column;gap:6px;align-items:stretch;}
+    .lang-toggle{padding:2px;justify-content:center;}
+    .lang-toggle button{font-size:10.5px;padding:4px 10px;}
+    .menu-btn{width:100%;height:30px;border-radius:8px;}
+    .menu-btn svg{width:18px;height:18px;}
+  }
+
   @media (min-width:880px){
     .nav-links{display:flex;}
     .nav-cta{display:inline-flex;}
@@ -326,20 +336,28 @@
   /* ---------- Category chooser (hero) ---------- */
   .cat-chooser{margin-top:34px;}
   .cat-chooser__label{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:#8FA8C4;margin-bottom:12px;}
-  .cat-chooser__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:560px;}
+  .cat-chooser__grid{display:grid;grid-template-columns:1fr;gap:12px;max-width:560px;}
   .cat-pick{
-    display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;
-    background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.14);border-radius:14px;
-    padding:24px 10px;cursor:pointer;transition:.15s;color:#fff;text-decoration:none;
+    display:flex;flex-direction:row;align-items:center;gap:16px;text-align:left;
+    background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.14);border-radius:16px;
+    padding:18px 20px;cursor:pointer;transition:.15s;color:#fff;text-decoration:none;
   }
-  .cat-pick:hover{background:rgba(243,128,30,.14);border-color:var(--orange-500);transform:translateY(-2px);}
-  .cat-pick__ic{width:64px;height:64px;display:flex;align-items:center;justify-content:center;color:var(--orange-400);
+  .cat-pick:hover{background:rgba(243,128,30,.14);border-color:var(--orange-500);transform:translateX(3px);}
+  .cat-pick__ic{width:66px;height:66px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;color:var(--orange-400);
     background:rgba(242,169,59,.12);border-radius:16px;}
-  .cat-pick__ic svg{width:44px;height:44px;}
-  .cat-pick__name{font-size:16px;font-weight:700;}
-  .cat-pick__soon{font-size:10px;color:#8FA8C4;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.04em;}
-  @media(max-width:420px){.cat-pick__name{font-size:13.5px;}.cat-pick{padding:18px 4px;}
-    .cat-pick__ic{width:52px;height:52px;} .cat-pick__ic svg{width:36px;height:36px;}}
+  .cat-pick__ic svg{width:46px;height:46px;}
+  .cat-pick__body{display:flex;flex-direction:column;gap:2px;flex:1 1 auto;min-width:0;}
+  .cat-pick__name{font-size:20px;font-weight:700;}
+  .cat-pick__soon{font-size:10.5px;color:#8FA8C4;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.04em;}
+  .cat-pick__cta{margin-left:auto;flex:0 0 auto;display:inline-flex;align-items:center;gap:5px;
+    color:var(--orange-400);font-weight:700;font-size:13px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.03em;}
+  .cat-pick__cta svg{width:16px;height:16px;}
+  @media(max-width:420px){
+    .cat-pick{padding:16px 15px;gap:13px;}
+    .cat-pick__ic{width:56px;height:56px;} .cat-pick__ic svg{width:38px;height:38px;}
+    .cat-pick__name{font-size:18px;}
+    .cat-pick__cta{font-size:11.5px;}
+  }
 
   /* ---------- Why us ---------- */
   .why-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:36px;}
@@ -814,7 +832,7 @@
   @media(max-width:1279.98px){
     body{padding-right:72px;}
     .fame-rail{width:72px;background:linear-gradient(180deg,#0B1B2E,#12283f);}
-    .fame-photo{width:54px;height:54px;}
+    .fame-photo{width:54px;height:54px;margin-bottom:20px;}
     .fame-photo svg{width:28px;height:28px;}
   }
   .fame-rail__track{
@@ -951,17 +969,25 @@
         <div class="cat-chooser__label" id="catChooserLabel" data-nl="Waarvoor wil je je rijbewijs halen?" data-en="What licence do you want?">Waarvoor wil je je rijbewijs halen?</div>
         <div class="cat-chooser__grid">
           <a href="#auto" data-route="auto" class="cat-pick">
-            <span class="cat-pick__ic"><svg viewBox="0 0 24 24" fill="none"><path d="M3 13l1.5-5A2 2 0 0 1 6.4 6.6h11.2A2 2 0 0 1 19.5 8l1.5 5M4 13h16v4.5A1.5 1.5 0 0 1 18.5 19h-1A1.5 1.5 0 0 1 16 17.5V17H8v.5A1.5 1.5 0 0 1 6.5 19h-1A1.5 1.5 0 0 1 4 17.5V13Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7.5" cy="13.2" r="1.3" fill="currentColor"/><circle cx="16.5" cy="13.2" r="1.3" fill="currentColor"/></svg></span>
-            <span class="cat-pick__name" data-nl="Auto" data-en="Car">Auto</span>
+            <span class="cat-pick__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.6-1.5-1.8L18 10l-2-4.2A1.5 1.5 0 0 0 14.6 5H9.4A1.5 1.5 0 0 0 8 5.8L6 10l-2.5.4C2.7 10.6 2 11.3 2 12.2V16c0 .6.4 1 1 1h2"/><path d="M6 10h12"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="16.5" cy="16.5" r="1.8"/></svg></span>
+            <span class="cat-pick__body">
+              <span class="cat-pick__name" data-nl="Auto" data-en="Car">Auto</span>
+            </span>
+            <span class="cat-pick__cta"><span data-nl="Klik hier" data-en="Click here">Klik hier</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </a>
           <a href="#taxi" data-route="taxi" class="cat-pick">
             <span class="cat-pick__ic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l1.4-5A2 2 0 0 1 8.3 6.6h7.4A2 2 0 0 1 17.6 8L19 13M4.5 13h15v4.2a1.3 1.3 0 0 1-1.3 1.3h-.9a1.3 1.3 0 0 1-1.3-1.3V17H7.5v.2a1.3 1.3 0 0 1-1.3 1.3h-.9A1.3 1.3 0 0 1 4 17.2V13Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 6.6V5h6v1.6" stroke="currentColor" stroke-width="1.6"/></svg></span>
-            <span class="cat-pick__name" data-nl="Taxi" data-en="Taxi">Taxi</span>
+            <span class="cat-pick__body">
+              <span class="cat-pick__name" data-nl="Taxi" data-en="Taxi">Taxi</span>
+            </span>
+            <span class="cat-pick__cta"><span data-nl="Klik hier" data-en="Click here">Klik hier</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </a>
           <a href="#vrachtwagen" data-route="vrachtwagen" class="cat-pick">
             <span class="cat-pick__ic"><svg viewBox="0 0 24 24" fill="none"><path d="M2 15V8.5A1.5 1.5 0 0 1 3.5 7h9.5v8M13 9h4l3 3.5V15M2.5 15h18M7 15.5A1.75 1.75 0 1 1 7 19a1.75 1.75 0 0 1 0-3.5ZM17 15.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
-            <span class="cat-pick__name" data-nl="Vrachtwagen" data-en="Truck">Vrachtwagen</span>
-            <span class="cat-pick__soon" data-nl="Binnenkort" data-en="Soon">Binnenkort</span>
+            <span class="cat-pick__body">
+              <span class="cat-pick__name" data-nl="Vrachtwagen" data-en="Truck">Vrachtwagen</span>
+              <span class="cat-pick__soon" data-nl="Binnenkort" data-en="Soon">Binnenkort</span>
+            </span>
           </a>
         </div>
       </div>
@@ -2466,13 +2492,7 @@ showPageRoute((location.hash || '#home').replace('#',''));
    Vul de lijst met bestandsnamen/URL's van je geslaagden, bijv:
      const FAME_PHOTOS = ['geslaagden/anna.jpg','geslaagden/omar.jpg', ...];
    Leeg laten = de kleurige placeholder-rondjes blijven staan. */
-const FAME_PHOTOS = [
-  'geslaagden/Ali.jpeg',
-  'geslaagden/hasen.jpeg',
-  'geslaagden/nader.jpeg',
-  'geslaagden/tomas.jpeg',
-  'geslaagden/mohammad.jpeg'
-];
+const FAME_PHOTOS = ['geslaagden/Ali.jpeg','geslaagden/hasen.jpeg','geslaagden/nader.jpeg','geslaagden/tomas.jpeg','geslaagden/mohammad.jpeg'];
 if (FAME_PHOTOS.length){
   document.querySelectorAll('.fame-photo').forEach(function(el, idx){
     var src = FAME_PHOTOS[idx % FAME_PHOTOS.length];
