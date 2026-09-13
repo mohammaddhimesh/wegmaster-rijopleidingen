@@ -372,7 +372,7 @@
   .cat-pick__body{display:flex;flex-direction:column;gap:2px;flex:1 1 auto;min-width:0;}
   .cat-pick__name{font-size:20px;font-weight:700;}
   .cat-pick__soon{font-size:10.5px;color:var(--ink-soft);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.04em;}
-  .cat-pick__cta{margin-left:auto;flex:0 0 auto;display:inline-flex;align-items:center;gap:5px;
+  .cat-pick__cta{margin-left:auto;flex:0 1 auto;min-width:0;display:inline-flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:2px 5px;max-width:150px;text-align:right;
     color:var(--orange-400);font-weight:700;font-size:13px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.03em;}
   .cat-pick__cta svg{width:16px;height:16px;}
   @media(max-width:420px){
@@ -1040,16 +1040,16 @@
   <!-- Namen + foto's bewerken: pas hieronder de lijst aan. Foto's: zet bestanden in map "instructeurs/" en zet het pad, bijv. "photo":"instructeurs/daan.jpeg" -->
   <script type="application/json" id="instructeurs-data">
   [
-    {"name":"Daan de Vries","photo":""},
-    {"name":"Sem Bakker","photo":""},
-    {"name":"Lars Jansen","photo":""},
-    {"name":"Bram van Dijk","photo":""},
-    {"name":"Thijs Visser","photo":""},
-    {"name":"Ruben Smit","photo":""},
-    {"name":"Jesse Mulder","photo":""},
-    {"name":"Tim de Boer","photo":""},
-    {"name":"Niels Bos","photo":""},
-    {"name":"Sven Meijer","photo":""}
+    {"name":"Daan de Vries","photo":"","gender":"m"},
+    {"name":"Sem Bakker","photo":"","gender":"m"},
+    {"name":"Lars Jansen","photo":"","gender":"m"},
+    {"name":"Bram van Dijk","photo":"","gender":"m"},
+    {"name":"Thijs Visser","photo":"","gender":"m"},
+    {"name":"Ruben Smit","photo":"","gender":"m"},
+    {"name":"Jesse Mulder","photo":"","gender":"m"},
+    {"name":"Tim de Boer","photo":"","gender":"m"},
+    {"name":"Niels Bos","photo":"","gender":"m"},
+    {"name":"Sven Meijer","photo":"","gender":"m"}
   ]
   </script>
   <section class="section--tight" id="team-section">
@@ -1071,9 +1071,12 @@
     function ini(n){return n.trim().split(/\s+/).map(function(w){return w[0];}).slice(0,2).join('').toUpperCase();}
     grid.innerHTML=TEAM.map(function(m){
       var name=(m.name&&m.name.trim())?m.name:'Instructeur';
+      var _g=(m.gender||'m').toString().toLowerCase();
+      var _vrouw=(_g==='f'||_g==='v'||_g==='w'||_g==='vrouw'||_g==='female'||_g==='woman');
+      var opts=_vrouw?'&top=longButNotTooLong,miaWallace,straight01,straight02,bob,curvy,bigHair&facialHairProbability=0':'&top=shortFlat,shortRound,shortWaved,shortCurly,theCaesar,sides&facialHairProbability=35';
       var ph=(m.photo&&m.photo.trim())
         ? '<img src="'+m.photo+'" alt="'+name+' \u2014 instructeur bij WegMaster Rijopleidingen" loading="lazy" width="96" height="96">'
-        : '<img class="team-avatar" src="https://api.dicebear.com/9.x/avataaars/svg?seed='+encodeURIComponent(name)+'&radius=50&backgroundColor=b6e3f4,d1e7f5,cfe2f5" alt="'+name+' \u2014 instructeur bij WegMaster Rijopleidingen" loading="lazy" data-ini="'+ini(name)+'" onerror="this.parentNode.innerHTML=\'<span class=&quot;team-initials&quot;>\'+this.dataset.ini+\'</span>\'">';
+        : '<img class="team-avatar" src="https://api.dicebear.com/9.x/avataaars/svg?seed='+encodeURIComponent(name)+opts+'&radius=50&backgroundColor=b6e3f4,d1e7f5,cfe2f5" alt="'+name+' \u2014 instructeur bij WegMaster Rijopleidingen" loading="lazy" data-ini="'+ini(name)+'" onerror="this.parentNode.innerHTML=\'<span class=&quot;team-initials&quot;>\'+this.dataset.ini+\'</span>\'">';
       return '<div class="team-card"><div class="team-card__photo">'+ph+'</div><h4>'+name+'</h4></div>';
     }).join('');
   })();
@@ -1098,14 +1101,14 @@
             <span class="cat-pick__body">
               <span class="cat-pick__name" data-nl="Auto" data-en="Car">Auto</span>
             </span>
-            <span class="cat-pick__cta"><span data-nl="Klik hier" data-en="Click here">Klik hier</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="cat-pick__cta"><span data-nl="Klik hier voor prijzen en info" data-en="Click here for prices & info">Klik hier voor prijzen en info</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </a>
           <a href="#taxi" data-route="taxi" class="cat-pick">
             <span class="cat-pick__ic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l1.4-5A2 2 0 0 1 8.3 6.6h7.4A2 2 0 0 1 17.6 8L19 13M4.5 13h15v4.2a1.3 1.3 0 0 1-1.3 1.3h-.9a1.3 1.3 0 0 1-1.3-1.3V17H7.5v.2a1.3 1.3 0 0 1-1.3 1.3h-.9A1.3 1.3 0 0 1 4 17.2V13Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 6.6V5h6v1.6" stroke="currentColor" stroke-width="1.6"/></svg></span>
             <span class="cat-pick__body">
               <span class="cat-pick__name" data-nl="Taxi" data-en="Taxi">Taxi</span>
             </span>
-            <span class="cat-pick__cta"><span data-nl="Klik hier" data-en="Click here">Klik hier</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="cat-pick__cta"><span data-nl="Klik hier voor prijzen en info" data-en="Click here for prices & info">Klik hier voor prijzen en info</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </a>
           <a href="#vrachtwagen" data-route="vrachtwagen" class="cat-pick">
             <span class="cat-pick__ic"><svg viewBox="0 0 24 24" fill="none"><path d="M2 15V8.5A1.5 1.5 0 0 1 3.5 7h9.5v8M13 9h4l3 3.5V15M2.5 15h18M7 15.5A1.75 1.75 0 1 1 7 19a1.75 1.75 0 0 1 0-3.5ZM17 15.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
