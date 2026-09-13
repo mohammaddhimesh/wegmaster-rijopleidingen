@@ -1040,7 +1040,7 @@
   <!-- Namen + foto's bewerken: pas hieronder de lijst aan. Foto's: zet bestanden in map "instructeurs/" en zet het pad, bijv. "photo":"instructeurs/daan.jpeg" -->
   <script type="application/json" id="instructeurs-data">
   [
-    {"name":"Daan de Vries","photo":"","gender":"m"},
+    {"name":"Mohammad","photo":"","gender":"m"},
     {"name":"Sem Bakker","photo":"","gender":"m"},
     {"name":"Lars Jansen","photo":"","gender":"m"},
     {"name":"Bram van Dijk","photo":"","gender":"m"},
@@ -1076,7 +1076,7 @@
       var opts=_vrouw?'&top=longButNotTooLong,miaWallace,straight01,straight02,bob,curvy,bigHair&facialHairProbability=0':'&top=shortFlat,shortRound,shortWaved,shortCurly,theCaesar,sides&facialHairProbability=35';
       var ph=(m.photo&&m.photo.trim())
         ? '<img src="'+m.photo+'" alt="'+name+' \u2014 instructeur bij WegMaster Rijopleidingen" loading="lazy" width="96" height="96">'
-        : '<img class="team-avatar" src="https://api.dicebear.com/9.x/avataaars/svg?seed='+encodeURIComponent(name)+opts+'&radius=50&backgroundColor=b6e3f4,d1e7f5,cfe2f5" alt="'+name+' \u2014 instructeur bij WegMaster Rijopleidingen" loading="lazy" data-ini="'+ini(name)+'" onerror="this.parentNode.innerHTML=\'<span class=&quot;team-initials&quot;>\'+this.dataset.ini+\'</span>\'">';
+        : '<img class="team-avatar" src="https://api.dicebear.com/9.x/avataaars/svg?seed='+encodeURIComponent(name)+opts+'&radius=50&backgroundColor=b6e3f4,d1e7f5,cfe2f5&eyes=default,happy&eyebrows=default,defaultNatural,upDown&mouth=smile,twinkle" alt="'+name+' \u2014 instructeur bij WegMaster Rijopleidingen" loading="lazy" data-ini="'+ini(name)+'" onerror="this.parentNode.innerHTML=\'<span class=&quot;team-initials&quot;>\'+this.dataset.ini+\'</span>\'">';
       return '<div class="team-card"><div class="team-card__photo">'+ph+'</div><h4>'+name+'</h4></div>';
     }).join('');
   })();
