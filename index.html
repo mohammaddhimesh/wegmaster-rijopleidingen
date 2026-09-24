@@ -941,9 +941,13 @@
   .pkg-carousel{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
     -webkit-overflow-scrolling:touch;padding:6px 2px 16px;scrollbar-width:none;}
   .pkg-carousel::-webkit-scrollbar{display:none;}
-  .pkg-card{scroll-snap-align:center;flex:0 0 80%;max-width:310px;min-width:230px;
+  .pkg-card{position:relative;scroll-snap-align:center;flex:0 0 80%;max-width:310px;min-width:230px;
     background:var(--white);border:1.5px solid var(--line-light);border-radius:20px;padding:24px 22px;
     box-shadow:0 16px 34px -22px rgba(22,41,59,.4);display:flex;flex-direction:column;transition:.15s;}
+  .pkg-card__trans{position:absolute;top:16px;right:16px;display:flex;flex-direction:column;gap:5px;align-items:flex-end;z-index:1;}
+  .pkg-card__trans span{font-size:10px;font-weight:700;font-family:var(--font-mono);letter-spacing:.02em;
+    background:rgba(46,108,168,.1);color:var(--blue-500);border:1px solid rgba(46,108,168,.3);
+    border-radius:999px;padding:3px 10px;white-space:nowrap;}
   .pkg-card.is-spoed{border-color:var(--orange-500);box-shadow:0 16px 34px -18px rgba(243,128,30,.4);}
   .pkg-card__tag{align-self:flex-start;background:var(--orange-500);color:#fff;font-size:10px;font-weight:800;
     letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:4px 11px;margin-bottom:12px;font-family:var(--font-mono);}
@@ -2215,7 +2219,7 @@ function pkgCarouselHTML(pkgs){
     var per=Math.round(fin/p.lessons);
     var tag=disc>0?'<div class="pkg-card__tag">\u20ac'+disc+' korting</div>':((p.lessons===30)?'<div class="pkg-card__tag pkg-card__tag--pop">Meest gekozen</div>':'');
     var priceHtml=disc>0?'<span class="pkg-amt">\u20ac'+fin+'</span><span class="pkg-old">\u20ac'+p.price+'</span>':'<span class="pkg-amt">\u20ac'+p.price+'</span>';
-    return '<div class="pkg-card" data-final="'+fin+'">'+tag+
+    return '<div class="pkg-card" data-final="'+fin+'"><div class="pkg-card__trans"><span>Automaat</span><span>Schakel</span></div>'+tag+
       '<h3 class="pkg-card__name">'+p.lessons+' rijlessen</h3>'+
       '<div class="pkg-card__price">'+priceHtml+'<span class="pkg-per">\u20ac'+per+' / les</span></div>'+
       '<div class="pkg-spoed-note" style="display:none;"></div>'+
