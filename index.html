@@ -935,6 +935,45 @@
   .team-card__photo .team-initials{font-family:var(--font-display);font-weight:800;font-size:20px;color:var(--blue-500);}
   .team-card h4{font-size:13px;color:var(--ink);line-height:1.25;}
   @media(max-width:400px){.team-card__photo{width:58px;height:58px;}.team-card__photo .team-initials{font-size:18px;}.team-card h4{font-size:12px;}}
+
+  /* ---------- Pakketten carousel ---------- */
+  .pkg-carousel-wrap{position:relative;margin-top:26px;}
+  .pkg-carousel{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;padding:6px 2px 16px;scrollbar-width:none;}
+  .pkg-carousel::-webkit-scrollbar{display:none;}
+  .pkg-card{scroll-snap-align:center;flex:0 0 80%;max-width:310px;min-width:230px;
+    background:var(--white);border:1.5px solid var(--line-light);border-radius:20px;padding:24px 22px;
+    box-shadow:0 16px 34px -22px rgba(22,41,59,.4);display:flex;flex-direction:column;transition:.15s;}
+  .pkg-card.is-spoed{border-color:var(--orange-500);box-shadow:0 16px 34px -18px rgba(243,128,30,.4);}
+  .pkg-card__tag{align-self:flex-start;background:var(--orange-500);color:#fff;font-size:10px;font-weight:800;
+    letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:4px 11px;margin-bottom:12px;font-family:var(--font-mono);}
+  .pkg-card__name{font-size:17px;color:var(--blue-500);font-weight:700;}
+  .pkg-card__price{display:flex;align-items:baseline;gap:8px;margin:8px 0 16px;flex-wrap:wrap;}
+  .pkg-amt{font-family:var(--font-display);font-size:34px;font-weight:800;color:var(--orange-500);line-height:1;}
+  .pkg-per{font-size:13px;color:var(--ink-soft);font-weight:600;}
+  .pkg-old{font-size:15px;color:var(--ink-soft);text-decoration:line-through;font-weight:600;}
+  .pkg-spoed-note{font-size:12.5px;font-weight:700;color:var(--orange-500);margin:-6px 0 14px;}
+  .pkg-card__tag--pop{background:var(--blue-500);}
+  .pkg-card__feat{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:9px;}
+  .pkg-card__feat li{position:relative;padding-left:26px;font-size:14px;color:var(--ink);line-height:1.4;}
+  .pkg-card__feat li::before{content:"+";position:absolute;left:0;top:0;width:18px;height:18px;
+    display:flex;align-items:center;justify-content:center;background:rgba(46,108,168,.12);
+    color:var(--blue-500);border-radius:50%;font-weight:800;font-size:13px;}
+  .pkg-spoed{display:flex;align-items:center;gap:10px;cursor:pointer;margin-bottom:16px;
+    padding:10px 12px;background:var(--surface-2);border-radius:12px;}
+  .pkg-spoed__cb{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none;}
+  .pkg-spoed__track{position:relative;flex:0 0 auto;width:38px;height:22px;background:#c3d2e0;border-radius:999px;transition:.15s;}
+  .pkg-spoed__track::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;background:#fff;border-radius:50%;transition:.15s;box-shadow:0 1px 3px rgba(0,0,0,.25);}
+  .pkg-spoed__cb:checked + .pkg-spoed__track{background:var(--orange-500);}
+  .pkg-spoed__cb:checked + .pkg-spoed__track::after{transform:translateX(16px);}
+  .pkg-spoed__label{font-size:13px;font-weight:600;color:var(--ink);}
+  .pkg-card__cta{margin-top:auto;width:100%;justify-content:center;}
+  .pkg-nav{position:absolute;top:46%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;
+    border:1px solid var(--line-light);background:var(--white);color:var(--blue-500);font-size:22px;line-height:1;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 16px -8px rgba(22,41,59,.35);z-index:2;}
+  .pkg-nav--prev{left:-6px;} .pkg-nav--next{right:-6px;}
+  .pkg-nav:hover{border-color:var(--orange-500);color:var(--orange-500);}
+  @media(max-width:760px){.pkg-nav{display:none;}.pkg-card{flex-basis:82%;}}
 </style>
 </head>
 <body>
@@ -949,7 +988,7 @@
      admin panel can update them and bake the changes into a downloadable copy
      of this file (this is a static site — there's no backend/database). -->
 <script type="application/json" id="package-data">
-{"auto":[{"lessons":15,"price":900},{"lessons":20,"price":1200},{"lessons":25,"price":1500},{"lessons":30,"price":1800},{"lessons":40,"price":2400},{"lessons":45,"price":2700},{"lessons":50,"price":3000}],
+{"auto":[{"lessons":5,"price":350},{"lessons":10,"price":700},{"lessons":20,"price":1400},{"lessons":30,"price":2100},{"lessons":40,"price":2800}],
 "taxi":[{"lessons":4,"price":950,"ownCarDiscount":150},{"lessons":6,"price":1100,"ownCarDiscount":150}],
 "vrachtwagen":[{"lessons":15,"price":900},{"lessons":20,"price":1200},{"lessons":25,"price":1500},{"lessons":30,"price":1800},{"lessons":40,"price":2400},{"lessons":45,"price":2700},{"lessons":50,"price":3000}]}
 </script>
@@ -1497,7 +1536,7 @@
     <div class="admin-row">
       <label id="adminToggleLabel">—</label>
       <label class="switch">
-        <input type="checkbox" id="discountActiveInput" checked>
+        <input type="checkbox" id="discountActiveInput">
         <span class="track"></span>
       </label>
     </div>
@@ -1506,6 +1545,17 @@
       <div class="admin-amount">
         <span>€</span>
         <input type="number" id="discountAmountInput" value="7" min="0" max="50">
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-section">
+    <h4>Spoedcursus</h4>
+    <div class="admin-row">
+      <label>Toeslag spoedcursus (€)</label>
+      <div class="admin-amount">
+        <span>€</span>
+        <input type="number" id="spoedAmountInput" value="200" min="0" max="5000">
       </div>
     </div>
   </div>
@@ -1769,6 +1819,7 @@ let adminUnlocked = false;
 let lang = 'nl';
 let discountActive = document.getElementById('discountActiveInput').checked;
 let discountPerLesson = parseFloat(document.getElementById('discountAmountInput').value) || 0;
+let spoedSurcharge = parseFloat(document.getElementById('spoedAmountInput').value) || 0;
 let currentCatKey = null;
 
 /* =========================================================
@@ -2155,6 +2206,42 @@ document.addEventListener('submit', function(e){
   if(e.target && e.target.id === 'registerForm') handleRegisterSubmit(e);
 }, true);
 
+function pkgCarouselHTML(pkgs){
+  var cards=(pkgs||[]).map(function(p){
+    var da=(typeof discountActive!=='undefined')?discountActive:false;
+    var dpl=(typeof discountPerLesson!=='undefined')?discountPerLesson:0;
+    var disc=da?Math.round(p.lessons*dpl):0;
+    var fin=p.price-disc;
+    var per=Math.round(fin/p.lessons);
+    var tag=disc>0?'<div class="pkg-card__tag">\u20ac'+disc+' korting</div>':((p.lessons===30)?'<div class="pkg-card__tag pkg-card__tag--pop">Meest gekozen</div>':'');
+    var priceHtml=disc>0?'<span class="pkg-amt">\u20ac'+fin+'</span><span class="pkg-old">\u20ac'+p.price+'</span>':'<span class="pkg-amt">\u20ac'+p.price+'</span>';
+    return '<div class="pkg-card" data-final="'+fin+'">'+tag+
+      '<h3 class="pkg-card__name">'+p.lessons+' rijlessen</h3>'+
+      '<div class="pkg-card__price">'+priceHtml+'<span class="pkg-per">\u20ac'+per+' / les</span></div>'+
+      '<div class="pkg-spoed-note" style="display:none;"></div>'+
+      '<ul class="pkg-card__feat"><li>'+p.lessons+' rijlessen van 60 min</li><li>Gratis proefles</li><li>7 dagen per week</li><li>Flexibel \u2014 jij bepaalt het tempo</li><li>Je kan ook per les betalen</li></ul>'+
+      '<label class="pkg-spoed"><input type="checkbox" class="pkg-spoed__cb"><span class="pkg-spoed__track"></span><span class="pkg-spoed__label">Dit pakket als spoedcursus</span></label>'+
+      '<a href="#register" data-register class="btn btn--primary pkg-card__cta">Plan je proefles</a>'+
+    '</div>';
+  }).join('');
+  return '<div class="pkg-carousel-wrap"><button class="pkg-nav pkg-nav--prev" type="button" aria-label="Vorige">\u2039</button><div class="pkg-carousel" id="pkgCarousel">'+cards+'</div><button class="pkg-nav pkg-nav--next" type="button" aria-label="Volgende">\u203a</button></div>';
+}
+function initPkgCarousel(){
+  var wrap=document.getElementById('pkgCarousel'); if(!wrap) return;
+  wrap.querySelectorAll('.pkg-card').forEach(function(c){
+    var cb=c.querySelector('.pkg-spoed__cb'), cta=c.querySelector('.pkg-card__cta');
+    var amt=c.querySelector('.pkg-amt'), note=c.querySelector('.pkg-spoed-note'), base=parseFloat(c.getAttribute('data-final'))||0;
+    if(cb) cb.addEventListener('change',function(){
+      c.classList.toggle('is-spoed',cb.checked);
+      var sur=(typeof spoedSurcharge!=='undefined')?spoedSurcharge:0;
+      if(cb.checked){ if(amt) amt.textContent='\u20ac'+(base+sur); if(note){ note.textContent='+ \u20ac'+sur+' spoedcursus'; note.style.display=sur>0?'block':'none'; } if(cta) cta.textContent='Plan spoedcursus'; }
+      else{ if(amt) amt.textContent='\u20ac'+base; if(note) note.style.display='none'; if(cta) cta.textContent='Plan je proefles'; }
+    });
+  });
+  function step(d){ var c=wrap.querySelector('.pkg-card'); var w=c?c.offsetWidth+16:280; wrap.scrollBy({left:d*w,behavior:'smooth'}); }
+  var pv=document.querySelector('.pkg-nav--prev'), nx=document.querySelector('.pkg-nav--next');
+  if(pv) pv.onclick=function(){step(-1);}; if(nx) nx.onclick=function(){step(1);};
+}
 function renderCategory(key){
   const cat = CATS[key];
   if(!cat) return;
@@ -2259,12 +2346,7 @@ function renderCategory(key){
           <li>${ICONS.check}<span>${S.spoedFeat3}</span></li>
         </ul>
       </div>
-      <div class="price-table-wrap">
-        <table class="price-table">
-          <thead><tr><th>${S.lessonsLabelCap}</th><th>${S.priceLabelCap}</th><th></th></tr></thead>
-          <tbody>${tableRows}</tbody>
-        </table>
-      </div>
+      ${pkgCarouselHTML(cat.packages)}
       <div class="lesson-info">
         <div class="lesson-info__focus" style="margin-top:8px;">${S.proeflesUur}</div>
       </div>
@@ -2304,6 +2386,7 @@ function renderCategory(key){
       </div>
     </section>
   `;
+  initPkgCarousel();
 }
 
 /* =========================================================
@@ -2516,6 +2599,8 @@ function readAdminFormsIntoState(){
   discountActive = document.getElementById('discountActiveInput').checked;
   const val = parseFloat(document.getElementById('discountAmountInput').value);
   discountPerLesson = isNaN(val) ? 0 : Math.max(0, val);
+  const sval = parseFloat(document.getElementById('spoedAmountInput').value);
+  spoedSurcharge = isNaN(sval) ? 0 : Math.max(0, sval);
 
   // packages
   document.querySelectorAll('#pkgEditContainer input').forEach(input=>{
@@ -2572,6 +2657,7 @@ function readAdminFormsIntoState(){
   const discInput = document.getElementById('discountActiveInput');
   if(discountActive) discInput.setAttribute('checked',''); else discInput.removeAttribute('checked');
   document.getElementById('discountAmountInput').setAttribute('value', String(discountPerLesson));
+  document.getElementById('spoedAmountInput').setAttribute('value', String(spoedSurcharge));
 }
 
 document.getElementById('adminApplyBtn').addEventListener('click', ()=>{
