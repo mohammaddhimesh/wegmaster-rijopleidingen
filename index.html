@@ -992,7 +992,7 @@
      admin panel can update them and bake the changes into a downloadable copy
      of this file (this is a static site — there's no backend/database). -->
 <script type="application/json" id="package-data">
-{"auto":[{"lessons":5,"price":350},{"lessons":10,"price":700},{"lessons":20,"price":1400},{"lessons":30,"price":2100},{"lessons":40,"price":2800}],
+{"auto":[{"lessons":6,"price":360},{"lessons":10,"price":600},{"lessons":20,"price":1200},{"lessons":30,"price":1800},{"lessons":40,"price":2400}],
 "taxi":[{"lessons":4,"price":950,"ownCarDiscount":150},{"lessons":6,"price":1100,"ownCarDiscount":150}],
 "vrachtwagen":[{"lessons":15,"price":900},{"lessons":20,"price":1200},{"lessons":25,"price":1500},{"lessons":30,"price":1800},{"lessons":40,"price":2400},{"lessons":45,"price":2700},{"lessons":50,"price":3000}]}
 </script>
@@ -1540,7 +1540,7 @@
     <div class="admin-row">
       <label id="adminToggleLabel">—</label>
       <label class="switch">
-        <input type="checkbox" id="discountActiveInput">
+        <input type="checkbox" id="discountActiveInput" checked>
         <span class="track"></span>
       </label>
     </div>
@@ -1669,6 +1669,7 @@ const STR = {
     spoedFeat1:'Intensief lesschema — sneller je examen in',
     spoedFeat3:'Snel klaar met je rijbewijs — intensief lesschema',
     proeflesUur:'Gratis proefles van 1 uur — vrijblijvend kennismaken.',
+    blokurenNote:'In de pakketten duurt een rijles 45 minuten. Voor het beste resultaat rijden we in blokuren: in de auto krijg je twee lessen achter elkaar — 1,5 uur rijden per keer.',
     losseLesLabel:'Losse les',
     losseLesPrice:65,
     campaignOn:'Kortingsactie actief — bespaar €{amount} per les',
@@ -1744,6 +1745,7 @@ const STR = {
     spoedFeat1:'Intensive schedule — reach your exam sooner',
     spoedFeat3:'Get your licence fast — intensive schedule',
     proeflesUur:'Free 1-hour trial lesson — no obligation.',
+    blokurenNote:'In the packages a driving lesson is 45 minutes. For the best result we drive in block hours: in the car you get two lessons back-to-back — 1.5 hours of driving each time.',
     losseLesLabel:'Single lesson',
     losseLesPrice:65,
     campaignOn:'Discount campaign active — save €{amount} per lesson',
@@ -2223,7 +2225,7 @@ function pkgCarouselHTML(pkgs){
       '<h3 class="pkg-card__name">'+p.lessons+' rijlessen</h3>'+
       '<div class="pkg-card__price">'+priceHtml+'<span class="pkg-per">\u20ac'+per+' / les</span></div>'+
       '<div class="pkg-spoed-note" style="display:none;"></div>'+
-      '<ul class="pkg-card__feat"><li>'+p.lessons+' rijlessen van 60 min</li><li>Gratis proefles</li><li>7 dagen per week</li><li>Flexibel \u2014 jij bepaalt het tempo</li><li>Je kan ook per les betalen</li></ul>'+
+      '<ul class="pkg-card__feat"><li>Gratis proefles</li><li>7 dagen per week</li><li>Flexibel \u2014 jij bepaalt het tempo</li><li>Je kan ook per les betalen</li></ul>'+
       '<label class="pkg-spoed"><input type="checkbox" class="pkg-spoed__cb"><span class="pkg-spoed__track"></span><span class="pkg-spoed__label">Dit pakket als spoedcursus</span></label>'+
       '<a href="#register" data-register class="btn btn--primary pkg-card__cta">Plan je proefles</a>'+
     '</div>';
@@ -2353,6 +2355,7 @@ function renderCategory(key){
       ${pkgCarouselHTML(cat.packages)}
       <div class="lesson-info">
         <div class="lesson-info__focus" style="margin-top:8px;">${S.proeflesUur}</div>
+        <div class="lesson-info__focus" style="margin-top:8px;">${S.blokurenNote}</div>
       </div>
       <p class="packages-note" style="color:var(--ink-soft);margin-top:22px;">${S.tapRowNote}</p>
       ${oneTimeHtml}
