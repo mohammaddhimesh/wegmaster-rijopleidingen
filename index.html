@@ -652,6 +652,17 @@
   .spoed-card .btn{width:auto;}
 
 
+  /* ---------- Auto package cards (horizontal scroll) ---------- */
+  .auto-pkg-scroll{display:flex;gap:18px;overflow-x:auto;padding:4px 4px 18px;margin-top:32px;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
+  .auto-pkg-scroll::-webkit-scrollbar{height:8px;}
+  .auto-pkg-scroll::-webkit-scrollbar-thumb{background:rgba(243,128,30,.4);border-radius:8px;}
+  .auto-pkg-scroll::-webkit-scrollbar-track{background:rgba(22,41,59,.06);border-radius:8px;}
+  .auto-pkg-scroll{align-items:stretch;}
+  .auto-pkg-scroll > .taxi-pkg-card{flex:0 0 280px;scroll-snap-align:start;}
+  .auto-pkg-scroll > .taxi-pkg-card hr{margin-top:auto;}
+  @media(max-width:520px){.auto-pkg-scroll > .taxi-pkg-card{flex:0 0 84%;}}
+
   /* ---------- Taxi package cards (Chauffeurspas-style) ---------- */
   .taxi-pkg-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:32px;}
   @media(min-width:720px){.taxi-pkg-grid{grid-template-columns:repeat(2,1fr);}}
@@ -992,12 +1003,12 @@
      admin panel can update them and bake the changes into a downloadable copy
      of this file (this is a static site — there's no backend/database). -->
 <script type="application/json" id="package-data">
-{"auto":[{"lessons":6,"price":360},{"lessons":10,"price":600},{"lessons":20,"price":1200},{"lessons":30,"price":1800},{"lessons":40,"price":2400}],
+{"auto":[{"lessons":25,"price":2100,"ttt":false},{"lessons":30,"price":2700,"ttt":true},{"lessons":40,"price":3400,"ttt":true}],
 "taxi":[{"lessons":4,"price":950,"ownCarDiscount":150},{"lessons":6,"price":1100,"ownCarDiscount":150}],
 "vrachtwagen":[{"lessons":15,"price":900},{"lessons":20,"price":1200},{"lessons":25,"price":1500},{"lessons":30,"price":1800},{"lessons":40,"price":2400},{"lessons":45,"price":2700},{"lessons":50,"price":3000}]}
 </script>
 <script type="application/json" id="onetime-data">
-{"examPrice":350,"inschrijfkosten":25,"theorieOnline":49,"theorieEenDag":99,"theorieExamen":48.75}
+{"examPrice":400,"bnoExamPrice":450,"inschrijfkosten":25,"theorieOnline":49,"theorieEenDag":99,"theorieExamen":48.75}
 </script>
 <script type="application/json" id="stories-data">
 [{"name":"Ali","category":"auto","photo":"geslaagden/Ali.jpeg"},{"name":"Hasen","category":"auto","photo":"geslaagden/hasen.jpeg"},{"name":"Nader","category":"taxi","photo":"geslaagden/nader.jpeg"},{"name":"Tomas","category":"auto","photo":"geslaagden/tomas.jpeg"},{"name":"Mohammad","category":"auto","photo":"geslaagden/mohammad.jpeg"}]
@@ -1540,7 +1551,7 @@
     <div class="admin-row">
       <label id="adminToggleLabel">—</label>
       <label class="switch">
-        <input type="checkbox" id="discountActiveInput" checked>
+        <input type="checkbox" id="discountActiveInput">
         <span class="track"></span>
       </label>
     </div>
@@ -1645,7 +1656,7 @@ const STR = {
     rights:'Alle rechten voorbehouden.',
     stepsT:'Zo werkt het',
     steps:[
-      {t:'Gratis proefles', d:'Je maakt kennis met je instructeur en rijstijl, zonder verplichtingen.', note:'Je betaalt €50 aanbetaling — die je volledig terugkrijgt als korting bij aanschaf van een pakket.'},
+      {t:'Gratis proefles', d:'Je maakt kennis met je instructeur en rijstijl, zonder verplichtingen.', note:'Je betaalt €70 aanbetaling — die je volledig terugkrijgt als korting bij aanschaf van een pakket.'},
       {t:'Kies je pakket', d:'Samen bepalen we welk lessenpakket en tempo bij je past.'},
       {t:'Volg je lessen', d:'Vaste lesmomenten op tijden die jou passen — wij houden ons aan de planning.'},
       {t:'Naar het examen', d:''}
@@ -1655,6 +1666,8 @@ const STR = {
     lessonsLabelCap:'Lessen', priceLabelCap:'Prijs', tapRowNote:'Tik op een pakket om je aan te melden.',
     pkgLetterTitle:'Pakket', taxiFeatureBook:'Inclusief theorieboek', taxiFeatureSupport:'Begeleiding bij vragen over de theorie',
     taxiFeatureLessons:'{lessons} praktijklessen', taxiFeatureExam:'Examen boeken + geschikte oefenauto beschikbaar',
+    autoFeatureLessons:'{lessons} rijlessen van 60 min', autoFeatureExam:'CBR praktijkexamen inbegrepen', autoFeatureTTT:'Keuze: tussentijdse toets óf herexamen',
+    bnoExamPriceLabel:'BNO-examen (herkansing)', losseLesLabel:'Losse rijles (60 min)',
     ownCarDiscountNote:'€{amount} korting bij gebruik van je eigen auto', ownCarDiscountLabel:'Korting eigen auto (€)',
     rowLabel:'Rij', examPriceLabel:'CBR Praktijkexamen', inschrijfLabel:'Eenmalige inschrijfkosten',
     theorieLabel:'Theorie', theorieOnlineLabel:'Online theoriecursus', theorieEenDagLabel:'1-dag cursus', theorieExamenLabel:'Theorie-examen',
@@ -1671,7 +1684,7 @@ const STR = {
     proeflesUur:'Gratis proefles van 1 uur — vrijblijvend kennismaken.',
     blokurenNote:'In de pakketten duurt een rijles 45 minuten. Voor het beste resultaat rijden we in blokuren: in de auto krijg je twee lessen achter elkaar — 1,5 uur rijden per keer.',
     losseLesLabel:'Losse les',
-    losseLesPrice:65,
+    losseLesPrice:70,
     campaignOn:'Kortingsactie actief — bespaar €{amount} per les',
     adminTitle:'Beheer', adminToggleLabel:'Actie actief', adminAmountLabel:'Korting per les', adminApply:'Toepassen op site',
     adminIntroNote:'Alleen voor jou: hier pas je prijzen, lesaantallen en succesverhalen aan. Dit is een eenvoudige pincode, geen echte beveiliging — bewaar de link naar dit bestand prive.',
@@ -1721,7 +1734,7 @@ const STR = {
     rights:'All rights reserved.',
     stepsT:'How it works',
     steps:[
-      {t:'Free trial lesson', d:'Get to know your instructor and driving style, no strings attached.', note:'You pay a €50 deposit — fully refunded as a discount when you book a package.'},
+      {t:'Free trial lesson', d:'Get to know your instructor and driving style, no strings attached.', note:'You pay a €70 deposit — fully refunded as a discount when you book a package.'},
       {t:'Choose your package', d:'Together we decide which lesson package and pace suits you.'},
       {t:'Take your lessons', d:'Fixed lesson times that work for you — we stick to the schedule.'},
       {t:'Toward the exam', d:''}
@@ -1731,6 +1744,8 @@ const STR = {
     lessonsLabelCap:'Lessons', priceLabelCap:'Price', tapRowNote:'Tap a package to register.',
     pkgLetterTitle:'Package', taxiFeatureBook:'Theory book included', taxiFeatureSupport:'Support for theory questions',
     taxiFeatureLessons:'{lessons} practical lessons', taxiFeatureExam:'Exam booking + suitable practice car provided',
+    autoFeatureLessons:'{lessons} driving lessons of 60 min', autoFeatureExam:'CBR practical exam included', autoFeatureTTT:'Choice: interim test or re-exam',
+    bnoExamPriceLabel:'BNO exam (re-sit)', losseLesLabel:'Single lesson (60 min)',
     ownCarDiscountNote:'€{amount} discount if you use your own car', ownCarDiscountLabel:'Own car discount (€)',
     rowLabel:'Row', examPriceLabel:'CBR practical exam', inschrijfLabel:'One-time registration fee',
     theorieLabel:'Theory', theorieOnlineLabel:'Online theory course', theorieEenDagLabel:'1-day course', theorieExamenLabel:'Theory exam',
@@ -1747,7 +1762,7 @@ const STR = {
     proeflesUur:'Free 1-hour trial lesson — no obligation.',
     blokurenNote:'In the packages a driving lesson is 45 minutes. For the best result we drive in block hours: in the car you get two lessons back-to-back — 1.5 hours of driving each time.',
     losseLesLabel:'Single lesson',
-    losseLesPrice:65,
+    losseLesPrice:70,
     campaignOn:'Discount campaign active — save €{amount} per lesson',
 
     adminTitle:'Manage', adminToggleLabel:'Campaign active', adminAmountLabel:'Discount per lesson', adminApply:'Apply to site',
@@ -2325,6 +2340,26 @@ function renderCategory(key){
     </div>`;
   }).join('') : '';
 
+  const isAuto = key === 'auto';
+  const autoCardsHtml = isAuto ? cat.packages.map((p,i)=>{
+    const letter = String.fromCharCode(65 + i); // A, B, C...
+    const discount = discountActive ? p.lessons * discountPerLesson : 0;
+    const final = p.price - discount;
+    return `
+    <div class="taxi-pkg-card">
+      <div class="taxi-pkg-card__badge">${letter}</div>
+      <h3>${S.pkgLetterTitle} ${letter}</h3>
+      <ul>
+        <li>${ICONS.check}<span>${S.autoFeatureLessons.replace('{lessons}', p.lessons)}</span></li>
+        <li>${ICONS.check}<span>${S.autoFeatureExam}</span></li>
+        ${p.ttt ? `<li>${ICONS.check}<span>${S.autoFeatureTTT}</span></li>` : ''}
+      </ul>
+      <hr>
+      <div class="price-final">${discountActive ? `<span class="price-original">${fmtPrice(p.price)}</span> ` : ''}${fmtPrice(final)}</div>
+      <a href="#register" data-register data-register-cat="${key}" data-register-pkg="${p.lessons}" class="btn btn--primary btn--block">${S.choosePkg}</a>
+    </div>`;
+  }).join('') : '';
+
   const oneTimeHtml = `
     <div class="onetime-costs">
       <div class="onetime-costs__grid">
@@ -2332,6 +2367,8 @@ function renderCategory(key){
           <h4>CBR</h4>
           <ul>
             <li><span>${S.examPriceLabel}</span><span>${fmtPrice(ONETIME.examPrice)}</span></li>
+            ${ONETIME.bnoExamPrice ? `<li><span>${S.bnoExamPriceLabel||'BNO examen (herkansing)'}</span><span>${fmtPrice(ONETIME.bnoExamPrice)}</span></li>` : ''}
+            <li><span>${S.losseLesLabel||'Losse rijles'}</span><span>${fmtPrice(S.losseLesPrice)}</span></li>
           </ul>
         </div>
       </div>
@@ -2342,6 +2379,16 @@ function renderCategory(key){
 
   const packagesBlock = isTaxi
     ? `<div class="taxi-pkg-grid">${taxiCardsHtml}</div>`
+    : isAuto
+    ? `
+      ${discountActive ? `<div class="campaign-banner">${ICONS.flame}${S.campaignOn.replace('{amount}', discountPerLesson)}</div>` : ''}
+      <div class="auto-pkg-scroll" style="margin-top:28px;">${autoCardsHtml}</div>
+      <div class="lesson-info">
+        <div class="lesson-info__focus" style="margin-top:8px;">${S.proeflesUur}</div>
+      </div>
+      ${oneTimeHtml}
+      <p class="packages-note" style="color:var(--ink-soft);">${S.oneTimeCosts}</p>
+    `
     : `
       ${discountActive ? `<div class="campaign-banner">${ICONS.flame}${S.campaignOn.replace('{amount}', discountPerLesson)}</div>` : ''}
       <div class="spoed-card" id="spoedcursus" style="margin-top:28px;scroll-margin-top:90px;">
