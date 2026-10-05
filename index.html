@@ -681,6 +681,7 @@
   .taxi-pkg-card hr{border:none;border-top:1px solid var(--line-light);margin:20px 0 18px;width:100%;}
   .taxi-pkg-card .price-final{font-family:var(--font-mono);font-size:30px;font-weight:700;color:var(--navy-950);}
   .taxi-pkg-card .owncar-note{margin-top:8px;font-size:13px;color:var(--ink-soft);}
+  .taxi-pkg-card .automaat-note{margin-top:6px;font-size:13.5px;font-weight:600;color:var(--orange-500);}
   .taxi-pkg-card .btn{margin-top:20px;}
 
   /* ---------- Admin / discount panel ---------- */
@@ -1003,7 +1004,7 @@
      admin panel can update them and bake the changes into a downloadable copy
      of this file (this is a static site — there's no backend/database). -->
 <script type="application/json" id="package-data">
-{"auto":[{"lessons":25,"price":2100,"ttt":false},{"lessons":30,"price":2700,"ttt":true},{"lessons":40,"price":3400,"ttt":true}],
+{"auto":[{"lessons":25,"price":1975,"ttt":false,"automaatExtra":125},{"lessons":30,"price":2600,"ttt":true,"automaatExtra":150},{"lessons":40,"price":3250,"ttt":true,"automaatExtra":200}],
 "taxi":[{"lessons":4,"price":950,"ownCarDiscount":150},{"lessons":6,"price":1100,"ownCarDiscount":150}],
 "vrachtwagen":[{"lessons":15,"price":900},{"lessons":20,"price":1200},{"lessons":25,"price":1500},{"lessons":30,"price":1800},{"lessons":40,"price":2400},{"lessons":45,"price":2700},{"lessons":50,"price":3000}]}
 </script>
@@ -1667,7 +1668,9 @@ const STR = {
     pkgLetterTitle:'Pakket', taxiFeatureBook:'Inclusief theorieboek', taxiFeatureSupport:'Begeleiding bij vragen over de theorie',
     taxiFeatureLessons:'{lessons} praktijklessen', taxiFeatureExam:'Examen boeken + geschikte oefenauto beschikbaar',
     autoFeatureLessons:'{lessons} rijlessen van 60 min', autoFeatureExam:'CBR praktijkexamen inbegrepen', autoFeatureTTT:'Keuze: tussentijdse toets óf herexamen',
-    bnoExamPriceLabel:'BNO-examen (herkansing)', losseLesLabel:'Losse rijles (60 min)',
+    bnoExamPriceLabel:'BNO-examen (herkansing)',
+    automaatNote:'Automaat: +{amount}',
+    losseLesSchakelLabel:'Losse rijles schakel (60 min)', losseLesAutomaatLabel:'Losse rijles automaat (60 min)', losseLesAutomaatPrice:75,
     ownCarDiscountNote:'€{amount} korting bij gebruik van je eigen auto', ownCarDiscountLabel:'Korting eigen auto (€)',
     rowLabel:'Rij', examPriceLabel:'CBR Praktijkexamen', inschrijfLabel:'Eenmalige inschrijfkosten',
     theorieLabel:'Theorie', theorieOnlineLabel:'Online theoriecursus', theorieEenDagLabel:'1-dag cursus', theorieExamenLabel:'Theorie-examen',
@@ -1745,7 +1748,9 @@ const STR = {
     pkgLetterTitle:'Package', taxiFeatureBook:'Theory book included', taxiFeatureSupport:'Support for theory questions',
     taxiFeatureLessons:'{lessons} practical lessons', taxiFeatureExam:'Exam booking + suitable practice car provided',
     autoFeatureLessons:'{lessons} driving lessons of 60 min', autoFeatureExam:'CBR practical exam included', autoFeatureTTT:'Choice: interim test or re-exam',
-    bnoExamPriceLabel:'BNO exam (re-sit)', losseLesLabel:'Single lesson (60 min)',
+    bnoExamPriceLabel:'BNO exam (re-sit)',
+    automaatNote:'Automatic: +{amount}',
+    losseLesSchakelLabel:'Single lesson manual (60 min)', losseLesAutomaatLabel:'Single lesson automatic (60 min)', losseLesAutomaatPrice:75,
     ownCarDiscountNote:'€{amount} discount if you use your own car', ownCarDiscountLabel:'Own car discount (€)',
     rowLabel:'Row', examPriceLabel:'CBR practical exam', inschrijfLabel:'One-time registration fee',
     theorieLabel:'Theory', theorieOnlineLabel:'Online theory course', theorieEenDagLabel:'1-day course', theorieExamenLabel:'Theory exam',
@@ -2356,6 +2361,7 @@ function renderCategory(key){
       </ul>
       <hr>
       <div class="price-final">${discountActive ? `<span class="price-original">${fmtPrice(p.price)}</span> ` : ''}${fmtPrice(final)}</div>
+      ${p.automaatExtra ? `<div class="automaat-note">${S.automaatNote.replace('{amount}', fmtPrice(p.automaatExtra))}</div>` : ''}
       <a href="#register" data-register data-register-cat="${key}" data-register-pkg="${p.lessons}" class="btn btn--primary btn--block">${S.choosePkg}</a>
     </div>`;
   }).join('') : '';
@@ -2368,7 +2374,8 @@ function renderCategory(key){
           <ul>
             <li><span>${S.examPriceLabel}</span><span>${fmtPrice(ONETIME.examPrice)}</span></li>
             ${ONETIME.bnoExamPrice ? `<li><span>${S.bnoExamPriceLabel||'BNO examen (herkansing)'}</span><span>${fmtPrice(ONETIME.bnoExamPrice)}</span></li>` : ''}
-            <li><span>${S.losseLesLabel||'Losse rijles'}</span><span>${fmtPrice(S.losseLesPrice)}</span></li>
+            <li><span>${S.losseLesSchakelLabel||'Losse rijles schakel'}</span><span>${fmtPrice(S.losseLesPrice)}</span></li>
+            <li><span>${S.losseLesAutomaatLabel||'Losse rijles automaat'}</span><span>${fmtPrice(S.losseLesAutomaatPrice||75)}</span></li>
           </ul>
         </div>
       </div>
