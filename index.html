@@ -695,6 +695,37 @@
     position:fixed;inset:0;background:rgba(11,27,46,.55);z-index:75;display:none;
   }
   .admin-overlay.open{display:block;}
+
+  /* ===== WhatsApp lead-form modal ===== */
+  .wa-overlay{position:fixed;inset:0;background:rgba(11,27,46,.6);z-index:120;display:none;}
+  .wa-overlay.open{display:block;}
+  .wa-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.96);opacity:0;pointer-events:none;
+    width:min(430px,92vw);max-height:90vh;overflow-y:auto;background:#fff;border-radius:22px;
+    box-shadow:0 30px 70px -20px rgba(11,27,46,.6);padding:30px 26px 26px;z-index:130;
+    transition:opacity .18s ease, transform .18s ease;}
+  .wa-modal.open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1);}
+  .wa-close{position:absolute;top:16px;right:16px;width:34px;height:34px;border:none;border-radius:50%;
+    background:#EEF2F6;color:var(--ink-soft);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+  .wa-close:hover{background:#e3e9ee;}
+  .wa-close svg{width:18px;height:18px;}
+  .wa-modal h3{font-size:21px;color:var(--navy-950);margin:0 40px 4px 0;line-height:1.2;}
+  .wa-sub{font-size:14px;color:var(--ink-soft);margin:0 0 18px;line-height:1.45;}
+  .wa-label{display:block;font-size:14px;font-weight:700;color:var(--navy-800);margin:16px 0 7px;}
+  .wa-input{width:100%;padding:13px 14px;border:1.5px solid var(--line-dark,#d8e0e8);border-radius:12px;
+    font-size:15px;color:var(--ink);background:#fff;font-family:inherit;transition:border-color .15s;box-sizing:border-box;}
+  .wa-input:focus{outline:none;border-color:var(--orange-500);box-shadow:0 0 0 3px rgba(243,128,30,.15);}
+  .wa-pills{display:flex;gap:10px;}
+  .wa-pill{flex:1;padding:12px 10px;border:1.5px solid var(--line-dark,#d8e0e8);border-radius:12px;background:#fff;
+    font-size:15px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;transition:all .15s;}
+  .wa-pill:hover{border-color:var(--orange-500);}
+  .wa-pill.active{background:var(--orange-500);border-color:var(--orange-500);color:#fff;box-shadow:0 8px 18px -8px rgba(243,128,30,.6);}
+  .wa-error{display:none;color:#d64545;font-size:13.5px;font-weight:600;margin:14px 0 0;}
+  .wa-send{width:100%;margin-top:22px;padding:15px;border:none;border-radius:14px;background:#25D366;color:#fff;
+    font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:10px;
+    box-shadow:0 14px 28px -12px rgba(37,211,102,.7);transition:background .15s, transform .1s;}
+  .wa-send:hover{background:#1ebe5a;}
+  .wa-send:active{transform:translateY(1px);}
+  .wa-send svg{width:22px;height:22px;}
   .admin-panel{
     position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
     width:min(440px, 92vw);max-height:84vh;overflow-y:auto;background:#fff;border-radius:18px;
@@ -1009,7 +1040,7 @@
 "vrachtwagen":[{"lessons":15,"price":900},{"lessons":20,"price":1200},{"lessons":25,"price":1500},{"lessons":30,"price":1800},{"lessons":40,"price":2400},{"lessons":45,"price":2700},{"lessons":50,"price":3000}]}
 </script>
 <script type="application/json" id="onetime-data">
-{"examPrice":400,"bnoExamPrice":450,"inschrijfkosten":25,"theorieOnline":49,"theorieEenDag":99,"theorieExamen":48.75}
+{"examPrice":400,"tttPrice":350,"bnoExamPrice":450,"inschrijfkosten":25,"theorieOnline":49,"theorieEenDag":99,"theorieExamen":48.75}
 </script>
 <script type="application/json" id="stories-data">
 [{"name":"Ali","category":"auto","photo":"geslaagden/Ali.jpeg"},{"name":"Hasen","category":"auto","photo":"geslaagden/hasen.jpeg"},{"name":"Nader","category":"taxi","photo":"geslaagden/nader.jpeg"},{"name":"Tomas","category":"auto","photo":"geslaagden/tomas.jpeg"},{"name":"Mohammad","category":"auto","photo":"geslaagden/mohammad.jpeg"}]
@@ -1140,7 +1171,7 @@
   <section class="hero">
     <div class="container hero__inner">
       <h1 class="seo-hidden">Rijschool Amersfoort &amp; Soest — rijlessen auto, taxi en vrachtwagen in Amersfoort, Soest en omgeving. Gratis proefles, spoedcursus rijbewijs, automaat rijles.</h1>
-      <p class="hero-tagline" data-nl="Jouw rijbewijs, onze route." data-en="Your licence, our route.">Jouw rijbewijs, onze route.</p>
+      <p class="hero-tagline" data-nl="Bij ons haal je je rijbewijs op de makkelijke manier." data-en="With us, getting your licence is easy.">Bij ons haal je je rijbewijs op de makkelijke manier.</p>
       <p class="hero-national" data-nl="Landelijke rijschool — door heel Nederland" data-en="Nationwide driving school — across the Netherlands">Landelijke rijschool — door heel Nederland</p>
       <p class="lead" id="heroSub"
          data-nl="Gratis proefles en je eigen tempo — 7 dagen per week, ook een spoedtraject binnen 30 dagen."
@@ -1177,7 +1208,7 @@
 
       <div class="hero__actions">
         <a href="#register" data-register class="btn btn--primary" id="heroCta1" data-nl="Boek gratis proefles" data-en="Book free trial lesson">Boek gratis proefles</a>
-        <a href="https://wa.me/31612452088?text=Hoi%20WegMaster%21%20Ik%20wil%20graag%20een%20proefles%20inplannen%20%F0%9F%9A%97%0ANaam%3A%20%0ACategorie%20%28Auto/Taxi/Vrachtwagen%29%3A%20%0APlaats%3A%20" target="_blank" rel="noopener" class="btn" id="heroWaBtn" style="background:#25D366;color:#08381C;" onclick="wmTrackConversion('whatsapp')">
+        <a href="https://wa.me/31612452088?text=Hoi%20WegMaster%21%20Ik%20wil%20graag%20een%20proefles%20inplannen%20%F0%9F%9A%97%0ANaam%3A%20%0ACategorie%20%28Auto/Taxi/Vrachtwagen%29%3A%20%0APlaats%3A%20" target="_blank" rel="noopener" class="btn" id="heroWaBtn" style="background:#25D366;color:#08381C;">
           <svg viewBox="0 0 24 24" fill="#08381C" style="width:18px;height:18px"><path d="M12 2.5a9.5 9.5 0 0 0-8.1 14.4L2.5 21.5l4.7-1.4A9.5 9.5 0 1 0 12 2.5Zm0 17.3a7.8 7.8 0 0 1-4-1.1l-.3-.2-2.6.8.8-2.5-.2-.3a7.8 7.8 0 1 1 6.3 3.3Zm4.3-5.8c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-1.5-.6-2.5-1.4-3.3-2.8-.1-.2-.1-.4.1-.5.2-.2.4-.5.6-.7.2-.2.2-.4.1-.6-.1-.2-.6-1.4-.8-1.9-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.8 2.9 4.5 4 2.6 1 2.6.7 3.1.6.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
           <span data-nl="WhatsApp" data-en="WhatsApp">WhatsApp</span>
         </a>
@@ -1517,7 +1548,7 @@
 <!-- ========== ADMIN / DISCOUNT + CONTENT PANEL ========== -->
 <!-- ========== STICKY MOBILE CALL/WHATSAPP BAR ========== -->
 <div class="mobile-action-bar">
-  <a class="whatsapp" href="https://wa.me/31612452088?text=Hoi%20WegMaster%21%20Ik%20wil%20graag%20een%20proefles%20inplannen%20%F0%9F%9A%97%0ANaam%3A%20%0ACategorie%20%28Auto/Taxi/Vrachtwagen%29%3A%20%0APlaats%3A%20" target="_blank" rel="noopener" id="mobileWaBtn" onclick="wmTrackConversion('whatsapp')">
+  <a class="whatsapp" href="https://wa.me/31612452088?text=Hoi%20WegMaster%21%20Ik%20wil%20graag%20een%20proefles%20inplannen%20%F0%9F%9A%97%0ANaam%3A%20%0ACategorie%20%28Auto/Taxi/Vrachtwagen%29%3A%20%0APlaats%3A%20" target="_blank" rel="noopener" id="mobileWaBtn">
     <svg viewBox="0 0 24 24" fill="#08381C"><path d="M12 2.5a9.5 9.5 0 0 0-8.1 14.4L2.5 21.5l4.7-1.4A9.5 9.5 0 1 0 12 2.5Zm0 17.3a7.8 7.8 0 0 1-4-1.1l-.3-.2-2.6.8.8-2.5-.2-.3a7.8 7.8 0 1 1 6.3 3.3Zm4.3-5.8c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-1.5-.6-2.5-1.4-3.3-2.8-.1-.2-.1-.4.1-.5.2-.2.4-.5.6-.7.2-.2.2-.4.1-.6-.1-.2-.6-1.4-.8-1.9-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.8 2.9 4.5 4 2.6 1 2.6.7 3.1.6.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
     <span data-nl="WhatsApp" data-en="WhatsApp">WhatsApp</span>
   </a>
@@ -1526,6 +1557,41 @@
 <button class="admin-toggle" id="adminToggleBtn" aria-label="Beheer">
   <svg viewBox="0 0 24 24" fill="none"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" stroke="currentColor" stroke-width="1.5"/><path d="M19.4 13.5a7.4 7.4 0 0 0 0-3l1.8-1.4-1.5-2.6-2.1.6a7.6 7.6 0 0 0-2.6-1.5L14.6 3h-3l-.4 2.1a7.6 7.6 0 0 0-2.6 1.5l-2.1-.6-1.5 2.6 1.8 1.4a7.4 7.4 0 0 0 0 3l-1.8 1.4 1.5 2.6 2.1-.6c.76.66 1.64 1.17 2.6 1.5l.4 2.1h3l.4-2.1c.96-.33 1.84-.84 2.6-1.5l2.1.6 1.5-2.6-1.8-1.4Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
 </button>
+
+<!-- ========== WHATSAPP LEAD FORM MODAL ========== -->
+<div class="wa-overlay" id="waOverlay"></div>
+<div class="wa-modal" id="waModal" role="dialog" aria-modal="true" aria-labelledby="waModalTitle">
+  <button class="wa-close" id="waCloseBtn" aria-label="Sluiten" type="button">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
+  <h3 id="waModalTitle" data-nl="Plan je gratis proefles" data-en="Book your free trial lesson">Plan je gratis proefles</h3>
+  <p class="wa-sub" data-nl="Vul even in — dan nemen we snel contact met je op via WhatsApp." data-en="Fill this in and we'll get back to you quickly via WhatsApp.">Vul even in — dan nemen we snel contact met je op via WhatsApp.</p>
+
+  <label class="wa-label" for="waName" data-nl="Naam" data-en="Name">Naam</label>
+  <input type="text" id="waName" class="wa-input" placeholder="Bijv. Jan Jansen" autocomplete="name">
+
+  <label class="wa-label" for="waAddress" data-nl="Woonplaats / adres" data-en="City / address">Woonplaats / adres</label>
+  <input type="text" id="waAddress" class="wa-input" placeholder="Bijv. Amersfoort" autocomplete="address-level2">
+
+  <span class="wa-label" data-nl="Heb je je theorie al gehaald?" data-en="Do you already have your theory certificate?">Heb je je theorie al gehaald?</span>
+  <div class="wa-pills" id="waTheory">
+    <button type="button" class="wa-pill" data-val="Ja" data-nl="Ja" data-en="Yes">Ja</button>
+    <button type="button" class="wa-pill" data-val="Nee" data-nl="Nee" data-en="No">Nee</button>
+  </div>
+
+  <span class="wa-label" data-nl="Automaat of schakel?" data-en="Automatic or manual?">Automaat of schakel?</span>
+  <div class="wa-pills" id="waTransmission">
+    <button type="button" class="wa-pill" data-val="Automaat" data-nl="Automaat" data-en="Automatic">Automaat</button>
+    <button type="button" class="wa-pill" data-val="Schakel" data-nl="Schakel" data-en="Manual">Schakel</button>
+  </div>
+
+  <p class="wa-error" id="waError" data-nl="Vul even je naam in." data-en="Please enter your name.">Vul even je naam in.</p>
+
+  <button type="button" class="wa-send" id="waSendBtn">
+    <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2.5a9.5 9.5 0 0 0-8.1 14.4L2.5 21.5l4.7-1.4A9.5 9.5 0 1 0 12 2.5Zm0 17.3a7.8 7.8 0 0 1-4-1.1l-.3-.2-2.6.8.8-2.5-.2-.3a7.8 7.8 0 1 1 6.3 3.3Zm4.3-5.8c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-1.5-.6-2.5-1.4-3.3-2.8-.1-.2-.1-.4.1-.5.2-.2.4-.5.6-.7.2-.2.2-.4.1-.6-.1-.2-.6-1.4-.8-1.9-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.8 2.9 4.5 4 2.6 1 2.6.7 3.1.6.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+    <span data-nl="Versturen via WhatsApp" data-en="Send via WhatsApp">Versturen via WhatsApp</span>
+  </button>
+</div>
 
 <div class="admin-overlay" id="pinOverlay"></div>
 <div class="admin-panel admin-panel--small" id="pinModal">
@@ -1668,7 +1734,8 @@ const STR = {
     pkgLetterTitle:'Pakket', taxiFeatureBook:'Inclusief theorieboek', taxiFeatureSupport:'Begeleiding bij vragen over de theorie',
     taxiFeatureLessons:'{lessons} praktijklessen', taxiFeatureExam:'Examen boeken + geschikte oefenauto beschikbaar',
     autoFeatureLessons:'{lessons} rijlessen van 60 min', autoFeatureExam:'CBR praktijkexamen inbegrepen', autoFeatureTTT:'Keuze: tussentijdse toets óf herexamen',
-    bnoExamPriceLabel:'BNO-examen (herkansing)',
+    bnoExamPriceLabel:'BNO-examen',
+    tttLabel:'Tussentijdse toets (TTT)',
     automaatNote:'Automaat: +{amount}',
     losseLesSchakelLabel:'Losse rijles schakel (60 min)', losseLesAutomaatLabel:'Losse rijles automaat (60 min)', losseLesAutomaatPrice:75,
     ownCarDiscountNote:'€{amount} korting bij gebruik van je eigen auto', ownCarDiscountLabel:'Korting eigen auto (€)',
@@ -1748,7 +1815,8 @@ const STR = {
     pkgLetterTitle:'Package', taxiFeatureBook:'Theory book included', taxiFeatureSupport:'Support for theory questions',
     taxiFeatureLessons:'{lessons} practical lessons', taxiFeatureExam:'Exam booking + suitable practice car provided',
     autoFeatureLessons:'{lessons} driving lessons of 60 min', autoFeatureExam:'CBR practical exam included', autoFeatureTTT:'Choice: interim test or re-exam',
-    bnoExamPriceLabel:'BNO exam (re-sit)',
+    bnoExamPriceLabel:'BNO exam',
+    tttLabel:'Interim test (TTT)',
     automaatNote:'Automatic: +{amount}',
     losseLesSchakelLabel:'Single lesson manual (60 min)', losseLesAutomaatLabel:'Single lesson automatic (60 min)', losseLesAutomaatPrice:75,
     ownCarDiscountNote:'€{amount} discount if you use your own car', ownCarDiscountLabel:'Own car discount (€)',
@@ -2058,6 +2126,7 @@ function renderAdminForms(){
     <div class="pkg-edit-group">
       <div class="pkg-edit-group__title">CBR</div>
       <div class="pkg-edit-row"><span>${S.examPriceLabel}</span><input type="number" min="0" step="0.01" value="${ONETIME.examPrice}" data-onetime-field="examPrice"><span></span></div>
+      <div class="pkg-edit-row"><span>${S.tttLabel||'Tussentijdse toets (TTT)'}</span><input type="number" min="0" step="0.01" value="${ONETIME.tttPrice}" data-onetime-field="tttPrice"><span></span></div>
     </div>`;
 
   // ---- stats edit fields ----
@@ -2373,7 +2442,8 @@ function renderCategory(key){
           <h4>CBR</h4>
           <ul>
             <li><span>${S.examPriceLabel}</span><span>${fmtPrice(ONETIME.examPrice)}</span></li>
-            ${ONETIME.bnoExamPrice ? `<li><span>${S.bnoExamPriceLabel||'BNO examen (herkansing)'}</span><span>${fmtPrice(ONETIME.bnoExamPrice)}</span></li>` : ''}
+            ${ONETIME.tttPrice ? `<li><span>${S.tttLabel||'Tussentijdse toets (TTT)'}</span><span>${fmtPrice(ONETIME.tttPrice)}</span></li>` : ''}
+            ${ONETIME.bnoExamPrice ? `<li><span>${S.bnoExamPriceLabel||'BNO-examen'}</span><span>${fmtPrice(ONETIME.bnoExamPrice)}</span></li>` : ''}
             <li><span>${S.losseLesSchakelLabel||'Losse rijles schakel'}</span><span>${fmtPrice(S.losseLesPrice)}</span></li>
             <li><span>${S.losseLesAutomaatLabel||'Losse rijles automaat'}</span><span>${fmtPrice(S.losseLesAutomaatPrice||75)}</span></li>
           </ul>
@@ -2589,6 +2659,81 @@ function setLang(newLang){
 }
 document.getElementById('langNlBtn').addEventListener('click', ()=> setLang('nl'));
 document.getElementById('langEnBtn').addEventListener('click', ()=> setLang('en'));
+
+/* =========================================================
+   WHATSAPP LEAD FORM
+   ========================================================= */
+(function(){
+  var overlay = document.getElementById('waOverlay');
+  var modal   = document.getElementById('waModal');
+  var errEl   = document.getElementById('waError');
+  if(!overlay || !modal) return;
+
+  function openWa(e){
+    if(e) e.preventDefault();
+    errEl.style.display = 'none';
+    overlay.classList.add('open');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function(){ var n = document.getElementById('waName'); if(n) n.focus(); }, 60);
+  }
+  function closeWa(){
+    overlay.classList.remove('open');
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  window.openWaForm = openWa;
+
+  /* single-select pills */
+  modal.querySelectorAll('.wa-pills').forEach(function(group){
+    group.querySelectorAll('.wa-pill').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        group.querySelectorAll('.wa-pill').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+      });
+    });
+  });
+
+  document.getElementById('waCloseBtn').addEventListener('click', closeWa);
+  overlay.addEventListener('click', closeWa);
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeWa();
+  });
+
+  /* intercept the WhatsApp buttons -> open the form instead */
+  ['heroWaBtn','mobileWaBtn'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.addEventListener('click', openWa);
+  });
+
+  function waSubmit(){
+    var name = (document.getElementById('waName').value || '').trim();
+    var addr = (document.getElementById('waAddress').value || '').trim();
+    var theoryBtn = modal.querySelector('#waTheory .wa-pill.active');
+    var transBtn  = modal.querySelector('#waTransmission .wa-pill.active');
+    if(!name){
+      errEl.style.display = 'block';
+      document.getElementById('waName').focus();
+      return;
+    }
+    var theory = theoryBtn ? theoryBtn.getAttribute('data-val') : '';
+    var trans  = transBtn  ? transBtn.getAttribute('data-val')  : '';
+
+    /* message is always built in Dutch so it reads consistently for the owner */
+    var lines = ['Hoi WegMaster! Ik wil graag meer informatie 🚗', ''];
+    lines.push('Naam:');   lines.push(name); lines.push('');
+    if(addr){  lines.push('Woonplaats / adres:');    lines.push(addr);   lines.push(''); }
+    if(theory){lines.push('Theorie al gehaald?');    lines.push(theory); lines.push(''); }
+    if(trans){ lines.push('Automaat of schakel?');   lines.push(trans); }
+    var msg = lines.join('\n').trim();
+    var url = 'https://wa.me/31612452088?text=' + encodeURIComponent(msg);
+
+    closeWa();
+    if(typeof wmTrackConversion === 'function'){ wmTrackConversion('whatsapp'); }
+    window.open(url, '_blank', 'noopener');
+  }
+  document.getElementById('waSendBtn').addEventListener('click', waSubmit);
+})();
 
 /* =========================================================
    MOBILE MENU
