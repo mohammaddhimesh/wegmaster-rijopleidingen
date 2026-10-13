@@ -684,9 +684,30 @@
   .taxi-pkg-card .automaat-note{margin-top:6px;font-size:13.5px;font-weight:600;color:var(--orange-500);}
   .taxi-pkg-card .btn{margin-top:20px;}
 
+  /* ---------- Auto interactive package cards (A & B) ---------- */
+  .auto-pkg-wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;align-items:flex-start;margin-top:32px;}
+  .auto-pkg-single{flex:1 1 300px;max-width:360px;background:#fff;border:1px solid var(--line-light);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+  .auto-pkg-head{padding:15px 22px 2px;font-size:16px;font-weight:800;color:var(--navy-950);font-family:var(--font-display);}
+  .auto-pkg-tabs{display:grid;grid-template-columns:repeat(4,1fr);background:var(--paper);margin-top:12px;}
+  .auto-pkg-tab{display:flex;flex-direction:column;align-items:center;gap:1px;padding:10px 3px;border:none;background:transparent;cursor:pointer;font-family:inherit;border-bottom:3px solid transparent;transition:background .15s,border-color .15s;}
+  .auto-pkg-tab b{font-size:15px;font-weight:800;color:var(--navy-800);font-family:var(--font-display);}
+  .auto-pkg-tab small{font-size:10px;color:var(--ink-soft);white-space:nowrap;}
+  .auto-pkg-tab:hover{background:#fff;}
+  .auto-pkg-tab.active{background:#fff;border-bottom-color:var(--orange-500);}
+  .auto-pkg-tab.active b{color:var(--orange-500);}
+  .auto-pkg-detail{padding:22px 22px 24px;}
+  .auto-pkg-detail ul{margin:0;display:flex;flex-direction:column;gap:10px;list-style:none;padding:0;}
+  .auto-pkg-detail li{display:flex;align-items:flex-start;gap:9px;font-size:14px;color:var(--ink-soft);line-height:1.5;}
+  .auto-pkg-detail li svg{width:16px;height:16px;color:var(--orange-500);flex-shrink:0;margin-top:2px;}
+  .auto-pkg-detail hr{border:none;border-top:1px solid var(--line-light);margin:16px 0 14px;}
+  .auto-pkg-detail .price-final{font-family:var(--font-mono);font-size:28px;font-weight:700;color:var(--navy-950);}
+  .auto-pkg-detail .automaat-note{margin-top:5px;font-size:13px;font-weight:600;color:var(--orange-500);}
+  .auto-pkg-detail .btn{margin-top:18px;}
+  @media(max-width:420px){.auto-pkg-tab b{font-size:14px;}}
+
   /* ---------- Admin / discount panel ---------- */
   .admin-toggle{
-    position:fixed;bottom:22px;right:22px;width:50px;height:50px;border-radius:50%;
+    position:fixed;bottom:22px;left:22px;width:50px;height:50px;border-radius:50%;
     background:var(--surface);border:1px solid var(--line-dark);color:var(--ink);
     display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);z-index:70;
   }
@@ -726,6 +747,61 @@
   .wa-send:hover{background:#1ebe5a;}
   .wa-send:active{transform:translateY(1px);}
   .wa-send svg{width:22px;height:22px;}
+
+  /* ===== WegMaster chat assistant ===== */
+  .wmchat-launcher{position:fixed;bottom:22px;right:22px;z-index:100;display:flex;align-items:center;gap:10px;
+    background:linear-gradient(135deg,var(--orange-500),#e06d0c);color:#fff;border:none;cursor:pointer;
+    border-radius:30px;padding:0 20px 0 0;height:58px;box-shadow:0 14px 30px -10px rgba(243,128,30,.65);
+    font-family:inherit;font-weight:700;font-size:15px;transition:transform .15s, box-shadow .15s;}
+  .wmchat-launcher:hover{transform:translateY(-2px);box-shadow:0 20px 38px -12px rgba(243,128,30,.75);}
+  .wmchat-launcher__ic{width:58px;height:58px;display:flex;align-items:center;justify-content:center;flex:0 0 58px;}
+  .wmchat-launcher__ic svg{width:27px;height:27px;}
+  .wmchat-launcher__lbl{white-space:nowrap;padding-right:4px;}
+  .wmchat-launcher.hide{opacity:0;pointer-events:none;transform:scale(.8);}
+  @media(max-width:879px){
+    .wmchat-launcher{bottom:calc(72px + env(safe-area-inset-bottom));height:54px;}
+    .wmchat-launcher__ic{width:54px;height:54px;flex-basis:54px;}
+    .wmchat-launcher__lbl{display:none;}
+    .wmchat-launcher{padding:0;border-radius:50%;width:54px;}
+  }
+
+  .wmchat-panel{position:fixed;bottom:22px;right:22px;z-index:101;width:374px;max-width:calc(100vw - 32px);
+    height:560px;max-height:calc(100vh - 44px);background:#fff;border-radius:22px;overflow:hidden;
+    display:flex;flex-direction:column;box-shadow:0 30px 70px -18px rgba(11,27,46,.55);
+    opacity:0;pointer-events:none;transform:translateY(20px) scale(.97);transform-origin:bottom right;
+    transition:opacity .2s ease, transform .2s ease;}
+  .wmchat-panel.open{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);}
+  @media(max-width:879px){
+    .wmchat-panel{bottom:0;right:0;width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;border-radius:0;}
+  }
+  .wmchat-head{background:linear-gradient(135deg,var(--navy-800),var(--navy-950));color:#fff;padding:16px 18px;display:flex;align-items:center;gap:12px;}
+  .wmchat-head__av{width:42px;height:42px;border-radius:50%;background:var(--orange-500);display:flex;align-items:center;justify-content:center;flex:0 0 42px;}
+  .wmchat-head__av svg{width:24px;height:24px;}
+  .wmchat-head__tx{flex:1;min-width:0;}
+  .wmchat-head__tx b{display:block;font-size:15.5px;line-height:1.2;}
+  .wmchat-head__tx span{font-size:12.5px;opacity:.85;display:flex;align-items:center;gap:6px;}
+  .wmchat-head__tx span::before{content:'';width:8px;height:8px;border-radius:50%;background:#34d36a;display:inline-block;}
+  .wmchat-head__close{background:rgba(255,255,255,.15);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 32px;}
+  .wmchat-head__close:hover{background:rgba(255,255,255,.28);}
+  .wmchat-head__close svg{width:17px;height:17px;}
+  .wmchat-body{flex:1;overflow-y:auto;padding:18px 16px 8px;background:#F6F8FA;display:flex;flex-direction:column;gap:12px;}
+  .wmchat-msg{max-width:84%;padding:11px 14px;border-radius:16px;font-size:14.5px;line-height:1.5;white-space:pre-wrap;word-wrap:break-word;}
+  .wmchat-msg.bot{align-self:flex-start;background:#fff;color:var(--ink);border:1px solid #e6ecf1;border-bottom-left-radius:5px;}
+  .wmchat-msg.user{align-self:flex-end;background:var(--orange-500);color:#fff;border-bottom-right-radius:5px;}
+  .wmchat-msg a{color:var(--orange-500);font-weight:700;text-decoration:underline;}
+  .wmchat-msg.user a{color:#fff;}
+  .wmchat-quick{display:flex;flex-wrap:wrap;gap:8px;padding:4px 16px 14px;background:#F6F8FA;}
+  .wmchat-chip{background:#fff;border:1.5px solid var(--orange-500);color:var(--orange-500);border-radius:20px;
+    padding:8px 13px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .12s;}
+  .wmchat-chip:hover{background:var(--orange-500);color:#fff;}
+  .wmchat-chip.wa{border-color:#25D366;color:#128C7E;}
+  .wmchat-chip.wa:hover{background:#25D366;color:#fff;}
+  .wmchat-foot{display:flex;gap:8px;padding:12px;border-top:1px solid #e9eef2;background:#fff;align-items:center;}
+  .wmchat-foot input{flex:1;padding:11px 14px;border:1.5px solid #d8e0e8;border-radius:22px;font-size:14.5px;font-family:inherit;color:var(--ink);background:#fff;}
+  .wmchat-foot input:focus{outline:none;border-color:var(--orange-500);}
+  .wmchat-foot button{width:42px;height:42px;flex:0 0 42px;border:none;border-radius:50%;background:var(--orange-500);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .wmchat-foot button:hover{background:#e06d0c;}
+  .wmchat-foot button svg{width:20px;height:20px;}
   .admin-panel{
     position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
     width:min(440px, 92vw);max-height:84vh;overflow-y:auto;background:#fff;border-radius:18px;
@@ -826,6 +902,21 @@
   .cta-note svg{width:15px;height:15px;color:var(--orange-400);flex-shrink:0;}
   .cta-note--dark{color:var(--ink-soft);}
   .cta-note--dark svg{color:var(--orange-500);}
+
+  /* ---------- Slogan / positioning band ---------- */
+  .slogan-band{position:relative;background:linear-gradient(135deg,var(--navy-800),var(--navy-950));
+    border-radius:24px;padding:52px 36px;text-align:center;overflow:hidden;
+    box-shadow:0 24px 50px -24px rgba(11,27,46,.55);}
+  .slogan-band::before{content:'';position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(circle at 18% 0%, rgba(243,128,30,.20), transparent 58%);}
+  .slogan-band__mark{position:absolute;top:2px;left:30px;font-size:130px;line-height:1;
+    color:rgba(243,128,30,.22);font-family:Georgia,'Times New Roman',serif;}
+  .slogan-band__main{position:relative;color:#fff;font-size:clamp(23px,3.8vw,38px);line-height:1.22;
+    font-weight:800;margin:0 auto;max-width:780px;letter-spacing:-.01em;}
+  .slogan-band__main span{color:var(--orange-500);}
+  .slogan-band__sub{position:relative;color:rgba(255,255,255,.82);font-size:clamp(15px,2vw,18px);
+    margin:16px auto 0;max-width:640px;line-height:1.55;}
+  @media(max-width:520px){ .slogan-band{padding:40px 22px;} .slogan-band__mark{font-size:100px;left:18px;} }
 
   /* ---------- Google reviews trust band ---------- */
   .reviews-band{background:#fff;border:1px solid var(--line-light);border-radius:20px;
@@ -1035,12 +1126,12 @@
      admin panel can update them and bake the changes into a downloadable copy
      of this file (this is a static site — there's no backend/database). -->
 <script type="application/json" id="package-data">
-{"auto":[{"lessons":25,"price":1975,"ttt":false,"automaatExtra":125},{"lessons":30,"price":2600,"ttt":true,"automaatExtra":150},{"lessons":40,"price":3250,"ttt":true,"automaatExtra":200}],
+{"auto":[{"lessons":25,"price":1850,"automaatExtra":125},{"lessons":30,"price":2150,"automaatExtra":150},{"lessons":35,"price":2450,"automaatExtra":175},{"lessons":40,"price":2750,"automaatExtra":200}],
 "taxi":[{"lessons":4,"price":950,"ownCarDiscount":150},{"lessons":6,"price":1100,"ownCarDiscount":150}],
 "vrachtwagen":[{"lessons":15,"price":900},{"lessons":20,"price":1200},{"lessons":25,"price":1500},{"lessons":30,"price":1800},{"lessons":40,"price":2400},{"lessons":45,"price":2700},{"lessons":50,"price":3000}]}
 </script>
 <script type="application/json" id="onetime-data">
-{"examPrice":400,"tttPrice":350,"bnoExamPrice":450,"inschrijfkosten":25,"theorieOnline":49,"theorieEenDag":99,"theorieExamen":48.75}
+{"examPrice":350,"tttPrice":350,"bnoExamPrice":450,"inschrijfkosten":25,"theorieOnline":49,"theorieEenDag":99,"theorieExamen":48.75,"pakketBExtra":300}
 </script>
 <script type="application/json" id="stories-data">
 [{"name":"Ali","category":"auto","photo":"geslaagden/Ali.jpeg"},{"name":"Hasen","category":"auto","photo":"geslaagden/hasen.jpeg"},{"name":"Nader","category":"taxi","photo":"geslaagden/nader.jpeg"},{"name":"Tomas","category":"auto","photo":"geslaagden/tomas.jpeg"},{"name":"Mohammad","category":"auto","photo":"geslaagden/mohammad.jpeg"}]
@@ -1087,24 +1178,24 @@
   </div>
 
   <div class="mobile-panel" id="mobilePanel">
-    <a class="mpanel-item" href="#home" data-route="home">
+    <a class="mpanel-item" href="#home" data-route="home" id="mpanelHome">
       <span class="mpanel-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M3 10.6 12 3.5l9 7.1M5.2 9.4V20.5h13.6V9.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       <span class="mpanel-label" data-nl="Home" data-en="Home">Home</span>
       <span class="mpanel-arrow">→</span>
     </a>
     <a class="mpanel-item" href="#auto" data-route="auto">
       <span class="mpanel-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 11.5 6.5 7A2 2 0 0 1 8.4 5.7h7.2A2 2 0 0 1 17.5 7L19 11.5M4.5 11.5h15v5h-15z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="7.8" cy="16.8" r="1.3" stroke="currentColor" stroke-width="1.4"/><circle cx="16.2" cy="16.8" r="1.3" stroke="currentColor" stroke-width="1.4"/></svg></span>
-      <span class="mpanel-label" data-nl="Auto" data-en="Car">Auto</span>
+      <span class="mpanel-label" data-nl="Auto – pakketten & prijzen" data-en="Car – packages & prices">Auto – pakketten & prijzen</span>
       <span class="mpanel-arrow">→</span>
     </a>
     <a class="mpanel-item" href="#taxi" data-route="taxi">
       <span class="mpanel-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M9.5 4.2h5M12 4.2v2.4M5 12 6.5 7.6A2 2 0 0 1 8.4 6.4h7.2A2 2 0 0 1 17.5 7.6L19 12M4.5 12h15v5h-15z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7.8" cy="17.2" r="1.2" stroke="currentColor" stroke-width="1.3"/><circle cx="16.2" cy="17.2" r="1.2" stroke="currentColor" stroke-width="1.3"/></svg></span>
-      <span class="mpanel-label" data-nl="Taxi" data-en="Taxi">Taxi</span>
+      <span class="mpanel-label" data-nl="Taxi – pakketten & prijzen" data-en="Taxi – packages & prices">Taxi – pakketten & prijzen</span>
       <span class="mpanel-arrow">→</span>
     </a>
     <a class="mpanel-item" href="#vrachtwagen" data-route="vrachtwagen">
       <span class="mpanel-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6.5h10.5v9H3zM13.5 9.5H18l3 3v3h-7.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="17.5" r="1.3" stroke="currentColor" stroke-width="1.4"/><circle cx="17.2" cy="17.5" r="1.3" stroke="currentColor" stroke-width="1.4"/></svg></span>
-      <span class="mpanel-label" data-nl="Vrachtwagen" data-en="Truck">Vrachtwagen</span>
+      <span class="mpanel-label" data-nl="Vrachtwagen – pakketten & prijzen" data-en="Truck – packages & prices">Vrachtwagen – pakketten & prijzen</span>
       <span class="mpanel-arrow">→</span>
     </a>
     <a href="#register" data-register class="btn btn--primary btn--block" id="navCtaMobile" data-nl="Gratis proefles" data-en="Free trial lesson">Gratis proefles</a>
@@ -1172,7 +1263,7 @@
     <div class="container hero__inner">
       <h1 class="seo-hidden">Rijschool Amersfoort &amp; Soest — rijlessen auto, taxi en vrachtwagen in Amersfoort, Soest en omgeving. Gratis proefles, spoedcursus rijbewijs, automaat rijles.</h1>
       <p class="hero-tagline" data-nl="Bij ons haal je je rijbewijs op de makkelijke manier." data-en="With us, getting your licence is easy.">Bij ons haal je je rijbewijs op de makkelijke manier.</p>
-      <p class="hero-national" data-nl="Landelijke rijschool — door heel Nederland" data-en="Nationwide driving school — across the Netherlands">Landelijke rijschool — door heel Nederland</p>
+      <p class="hero-national" data-nl="Dé rijschool voor Amersfoort, Soest &amp; omgeving" data-en="Your driving school for Amersfoort, Soest &amp; surroundings">Dé rijschool voor Amersfoort, Soest &amp; omgeving</p>
       <p class="lead" id="heroSub"
          data-nl="Gratis proefles en je eigen tempo — 7 dagen per week, ook een spoedtraject binnen 30 dagen."
          data-en="Free trial lesson at your own pace — 7 days a week, fast-track within 30 days.">
@@ -1219,7 +1310,7 @@
       <div class="hero-trust">
         <span class="hero-trust__item hero-trust__item--hl">
           <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.6 9.1l5.8-.8L12 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
-          <span data-nl="95% slagingspercentage" data-en="95% pass rate">95% slagingspercentage</span>
+          <span data-nl="95% slagingspercentage · CBR-geverifieerd" data-en="95% pass rate · CBR-verified">95% slagingspercentage · CBR-geverifieerd</span>
         </span>
         <span class="hero-trust__item">
           <span class="hero-trust__stars">★★★★★</span>
@@ -1233,9 +1324,14 @@
           <svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
           <span data-nl="7 dagen per week" data-en="7 days a week">7 dagen per week</span>
         </span>
+        <span class="hero-trust__item hero-trust__item--hl">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span data-nl="Géén inschrijfkosten" data-en="No registration fee">Géén inschrijfkosten</span>
+        </span>
       </div>
     </div>
   </section>
+
 
 
 
@@ -1593,6 +1689,37 @@
   </button>
 </div>
 
+<!-- ========== WEGMASTER CHAT ASSISTANT ========== -->
+<button class="wmchat-launcher" id="wmchatLauncher" type="button" aria-label="Chat">
+  <span class="wmchat-launcher__ic">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </span>
+  <span class="wmchat-launcher__lbl" data-nl="Vraag het ons" data-en="Ask us anything">Vraag het ons</span>
+</button>
+
+<div class="wmchat-panel" id="wmchatPanel" role="dialog" aria-label="WegMaster assistent">
+  <div class="wmchat-head">
+    <span class="wmchat-head__av">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M5 11l1.5-4.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11m-14 0h14m-14 0a2 2 0 0 0-2 2v3a1 1 0 0 0 1 1h1m14-6a2 2 0 0 1 2 2v3a1 1 0 0 1-1 1h-1m-14 0v1.5a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V17m10 0v1.5a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V17M7.5 14h.01M16.5 14h.01" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+    <div class="wmchat-head__tx">
+      <b>WegMaster</b>
+      <span data-nl="Meestal binnen enkele minuten" data-en="Usually replies in minutes">Meestal binnen enkele minuten</span>
+    </div>
+    <button class="wmchat-head__close" id="wmchatClose" type="button" aria-label="Sluiten">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="wmchat-body" id="wmchatBody"></div>
+  <div class="wmchat-quick" id="wmchatQuick"></div>
+  <div class="wmchat-foot">
+    <input type="text" id="wmchatInput" autocomplete="off">
+    <button id="wmchatSend" type="button" aria-label="Verstuur">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 12l16-8-6 16-2.5-6.5L4 12Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+</div>
+
 <div class="admin-overlay" id="pinOverlay"></div>
 <div class="admin-panel admin-panel--small" id="pinModal">
   <div class="admin-panel__head">
@@ -1723,7 +1850,7 @@ const STR = {
     rights:'Alle rechten voorbehouden.',
     stepsT:'Zo werkt het',
     steps:[
-      {t:'Gratis proefles', d:'Je maakt kennis met je instructeur en rijstijl, zonder verplichtingen.', note:'Je betaalt €70 aanbetaling — die je volledig terugkrijgt als korting bij aanschaf van een pakket.'},
+      {t:'Gratis proefles', d:'Je maakt kennis met je instructeur en rijstijl, zonder verplichtingen.', note:'Je betaalt €50 aanbetaling — die je volledig terugkrijgt als korting bij aanschaf van een pakket.'},
       {t:'Kies je pakket', d:'Samen bepalen we welk lessenpakket en tempo bij je past.'},
       {t:'Volg je lessen', d:'Vaste lesmomenten op tijden die jou passen — wij houden ons aan de planning.'},
       {t:'Naar het examen', d:''}
@@ -1734,10 +1861,11 @@ const STR = {
     pkgLetterTitle:'Pakket', taxiFeatureBook:'Inclusief theorieboek', taxiFeatureSupport:'Begeleiding bij vragen over de theorie',
     taxiFeatureLessons:'{lessons} praktijklessen', taxiFeatureExam:'Examen boeken + geschikte oefenauto beschikbaar',
     autoFeatureLessons:'{lessons} rijlessen van 60 min', autoFeatureExam:'CBR praktijkexamen inbegrepen', autoFeatureTTT:'Keuze: tussentijdse toets óf herexamen',
+    autoFeatureKeuze:'Kies zelf: herkansing (herexamen) óf tussentijdse toets',
     bnoExamPriceLabel:'BNO-examen',
     tttLabel:'Tussentijdse toets (TTT)',
     automaatNote:'Automaat: +{amount}',
-    losseLesSchakelLabel:'Losse rijles schakel (60 min)', losseLesAutomaatLabel:'Losse rijles automaat (60 min)', losseLesAutomaatPrice:75,
+    losseLesSchakelLabel:'Losse rijles schakel (60 min)', losseLesAutomaatLabel:'Losse rijles automaat (60 min)', losseLesAutomaatPrice:70,
     ownCarDiscountNote:'€{amount} korting bij gebruik van je eigen auto', ownCarDiscountLabel:'Korting eigen auto (€)',
     rowLabel:'Rij', examPriceLabel:'CBR Praktijkexamen', inschrijfLabel:'Eenmalige inschrijfkosten',
     theorieLabel:'Theorie', theorieOnlineLabel:'Online theoriecursus', theorieEenDagLabel:'1-dag cursus', theorieExamenLabel:'Theorie-examen',
@@ -1754,7 +1882,7 @@ const STR = {
     proeflesUur:'Gratis proefles van 1 uur — vrijblijvend kennismaken.',
     blokurenNote:'In de pakketten duurt een rijles 45 minuten. Voor het beste resultaat rijden we in blokuren: in de auto krijg je twee lessen achter elkaar — 1,5 uur rijden per keer.',
     losseLesLabel:'Losse les',
-    losseLesPrice:70,
+    losseLesPrice:65,
     campaignOn:'Kortingsactie actief — bespaar €{amount} per les',
     adminTitle:'Beheer', adminToggleLabel:'Actie actief', adminAmountLabel:'Korting per les', adminApply:'Toepassen op site',
     adminIntroNote:'Alleen voor jou: hier pas je prijzen, lesaantallen en succesverhalen aan. Dit is een eenvoudige pincode, geen echte beveiliging — bewaar de link naar dit bestand prive.',
@@ -1804,7 +1932,7 @@ const STR = {
     rights:'All rights reserved.',
     stepsT:'How it works',
     steps:[
-      {t:'Free trial lesson', d:'Get to know your instructor and driving style, no strings attached.', note:'You pay a €70 deposit — fully refunded as a discount when you book a package.'},
+      {t:'Free trial lesson', d:'Get to know your instructor and driving style, no strings attached.', note:'You pay a €50 deposit — fully refunded as a discount when you book a package.'},
       {t:'Choose your package', d:'Together we decide which lesson package and pace suits you.'},
       {t:'Take your lessons', d:'Fixed lesson times that work for you — we stick to the schedule.'},
       {t:'Toward the exam', d:''}
@@ -1815,10 +1943,11 @@ const STR = {
     pkgLetterTitle:'Package', taxiFeatureBook:'Theory book included', taxiFeatureSupport:'Support for theory questions',
     taxiFeatureLessons:'{lessons} practical lessons', taxiFeatureExam:'Exam booking + suitable practice car provided',
     autoFeatureLessons:'{lessons} driving lessons of 60 min', autoFeatureExam:'CBR practical exam included', autoFeatureTTT:'Choice: interim test or re-exam',
+    autoFeatureKeuze:'Your choice: re-exam (resit) or interim test',
     bnoExamPriceLabel:'BNO exam',
     tttLabel:'Interim test (TTT)',
     automaatNote:'Automatic: +{amount}',
-    losseLesSchakelLabel:'Single lesson manual (60 min)', losseLesAutomaatLabel:'Single lesson automatic (60 min)', losseLesAutomaatPrice:75,
+    losseLesSchakelLabel:'Single lesson manual (60 min)', losseLesAutomaatLabel:'Single lesson automatic (60 min)', losseLesAutomaatPrice:70,
     ownCarDiscountNote:'€{amount} discount if you use your own car', ownCarDiscountLabel:'Own car discount (€)',
     rowLabel:'Row', examPriceLabel:'CBR practical exam', inschrijfLabel:'One-time registration fee',
     theorieLabel:'Theory', theorieOnlineLabel:'Online theory course', theorieEenDagLabel:'1-day course', theorieExamenLabel:'Theory exam',
@@ -1835,7 +1964,7 @@ const STR = {
     proeflesUur:'Free 1-hour trial lesson — no obligation.',
     blokurenNote:'In the packages a driving lesson is 45 minutes. For the best result we drive in block hours: in the car you get two lessons back-to-back — 1.5 hours of driving each time.',
     losseLesLabel:'Single lesson',
-    losseLesPrice:70,
+    losseLesPrice:65,
     campaignOn:'Discount campaign active — save €{amount} per lesson',
 
     adminTitle:'Manage', adminToggleLabel:'Campaign active', adminAmountLabel:'Discount per lesson', adminApply:'Apply to site',
@@ -2337,6 +2466,32 @@ function initPkgCarousel(){
   var pv=document.querySelector('.pkg-nav--prev'), nx=document.querySelector('.pkg-nav--next');
   if(pv) pv.onclick=function(){step(-1);}; if(nx) nx.onclick=function(){step(1);};
 }
+
+/* ----- Auto interactive package card (A1–A4 selector) ----- */
+function wmAutoDetail(idx, isB){
+  var S = STR[lang];
+  var arr = (typeof PKG_DATA!=='undefined' && PKG_DATA.auto) ? PKG_DATA.auto : [];
+  var p = arr[idx];
+  if(!p) return '';
+  var extra = isB ? ((typeof ONETIME!=='undefined' && ONETIME.pakketBExtra!=null) ? ONETIME.pakketBExtra : 300) : 0;
+  var price = p.price + extra;
+  var html = '<ul>'
+    + '<li>'+ICONS.check+'<span>'+S.autoFeatureLessons.replace('{lessons}', p.lessons)+'</span></li>'
+    + '<li>'+ICONS.check+'<span>'+S.autoFeatureExam+'</span></li>';
+  if(isB) html += '<li>'+ICONS.check+'<span>'+S.autoFeatureKeuze+'</span></li>';
+  html += '</ul><hr>'
+    + '<div class="price-final">'+fmtPrice(price)+'</div>'
+    + (p.automaatExtra ? '<div class="automaat-note">'+S.automaatNote.replace('{amount}', fmtPrice(p.automaatExtra))+'</div>' : '')
+    + '<a href="#register" data-register data-register-cat="auto" data-register-pkg="'+p.lessons+'" class="btn btn--primary btn--block">'+S.choosePkg+'</a>';
+  return html;
+}
+window.wmAutoSelect = function(grp, idx){
+  var suf = grp === 'b' ? 'B' : 'A';
+  var d = document.getElementById('autoPkgDetail'+suf);
+  if(d) d.innerHTML = wmAutoDetail(idx, grp === 'b');
+  document.querySelectorAll('#autoPkgTabs'+suf+' .auto-pkg-tab').forEach(function(t,i){ t.classList.toggle('active', i===idx); });
+};
+
 function renderCategory(key){
   const cat = CATS[key];
   if(!cat) return;
@@ -2415,25 +2570,23 @@ function renderCategory(key){
   }).join('') : '';
 
   const isAuto = key === 'auto';
-  const autoCardsHtml = isAuto ? cat.packages.map((p,i)=>{
-    const letter = String.fromCharCode(65 + i); // A, B, C...
-    const discount = discountActive ? p.lessons * discountPerLesson : 0;
-    const final = p.price - discount;
-    return `
-    <div class="taxi-pkg-card">
-      <div class="taxi-pkg-card__badge">${letter}</div>
-      <h3>${S.pkgLetterTitle} ${letter}</h3>
-      <ul>
-        <li>${ICONS.check}<span>${S.autoFeatureLessons.replace('{lessons}', p.lessons)}</span></li>
-        <li>${ICONS.check}<span>${S.autoFeatureExam}</span></li>
-        ${p.ttt ? `<li>${ICONS.check}<span>${S.autoFeatureTTT}</span></li>` : ''}
-      </ul>
-      <hr>
-      <div class="price-final">${discountActive ? `<span class="price-original">${fmtPrice(p.price)}</span> ` : ''}${fmtPrice(final)}</div>
-      ${p.automaatExtra ? `<div class="automaat-note">${S.automaatNote.replace('{amount}', fmtPrice(p.automaatExtra))}</div>` : ''}
-      <a href="#register" data-register data-register-cat="${key}" data-register-pkg="${p.lessons}" class="btn btn--primary btn--block">${S.choosePkg}</a>
-    </div>`;
-  }).join('') : '';
+  const autoSingleHtml = isAuto ? `
+    <div class="auto-pkg-wrap">
+      <div class="auto-pkg-single">
+        <div class="auto-pkg-head">${S.pkgLetterTitle} A</div>
+        <div class="auto-pkg-tabs" id="autoPkgTabsA">
+          ${cat.packages.map((p,i)=>`<button type="button" class="auto-pkg-tab${i===0?' active':''}" onclick="wmAutoSelect('a',${i})"><b>A${i+1}</b><small>${p.lessons} ${S.lessonsLabel}</small></button>`).join('')}
+        </div>
+        <div class="auto-pkg-detail" id="autoPkgDetailA">${wmAutoDetail(0,false)}</div>
+      </div>
+      <div class="auto-pkg-single">
+        <div class="auto-pkg-head">${S.pkgLetterTitle} B</div>
+        <div class="auto-pkg-tabs" id="autoPkgTabsB">
+          ${cat.packages.map((p,i)=>`<button type="button" class="auto-pkg-tab${i===0?' active':''}" onclick="wmAutoSelect('b',${i})"><b>B${i+1}</b><small>${p.lessons} ${S.lessonsLabel}</small></button>`).join('')}
+        </div>
+        <div class="auto-pkg-detail" id="autoPkgDetailB">${wmAutoDetail(0,true)}</div>
+      </div>
+    </div>` : '';
 
   const oneTimeHtml = `
     <div class="onetime-costs">
@@ -2459,7 +2612,7 @@ function renderCategory(key){
     : isAuto
     ? `
       ${discountActive ? `<div class="campaign-banner">${ICONS.flame}${S.campaignOn.replace('{amount}', discountPerLesson)}</div>` : ''}
-      <div class="auto-pkg-scroll" style="margin-top:28px;">${autoCardsHtml}</div>
+      ${autoSingleHtml}
       <div class="lesson-info">
         <div class="lesson-info__focus" style="margin-top:8px;">${S.proeflesUur}</div>
       </div>
@@ -2557,6 +2710,10 @@ function showPageRoute(route){
   document.querySelectorAll('[data-route]').forEach(el=>{
     el.classList.toggle('active', el.getAttribute('data-route') === route);
   });
+
+  // Hide "Home" in the mobile menu while on the homepage; show it on sub-pages.
+  var mpanelHome = document.getElementById('mpanelHome');
+  if(mpanelHome) mpanelHome.style.display = (route === 'home') ? 'none' : '';
 
   document.getElementById('mobilePanel').classList.remove('open');
   document.getElementById('menuBtn').setAttribute('aria-expanded','false');
@@ -2733,6 +2890,191 @@ document.getElementById('langEnBtn').addEventListener('click', ()=> setLang('en'
     window.open(url, '_blank', 'noopener');
   }
   document.getElementById('waSendBtn').addEventListener('click', waSubmit);
+})();
+
+/* =========================================================
+   WEGMASTER CHAT ASSISTANT (FAQ bot — AI-ready)
+   ========================================================= */
+(function(){
+  var launcher = document.getElementById('wmchatLauncher');
+  var panel    = document.getElementById('wmchatPanel');
+  var body     = document.getElementById('wmchatBody');
+  var quick    = document.getElementById('wmchatQuick');
+  var input    = document.getElementById('wmchatInput');
+  if(!launcher || !panel) return;
+
+  function L(){ return (typeof lang !== 'undefined' && lang === 'en') ? 'en' : 'nl'; }
+  function norm(s){ return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^\w\s€]/g,' '); }
+  function euro(n){ return (typeof fmtPrice==='function') ? fmtPrice(n) : ('€'+n); }
+
+  /* dynamic pricing pulled from the live site data, so it stays correct after admin edits */
+  function prices(l){
+    var arr = (typeof PKG_DATA!=='undefined' && PKG_DATA.auto) ? PKG_DATA.auto : [];
+    var letters = ['A','B','C','D','E','F'];
+    var lines = arr.map(function(p,i){
+      return '• ' + letters[i] + ' — ' + p.lessons + (l==='nl'?' lessen: ':' lessons: ') + euro(p.price) +
+             (p.automaatExtra ? (' (' + (l==='nl'?'autom. +':'autom. +') + euro(p.automaatExtra) + ')') : '');
+    }).join('\n');
+    var sS = (typeof STR!=='undefined' && STR[l]) ? STR[l] : {};
+    var lesSch = sS.losseLesPrice || 70, lesAut = sS.losseLesAutomaatPrice || 75;
+    var ot = (typeof ONETIME!=='undefined') ? ONETIME : {};
+    if(l==='en'){
+      return 'Our car packages:\n' + lines +
+        '\nSingle lesson: manual ' + euro(lesSch) + ' · automatic ' + euro(lesAut) +
+        '.\n✅ No registration fees.\nExam: CBR ' + euro(ot.examPrice||400) + ' · TTT ' + euro(ot.tttPrice||350) + ' · BNO ' + euro(ot.bnoExamPrice||450) +
+        '.\n\n👉 Tap "Auto" at the top for full details.';
+    }
+    return 'Onze autopakketten:\n' + lines +
+      '\nLosse les: schakel ' + euro(lesSch) + ' · automaat ' + euro(lesAut) +
+      '.\n✅ Géén inschrijfkosten.\nExamen: CBR ' + euro(ot.examPrice||400) + ' · TTT ' + euro(ot.tttPrice||350) + ' · BNO ' + euro(ot.bnoExamPrice||450) +
+      '.\n\n👉 Klik bovenaan op "Auto" voor alle details.';
+  }
+
+  /* knowledge base — each entry: id, keywords, nl answer, en answer */
+  var KB = [
+    { id:'prijzen', keys:['prijs','prijzen','kost','kosten','pakket','pakketten','tarief','tarieven','euro','geld','hoeveel','betalen','price','prices','cost','package','how much','pay'],
+      nl:function(){return prices('nl');}, en:function(){return prices('en');} },
+    { id:'automaat', keys:['automaat','schakel','handgeschakeld','versnelling','versnellingen','automatic','manual','gear','transmissie'],
+      nl:'Wij geven standaard rijles in een automaat — meestal makkelijker en sneller je rijbewijs. Schakel kan ook. Een automaat-les kost iets meer dan schakel (zie prijzen).',
+      en:'We mainly teach in an automatic — usually easier and a faster route to your licence. Manual is also possible. An automatic lesson costs slightly more than manual.' },
+    { id:'theorie', keys:['theorie','theorieles','theorie-examen','theorieexamen','boek','leren','nutheorie','theory'],
+      nl:'Je theorie-examen haal je zelf bij het CBR; wij richten ons op de praktijk. Nog geen theorie? Geen probleem — je kunt alvast beginnen met praktijklessen.',
+      en:'You take your theory exam at the CBR; we focus on the practical side. No theory yet? No problem — you can start practical lessons already.' },
+    { id:'spoed', keys:['spoed','snel','snelcursus','spoedcursus','versneld','haast','30 dagen','maand','fast','quick','urgent','hurry','asap'],
+      nl:'Ja! We hebben een spoedtraject — rijklaar binnen ~30 dagen met een intensief lesschema. Stuur ons een WhatsApp, dan kijken we naar de snelste startdatum.',
+      en:'Yes! We offer a fast-track — ready within ~30 days with an intensive schedule. Message us on WhatsApp for the quickest start date.' },
+    { id:'gebied', keys:['waar','locatie','plaats','woonplaats','gebied','werkgebied','regio','amersfoort','soest','leusden','nijkerk','bunschoten','hoogland','ophalen','ophaal','where','area','location','region','pick up','pickup'],
+      nl:'We rijden in Amersfoort, Soest, Leusden, Nijkerk, Bunschoten, Hoogland en omgeving — en in principe door heel Nederland. We halen je op een afgesproken plek op.',
+      en:'We operate in Amersfoort, Soest, Leusden, Nijkerk, Bunschoten, Hoogland and surroundings — and across the Netherlands. We pick you up at an agreed spot.' },
+    { id:'proefles', keys:['proefles','gratis','aanmelden','inschrijven','inschrijf','starten','start','begin','beginnen','afspraak','boeken','trial','register','sign up','signup','book'],
+      nl:'Je eerste proefles is gratis en vrijblijvend! 🚗 Klik bovenaan op "Boek gratis proefles", of stuur ons een WhatsApp met je naam en woonplaats — dan plannen we snel een moment.',
+      en:'Your first trial lesson is free, no obligation! 🚗 Click "Book free trial lesson" at the top, or send us a WhatsApp with your name and city.' },
+    { id:'lesduur', keys:['lesduur','hoelang','hoe lang','duur','minuten','duurt','60','uur','how long','duration','length'],
+      nl:'Een rijles duurt 60 minuten. Je bepaalt zelf je tempo — rustig of versneld.',
+      en:'A driving lesson lasts 60 minutes. You set your own pace — steady or fast-tracked.' },
+    { id:'examen', keys:['examen','cbr','praktijkexamen','ttt','tussentijdse','toets','bno','herexamen','herkansing','slagen','slaag','slagingspercentage','exam','pass','test'],
+      nl:function(){var o=(typeof ONETIME!=='undefined')?ONETIME:{};return 'Praktijkexamen (CBR): '+euro(o.examPrice||400)+'. Tussentijdse toets (TTT): '+euro(o.tttPrice||350)+'. BNO-examen: '+euro(o.bnoExamPrice||450)+'. Onze slagingskans is 95% in één keer. 💪';},
+      en:function(){var o=(typeof ONETIME!=='undefined')?ONETIME:{};return 'Practical exam (CBR): '+euro(o.examPrice||400)+'. Interim test (TTT): '+euro(o.tttPrice||350)+'. BNO exam: '+euro(o.bnoExamPrice||450)+'. Our first-time pass rate is 95%. 💪';} },
+    { id:'contact', keys:['contact','bellen','bel','telefoon','nummer','mail','email','e-mail','bereiken','call','phone','reach'],
+      nl:'Je kunt ons bereiken via WhatsApp of telefoon: 06 1245 2088, of per e-mail: info@wegmaster-rijopleidingen.nl. We reageren snel!',
+      en:'Reach us via WhatsApp or phone: 06 1245 2088, or email info@wegmaster-rijopleidingen.nl. We reply fast!' },
+    { id:'taxi', keys:['taxi','taxichauffeur','taxi-examen'],
+      nl:'Ja, we verzorgen ook taxi-opleiding gericht op het taxi-examen. Vraag naar de pakketten via WhatsApp.',
+      en:'Yes, we also offer taxi training for the taxi exam. Ask about the packages via WhatsApp.' },
+    { id:'vracht', keys:['vrachtwagen','truck','c rijbewijs','ce','chauffeur','rijbewijs c'],
+      nl:'Rijbewijs C/CE (vrachtwagen) komt eraan — binnenkort beschikbaar. Interesse? Laat het weten via WhatsApp, dan houden we je op de hoogte.',
+      en:'Licence C/CE (truck) is coming soon. Interested? Let us know on WhatsApp and we\'ll keep you posted.' }
+  ];
+
+  var GREET = ['hoi','hallo','hey','hi','hello','goedemorgen','goedemiddag','goedenavond','salam','salaam','مرحبا','السلام','اهلا','أهلا'];
+
+  /* quick-reply chips: ids into KB + a WhatsApp handoff */
+  var CHIPS = [
+    {id:'prijzen',   nl:'💶 Prijzen',        en:'💶 Prices'},
+    {id:'proefles',  nl:'🚗 Gratis proefles',en:'🚗 Free trial'},
+    {id:'automaat',  nl:'⚙️ Automaat/schakel',en:'⚙️ Auto/manual'},
+    {id:'spoed',     nl:'⚡ Spoedcursus',     en:'⚡ Fast-track'},
+    {id:'theorie',   nl:'📘 Theorie',         en:'📘 Theory'},
+    {id:'gebied',    nl:'📍 Werkgebied',      en:'📍 Area'}
+  ];
+
+  function answerFor(id){ var it=KB.find(function(k){return k.id===id;}); if(!it) return ''; var v=it[L()]; return (typeof v==='function')?v():v; }
+
+  function addMsg(text, who){
+    var d=document.createElement('div');
+    d.className='wmchat-msg '+(who||'bot');
+    /* linkify email + render plain text safely */
+    d.textContent=text;
+    body.appendChild(d);
+    body.scrollTop=body.scrollHeight;
+  }
+  function botTyping(cb){
+    setTimeout(cb, 260);
+  }
+
+  function match(q){
+    var n=' '+norm(q)+' ';
+    var best=null, bestScore=0;
+    KB.forEach(function(it){
+      var score=0;
+      it.keys.forEach(function(k){ if(n.indexOf(' '+norm(k))!==-1 || n.indexOf(norm(k))!==-1) score++; });
+      if(score>bestScore){ bestScore=score; best=it; }
+    });
+    return bestScore>0 ? best : null;
+  }
+
+  function handleQuery(q){
+    addMsg(q,'user');
+    var nq=norm(q).trim();
+    botTyping(function(){
+      var hit=match(q);
+      if(hit){ addMsg(answerFor(hit.id),'bot'); return; }
+      if(GREET.some(function(g){return nq.indexOf(norm(g))!==-1;}) && nq.length<18){
+        addMsg(L()==='en'?'Hi! 👋 How can I help? Pick a topic below or type your question.':'Hoi! 👋 Waarmee kan ik je helpen? Kies een onderwerp hieronder of typ je vraag.','bot');
+        return;
+      }
+      addMsg(L()==='en'
+        ? 'I can best help you with that personally — tap "WhatsApp" below and we\'ll reply fast. 👇 Or pick one of the topics.'
+        : 'Daar help ik je het best persoonlijk mee — klik hieronder op "WhatsApp", dan reageren we snel. 👇 Of kies een onderwerp.','bot');
+    });
+  }
+
+  function renderQuick(){
+    quick.innerHTML='';
+    CHIPS.forEach(function(c){
+      var b=document.createElement('button');
+      b.className='wmchat-chip'; b.type='button';
+      b.textContent=c[L()];
+      b.addEventListener('click',function(){
+        addMsg(c[L()].replace(/^[^\s]+\s/,''),'user');
+        botTyping(function(){ addMsg(answerFor(c.id),'bot'); });
+      });
+      quick.appendChild(b);
+    });
+    var w=document.createElement('button');
+    w.className='wmchat-chip wa'; w.type='button';
+    w.textContent=(L()==='en'?'💬 WhatsApp':'💬 WhatsApp');
+    w.addEventListener('click',function(){
+      closeChat();
+      if(typeof window.openWaForm==='function') window.openWaForm();
+      else { if(typeof wmTrackConversion==='function') wmTrackConversion('whatsapp'); window.open('https://wa.me/31612452088','_blank','noopener'); }
+    });
+    quick.appendChild(w);
+  }
+
+  var greeted=false;
+  function openChat(){
+    panel.classList.add('open');
+    launcher.classList.add('hide');
+    input.placeholder = L()==='en' ? 'Type your question…' : 'Typ je vraag…';
+    renderQuick();
+    if(!greeted){
+      greeted=true;
+      botTyping(function(){
+        addMsg(L()==='en'
+          ? 'Hi! 👋 I\'m the WegMaster assistant. Ask about prices, lessons, the exam or a free trial — pick a topic or type your question.'
+          : 'Hoi! 👋 Ik ben de WegMaster-assistent. Vraag gerust over prijzen, lessen, het examen of een gratis proefles — kies een onderwerp of typ je vraag.','bot');
+      });
+    }
+    setTimeout(function(){ if(window.innerWidth>879) input.focus(); },260);
+  }
+  function closeChat(){ panel.classList.remove('open'); launcher.classList.remove('hide'); }
+  window.wmOpenChat = openChat;
+
+  launcher.addEventListener('click',openChat);
+  document.getElementById('wmchatClose').addEventListener('click',closeChat);
+  document.getElementById('wmchatSend').addEventListener('click',function(){
+    var v=input.value.trim(); if(!v) return; input.value=''; handleQuery(v);
+  });
+  input.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){ var v=input.value.trim(); if(!v) return; input.value=''; handleQuery(v); }
+  });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && panel.classList.contains('open')) closeChat(); });
+
+  /* keep chips in the right language if the user toggles NL/EN */
+  var nlB=document.getElementById('langNlBtn'), enB=document.getElementById('langEnBtn');
+  if(nlB) nlB.addEventListener('click',function(){ if(panel.classList.contains('open')){ renderQuick(); input.placeholder='Typ je vraag…'; } });
+  if(enB) enB.addEventListener('click',function(){ if(panel.classList.contains('open')){ renderQuick(); input.placeholder='Type your question…'; } });
 })();
 
 /* =========================================================
