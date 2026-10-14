@@ -668,13 +668,29 @@
   .auto-pkg-scroll::-webkit-scrollbar-thumb{background:rgba(243,128,30,.4);border-radius:8px;}
   .auto-pkg-scroll::-webkit-scrollbar-track{background:rgba(22,41,59,.06);border-radius:8px;}
   .auto-pkg-scroll{align-items:stretch;}
-  .auto-pkg-scroll > .taxi-pkg-card{flex:0 0 280px;scroll-snap-align:start;}
+  .auto-pkg-scroll > .taxi-pkg-card{flex:0 0 250px;scroll-snap-align:start;padding:22px 20px;}
+  .auto-pkg-scroll > .taxi-pkg-card h3{font-size:18px;}
+  .auto-pkg-scroll > .taxi-pkg-card .price-final{font-size:26px;}
   .auto-pkg-scroll > .taxi-pkg-card hr{margin-top:auto;}
-  @media(max-width:520px){.auto-pkg-scroll > .taxi-pkg-card{flex:0 0 84%;}}
+  @media(max-width:520px){.auto-pkg-scroll > .taxi-pkg-card{flex:0 0 80%;}}
   .auto-pkg-rows{margin-top:16px;}
   .auto-pkg-row__label{font-family:var(--font-display);font-weight:800;font-size:16px;color:var(--navy-950);margin-top:26px;}
   .auto-pkg-row .auto-pkg-scroll{margin-top:12px;}
   .auto-pkg-row + .auto-pkg-row .auto-pkg-row__label{margin-top:14px;}
+  /* ---------- Geslaagden (swipebaar onder pakketten) ---------- */
+  .ges-swipe{display:flex;gap:14px;overflow-x:auto;padding:4px 2px 16px;margin-top:18px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
+  .ges-swipe::-webkit-scrollbar{height:8px;}
+  .ges-swipe::-webkit-scrollbar-thumb{background:rgba(243,128,30,.4);border-radius:8px;}
+  .ges-swipe::-webkit-scrollbar-track{background:rgba(22,41,59,.06);border-radius:8px;}
+  .ges-card{flex:0 0 158px;scroll-snap-align:start;position:relative;background:#fff;border:1px solid var(--line-light);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);}
+  .ges-card__photo{width:100%;height:180px;background:var(--orange-100);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .ges-card__photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .ges-card__photo svg{width:40px;height:40px;color:var(--orange-500);}
+  .ges-card__badge{position:absolute;top:10px;left:10px;background:var(--orange-500);color:#fff;font-size:11px;font-weight:700;padding:4px 9px;border-radius:999px;}
+  .ges-card__body{padding:10px 12px 14px;text-align:center;}
+  .ges-card__body h4{font-size:14.5px;color:var(--navy-950);}
+  .ges-card__body p{font-size:12px;color:var(--ink-soft);margin-top:2px;}
+  @media(max-width:520px){.ges-card{flex:0 0 46%;} .ges-card__photo{height:160px;}}
 
   /* ---------- Taxi package cards (Chauffeurspas-style) ---------- */
   .taxi-pkg-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:32px;}
@@ -1824,7 +1840,7 @@ const STR = {
       {t:'Naar het examen', d:''}
     ],
     packagesT:'Lespakketten', packagesSub:'De actieprijs geldt zolang de campagne actief staat.',
-    lessonsLabel:'lessen', choosePkg:'Kies dit pakket', saveLabel:'Bespaar', priceLabel:'Prijs (€)',
+    lessonsLabel:'lessen', choosePkg:'Proefles inplannen', gesT:'Onze geslaagden', gesBadge:'Geslaagd 🎉', saveLabel:'Bespaar', priceLabel:'Prijs (€)',
     lessonsLabelCap:'Lessen', priceLabelCap:'Prijs', tapRowNote:'Tik op een pakket om je aan te melden.',
     pkgLetterTitle:'Pakket', taxiFeatureBook:'Inclusief theorieboek', taxiFeatureSupport:'Begeleiding bij vragen over de theorie',
     taxiFeatureLessons:'{lessons} praktijklessen', taxiFeatureExam:'Examen boeken + geschikte oefenauto beschikbaar',
@@ -1907,7 +1923,7 @@ const STR = {
       {t:'Toward the exam', d:''}
     ],
     packagesT:'Lesson packages', packagesSub:'The discount applies while the campaign is active.',
-    lessonsLabel:'lessons', choosePkg:'Choose this package', saveLabel:'Save', priceLabel:'Price (€)',
+    lessonsLabel:'lessons', choosePkg:'Book a trial lesson', gesT:'Our graduates', gesBadge:'Passed 🎉', saveLabel:'Save', priceLabel:'Price (€)',
     lessonsLabelCap:'Lessons', priceLabelCap:'Price', tapRowNote:'Tap a package to register.',
     pkgLetterTitle:'Package', taxiFeatureBook:'Theory book included', taxiFeatureSupport:'Support for theory questions',
     taxiFeatureLessons:'{lessons} practical lessons', taxiFeatureExam:'Exam booking + suitable practice car provided',
@@ -2571,15 +2587,7 @@ function renderCategory(key){
       </div>
     </div>` : '';
 
-  const oneTimeHtml = `
-    <div class="onetime-costs">
-      <div class="no-fees">
-        ${ICONS.check}<span>${S.noFees}</span>
-      </div>
-      <div class="no-fees">
-        ${ICONS.check}<span>${S.perLesPay||'Je kan ook per les betalen'}</span>
-      </div>
-    </div>`;
+  const oneTimeHtml = '';
 
   const packagesBlock = isTaxi
     ? `<div class="taxi-pkg-grid">${taxiCardsHtml}</div>`
@@ -2607,6 +2615,22 @@ function renderCategory(key){
       ${oneTimeHtml}
     `;
 
+  const gesList = STORIES.filter(function(st){ return st.category === key; });
+  const gesUse = gesList.length ? gesList : STORIES;
+  const geslaagdenHtml = gesUse.length ? `
+        <div class="section-head" style="max-width:680px;margin-top:44px;">
+          <h2 style="color:var(--ink);">${S.gesT}</h2>
+        </div>
+        <div class="ges-swipe">
+          ${gesUse.map(function(st){
+            var nm = (st.name && st.name.trim()) ? st.name : S.placeholderName;
+            var cl = CATS[st.category] ? CATS[st.category][lang].title : '';
+            var ph = (st.photo && st.photo.trim())
+              ? `<img src="${st.photo}" alt="${nm} \u2014 geslaagde leerling bij WegMaster Rijopleidingen" loading="lazy">`
+              : ICONS.user;
+            return `<figure class="ges-card"><div class="ges-card__badge">${S.gesBadge}</div><div class="ges-card__photo">${ph}</div><figcaption class="ges-card__body"><h4>${nm}</h4><p>${S.passedFor} ${cl}</p></figcaption></figure>`;
+          }).join('')}
+        </div>` : '';
   page.innerHTML = `
     <section class="cat-hero">
       <div class="container">
@@ -2635,6 +2659,7 @@ function renderCategory(key){
           <p style="color:var(--ink-soft);">${S.packagesSub}</p>
         </div>
         ${packagesBlock}
+        ${geslaagdenHtml}
       </div>
     </section>
   `;
@@ -2682,6 +2707,10 @@ function showPageRoute(route){
   // Hide "Home" in the mobile menu while on the homepage; show it on sub-pages.
   var mpanelHome = document.getElementById('mpanelHome');
   if(mpanelHome) mpanelHome.style.display = (route === 'home') ? 'none' : '';
+
+  // Hide the sticky WhatsApp bar on the register (proefles inplannen) page.
+  var mab = document.querySelector('.mobile-action-bar');
+  if(mab) mab.style.display = (route === 'register') ? 'none' : '';
 
   document.getElementById('mobilePanel').classList.remove('open');
   document.getElementById('menuBtn').setAttribute('aria-expanded','false');
