@@ -671,6 +671,10 @@
   .auto-pkg-scroll > .taxi-pkg-card{flex:0 0 280px;scroll-snap-align:start;}
   .auto-pkg-scroll > .taxi-pkg-card hr{margin-top:auto;}
   @media(max-width:520px){.auto-pkg-scroll > .taxi-pkg-card{flex:0 0 84%;}}
+  .auto-pkg-rows{margin-top:16px;}
+  .auto-pkg-row__label{font-family:var(--font-display);font-weight:800;font-size:16px;color:var(--navy-950);margin-top:26px;}
+  .auto-pkg-row .auto-pkg-scroll{margin-top:12px;}
+  .auto-pkg-row + .auto-pkg-row .auto-pkg-row__label{margin-top:14px;}
 
   /* ---------- Taxi package cards (Chauffeurspas-style) ---------- */
   .taxi-pkg-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:32px;}
@@ -1221,52 +1225,6 @@
     </div>
     <div class="fame-strip"><div class="fame-strip__track" id="fameStripTrack"><div class="fame-photo" style="background:linear-gradient(150deg,hsl(0,45%,42%),hsl(30,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(47,45%,42%),hsl(77,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(94,45%,42%),hsl(124,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(141,45%,42%),hsl(171,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(188,45%,42%),hsl(218,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(235,45%,42%),hsl(265,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(282,45%,42%),hsl(312,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(329,45%,42%),hsl(359,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(16,45%,42%),hsl(46,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(63,45%,42%),hsl(93,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(110,45%,42%),hsl(140,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(157,45%,42%),hsl(187,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(204,45%,42%),hsl(234,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(251,45%,42%),hsl(281,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(298,45%,42%),hsl(328,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(345,45%,42%),hsl(15,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(32,45%,42%),hsl(62,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(79,45%,42%),hsl(109,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(126,45%,42%),hsl(156,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(173,45%,42%),hsl(203,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(220,45%,42%),hsl(250,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(267,45%,42%),hsl(297,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(314,45%,42%),hsl(344,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(1,45%,42%),hsl(31,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(48,45%,42%),hsl(78,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(95,45%,42%),hsl(125,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(142,45%,42%),hsl(172,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(189,45%,42%),hsl(219,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(236,45%,42%),hsl(266,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(283,45%,42%),hsl(313,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(0,45%,42%),hsl(30,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(47,45%,42%),hsl(77,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(94,45%,42%),hsl(124,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(141,45%,42%),hsl(171,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(188,45%,42%),hsl(218,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(235,45%,42%),hsl(265,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(282,45%,42%),hsl(312,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(329,45%,42%),hsl(359,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(16,45%,42%),hsl(46,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(63,45%,42%),hsl(93,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(110,45%,42%),hsl(140,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(157,45%,42%),hsl(187,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(204,45%,42%),hsl(234,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(251,45%,42%),hsl(281,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(298,45%,42%),hsl(328,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(345,45%,42%),hsl(15,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(32,45%,42%),hsl(62,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(79,45%,42%),hsl(109,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(126,45%,42%),hsl(156,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(173,45%,42%),hsl(203,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(220,45%,42%),hsl(250,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(267,45%,42%),hsl(297,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(314,45%,42%),hsl(344,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(1,45%,42%),hsl(31,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(48,45%,42%),hsl(78,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(95,45%,42%),hsl(125,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(142,45%,42%),hsl(172,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(189,45%,42%),hsl(219,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(236,45%,42%),hsl(266,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="fame-photo" style="background:linear-gradient(150deg,hsl(283,45%,42%),hsl(313,45%,30%))"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div></div></div>
   </div>
-
-  <!-- ========== ONS TEAM / INSTRUCTEURS ========== -->
-  <!-- Namen + foto's bewerken: pas hieronder de lijst aan. Foto's: zet bestanden in map "instructeurs/" en zet het pad, bijv. "photo":"instructeurs/daan.jpeg" -->
-  <script type="application/json" id="instructeurs-data">
-  [
-    {"name":"Mohammad","photo":"","gender":"m"},
-    {"name":"Sem Bakker","photo":"","gender":"m"},
-    {"name":"Lars Jansen","photo":"","gender":"m"},
-    {"name":"Bram van Dijk","photo":"","gender":"m"},
-    {"name":"Thijs Visser","photo":"","gender":"m"},
-    {"name":"Ruben Smit","photo":"","gender":"m"},
-    {"name":"Jesse Mulder","photo":"","gender":"m"},
-    {"name":"Tim de Boer","photo":"","gender":"m"},
-    {"name":"Niels Bos","photo":"","gender":"m"},
-    {"name":"Sven Meijer","photo":"","gender":"m"}
-  ]
-  </script>
-  <section class="section--tight" id="team-section">
-    <div class="container">
-      <div class="section-head">
-        <div class="eyebrow" data-nl="Ons team" data-en="Our team">Ons team</div>
-        <h2 data-nl="Maak kennis met onze instructeurs" data-en="Meet our instructors">Maak kennis met onze instructeurs</h2>
-        <p data-nl="Ervaren, geduldig en altijd gericht op jouw succes." data-en="Experienced, patient and always focused on your success.">Ervaren, geduldig en altijd gericht op jouw succes.</p>
-      </div>
-      <div class="team-grid" id="teamGrid"></div>
-    </div>
-  </section>
-  <script>
-  (function(){
-    var el=document.getElementById('instructeurs-data');
-    var grid=document.getElementById('teamGrid');
-    if(!el||!grid)return;
-    var TEAM=[]; try{TEAM=JSON.parse(el.textContent);}catch(e){}
-    function ini(n){return n.trim().split(/\s+/).map(function(w){return w[0];}).slice(0,2).join('').toUpperCase();}
-    grid.innerHTML=TEAM.map(function(m){
-      var name=(m.name&&m.name.trim())?m.name:'Instructeur';
-      var _g=(m.gender||'m').toString().toLowerCase();
-      var _vrouw=(_g==='f'||_g==='v'||_g==='w'||_g==='vrouw'||_g==='female'||_g==='woman');
-      var opts=_vrouw?'&top=longButNotTooLong,miaWallace,straight01,straight02,bob,curvy,bigHair&facialHairProbability=0':'&top=shortFlat,shortRound,shortWaved,shortCurly,theCaesar,sides&facialHairProbability=35';
-      var ph=(m.photo&&m.photo.trim())
-        ? '<img src="'+m.photo+'" alt="'+name+' \u2014 instructeur bij WegMaster Rijopleidingen" loading="lazy" width="96" height="96">'
-        : '<img class="team-avatar" src="https://api.dicebear.com/9.x/avataaars/svg?seed='+encodeURIComponent(name)+opts+'&radius=50&backgroundColor=b6e3f4,d1e7f5,cfe2f5&eyes=default,happy&eyebrows=default,defaultNatural,upDown&mouth=smile,twinkle" alt="'+name+' \u2014 instructeur bij WegMaster Rijopleidingen" loading="lazy" data-ini="'+ini(name)+'" onerror="this.parentNode.innerHTML=\'<span class=&quot;team-initials&quot;>\'+this.dataset.ini+\'</span>\'">';
-      return '<div class="team-card"><div class="team-card__photo">'+ph+'</div><h4>'+name+'</h4></div>';
-    }).join('');
-  })();
-  </script>
 
   <section class="hero">
     <div class="container hero__inner">
@@ -1893,6 +1851,7 @@ const STR = {
     blokurenNote:'In de pakketten duurt een rijles 45 minuten. Voor het beste resultaat rijden we in blokuren: in de auto krijg je twee lessen achter elkaar — 1,5 uur rijden per keer.',
     losseLesLabel:'Losse les',
     losseLesPrice:65,
+    perLesPay:'Je kan ook per les betalen',
     campaignOn:'Kortingsactie actief — bespaar €{amount} per les',
     adminTitle:'Beheer', adminToggleLabel:'Actie actief', adminAmountLabel:'Korting per les', adminApply:'Toepassen op site',
     adminIntroNote:'Alleen voor jou: hier pas je prijzen, lesaantallen en succesverhalen aan. Dit is een eenvoudige pincode, geen echte beveiliging — bewaar de link naar dit bestand prive.',
@@ -1975,6 +1934,7 @@ const STR = {
     blokurenNote:'In the packages a driving lesson is 45 minutes. For the best result we drive in block hours: in the car you get two lessons back-to-back — 1.5 hours of driving each time.',
     losseLesLabel:'Single lesson',
     losseLesPrice:65,
+    perLesPay:'You can also pay per lesson',
     campaignOn:'Discount campaign active — save €{amount} per lesson',
 
     adminTitle:'Manage', adminToggleLabel:'Campaign active', adminAmountLabel:'Discount per lesson', adminApply:'Apply to site',
@@ -2580,40 +2540,44 @@ function renderCategory(key){
   }).join('') : '';
 
   const isAuto = key === 'auto';
+  const autoBExtra = (typeof ONETIME!=='undefined' && ONETIME.pakketBExtra!=null) ? ONETIME.pakketBExtra : 300;
+  const autoCard = (p,i,isB)=>{
+    const price = p.price + (isB?autoBExtra:0);
+    const badge = (isB?'B':'A')+(i+1);
+    return `
+    <div class="taxi-pkg-card">
+      <div class="taxi-pkg-card__badge">${badge}</div>
+      <h3>${p.lessons} ${S.lessonsLabel}</h3>
+      <ul>
+        <li>${ICONS.check}<span>${S.autoFeatureLessons.replace('{lessons}', p.lessons)}</span></li>
+        <li>${ICONS.check}<span>${S.autoFeatureExam}</span></li>
+        ${isB ? `<li>${ICONS.check}<span>${S.autoFeatureKeuze}</span></li>` : ''}
+      </ul>
+      <hr>
+      <div class="price-final">${fmtPrice(price)}</div>
+      ${p.automaatExtra ? `<div class="automaat-note">${S.automaatNote.replace('{amount}', fmtPrice(p.automaatExtra))}</div>` : ''}
+      <a href="#register" data-register data-register-cat="auto" data-register-pkg="${p.lessons}" class="btn btn--primary btn--block">${S.choosePkg}</a>
+    </div>`;
+  };
   const autoSingleHtml = isAuto ? `
-    <div class="auto-pkg-wrap">
-      <div class="auto-pkg-single">
-        <div class="auto-pkg-head">${S.pkgLetterTitle} A</div>
-        <div class="auto-pkg-tabs" id="autoPkgTabsA">
-          ${cat.packages.map((p,i)=>`<button type="button" class="auto-pkg-tab${i===0?' active':''}" onclick="wmAutoSelect('a',${i})"><b>A${i+1}</b><small>${p.lessons} ${S.lessonsLabel}</small></button>`).join('')}
-        </div>
-        <div class="auto-pkg-detail" id="autoPkgDetailA">${wmAutoDetail(0,false)}</div>
+    <div class="auto-pkg-rows">
+      <div class="auto-pkg-row">
+        <div class="auto-pkg-row__label">${S.pkgLetterTitle} A</div>
+        <div class="auto-pkg-scroll">${cat.packages.map((p,i)=>autoCard(p,i,false)).join('')}</div>
       </div>
-      <div class="auto-pkg-single">
-        <div class="auto-pkg-head">${S.pkgLetterTitle} B</div>
-        <div class="auto-pkg-tabs" id="autoPkgTabsB">
-          ${cat.packages.map((p,i)=>`<button type="button" class="auto-pkg-tab${i===0?' active':''}" onclick="wmAutoSelect('b',${i})"><b>B${i+1}</b><small>${p.lessons} ${S.lessonsLabel}</small></button>`).join('')}
-        </div>
-        <div class="auto-pkg-detail" id="autoPkgDetailB">${wmAutoDetail(0,true)}</div>
+      <div class="auto-pkg-row">
+        <div class="auto-pkg-row__label">${S.pkgLetterTitle} B</div>
+        <div class="auto-pkg-scroll">${cat.packages.map((p,i)=>autoCard(p,i,true)).join('')}</div>
       </div>
     </div>` : '';
 
   const oneTimeHtml = `
     <div class="onetime-costs">
-      <div class="onetime-costs__grid">
-        <div class="onetime-group">
-          <h4>CBR</h4>
-          <ul>
-            <li><span>${S.examPriceLabel}</span><span>${fmtPrice(ONETIME.examPrice)}</span></li>
-            ${ONETIME.tttPrice ? `<li><span>${S.tttLabel||'Tussentijdse toets (TTT)'}</span><span>${fmtPrice(ONETIME.tttPrice)}</span></li>` : ''}
-            ${ONETIME.bnoExamPrice ? `<li><span>${S.bnoExamPriceLabel||'BNO-examen'}</span><span>${fmtPrice(ONETIME.bnoExamPrice)}</span></li>` : ''}
-            <li><span>${S.losseLesSchakelLabel||'Losse rijles schakel'}</span><span>${fmtPrice(S.losseLesPrice)}</span></li>
-            <li><span>${S.losseLesAutomaatLabel||'Losse rijles automaat'}</span><span>${fmtPrice(S.losseLesAutomaatPrice||75)}</span></li>
-          </ul>
-        </div>
-      </div>
       <div class="no-fees">
         ${ICONS.check}<span>${S.noFees}</span>
+      </div>
+      <div class="no-fees">
+        ${ICONS.check}<span>${S.perLesPay||'Je kan ook per les betalen'}</span>
       </div>
     </div>`;
 
@@ -2623,11 +2587,7 @@ function renderCategory(key){
     ? `
       ${discountActive ? `<div class="campaign-banner">${ICONS.flame}${S.campaignOn.replace('{amount}', discountPerLesson)}</div>` : ''}
       ${autoSingleHtml}
-      <div class="lesson-info">
-        <div class="lesson-info__focus" style="margin-top:8px;">${S.proeflesUur}</div>
-      </div>
       ${oneTimeHtml}
-      <p class="packages-note" style="color:var(--ink-soft);">${S.oneTimeCosts}</p>
     `
     : `
       ${discountActive ? `<div class="campaign-banner">${ICONS.flame}${S.campaignOn.replace('{amount}', discountPerLesson)}</div>` : ''}
@@ -2641,12 +2601,10 @@ function renderCategory(key){
       </div>
       ${pkgCarouselHTML(cat.packages)}
       <div class="lesson-info">
-        <div class="lesson-info__focus" style="margin-top:8px;">${S.proeflesUur}</div>
         <div class="lesson-info__focus" style="margin-top:8px;">${S.blokurenNote}</div>
       </div>
       <p class="packages-note" style="color:var(--ink-soft);margin-top:22px;">${S.tapRowNote}</p>
       ${oneTimeHtml}
-      <p class="packages-note" style="color:var(--ink-soft);">${S.oneTimeCosts}</p>
     `;
 
   page.innerHTML = `
@@ -2930,12 +2888,12 @@ document.getElementById('langEnBtn').addEventListener('click', ()=> setLang('en'
     var ot = (typeof ONETIME!=='undefined') ? ONETIME : {};
     if(l==='en'){
       return 'Our car packages:\n' + lines +
-        '\nSingle lesson: manual ' + euro(lesSch) + ' · automatic ' + euro(lesAut) +
+        '\nYou can also pay per lesson' +
         '.\n✅ No registration fees.\nExam: CBR ' + euro(ot.examPrice||400) + ' · TTT ' + euro(ot.tttPrice||350) + ' · BNO ' + euro(ot.bnoExamPrice||450) +
         '.\n\n👉 Tap "Auto" at the top for full details.';
     }
     return 'Onze autopakketten:\n' + lines +
-      '\nLosse les: schakel ' + euro(lesSch) + ' · automaat ' + euro(lesAut) +
+      '\nJe kan ook per les betalen' +
       '.\n✅ Géén inschrijfkosten.\nExamen: CBR ' + euro(ot.examPrice||400) + ' · TTT ' + euro(ot.tttPrice||350) + ' · BNO ' + euro(ot.bnoExamPrice||450) +
       '.\n\n👉 Klik bovenaan op "Auto" voor alle details.';
   }
