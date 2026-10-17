@@ -1254,49 +1254,111 @@
 
 <!-- ========== JOURNEY ANIMATIE (proefles -> aanmelden -> rijlessen -> rijbewijs) ========== -->
   <style>
-  .jrn{overflow:hidden;}
-  .jrn-intro{text-align:center;max-width:640px;margin:0 auto 24px;padding:0 12px;}
-  .jrn-intro h2{font-size:25px;line-height:1.2;color:var(--ink);margin-bottom:9px;letter-spacing:-.01em;}
-  .jrn-intro h2 .accent{color:var(--orange-500);}
-  .jrn-intro p{font-size:15.5px;color:var(--ink-soft);line-height:1.6;}
-  @media(max-width:520px){.jrn-intro h2{font-size:21px;} .jrn-intro p{font-size:14.5px;}}
-  .jrn-wrap{position:relative;margin-top:36px;padding:6px 4px 4px;}
-  .jrn-car{position:absolute;top:5px;left:12px;width:56px;height:30px;z-index:3;animation:jrnCar 7s ease-in-out infinite;filter:drop-shadow(0 5px 7px rgba(0,0,0,.4));}
-  .jrn-car svg{width:100%;height:100%;}
-  .jrn-row{position:relative;display:flex;justify-content:space-between;align-items:flex-start;}
-  .jrn-row::before{content:"";position:absolute;left:28px;right:28px;top:28px;height:4px;border-radius:4px;background:repeating-linear-gradient(90deg,var(--line-dark) 0 7px,transparent 7px 15px);}
-  .jrn-fill{position:absolute;left:28px;top:28px;height:4px;border-radius:4px;background:var(--orange-500);width:0;z-index:1;animation:jrnFill 7s ease-in-out infinite;}
-  .jrn-node{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;flex:1 1 0;min-width:0;text-align:center;}
-  .jrn-ic{width:56px;height:56px;border-radius:50%;background:#fff;border:2px solid var(--line-dark);color:var(--ink-soft);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(22,41,59,.35);}
-  .jrn-ic svg{width:27px;height:27px;}
-  .jrn-num{margin-top:9px;font-family:var(--font-mono);font-size:11.5px;font-weight:700;color:var(--orange-500);}
-  .jrn-lbl{margin-top:2px;font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.25;padding:0 2px;}
-  .jrn-node:nth-child(1) .jrn-ic{animation:jrnN1 7s ease-in-out infinite;}
-  .jrn-node:nth-child(2) .jrn-ic{animation:jrnN2 7s ease-in-out infinite;}
-  .jrn-node:nth-child(3) .jrn-ic{animation:jrnN3 7s ease-in-out infinite;}
-  .jrn-node:nth-child(4) .jrn-ic{animation:jrnN4 7s ease-in-out infinite;}
-  @keyframes jrnCar{0%,7%{left:12px}86%,100%{left:calc(100% - 62px)}}
-  @keyframes jrnFill{0%,7%{width:0}86%,100%{width:calc(100% - 56px)}}
-  @keyframes jrnN1{0%,3%{background:#fff;color:var(--ink-soft);border-color:var(--line-dark);transform:scale(1)}8%{transform:scale(1.16)}12%,100%{background:var(--orange-500);color:#fff;border-color:var(--orange-500);transform:scale(1)}}
-  @keyframes jrnN2{0%,28%{background:#fff;color:var(--ink-soft);border-color:var(--line-dark);transform:scale(1)}33%{transform:scale(1.16)}37%,100%{background:var(--orange-500);color:#fff;border-color:var(--orange-500);transform:scale(1)}}
-  @keyframes jrnN3{0%,53%{background:#fff;color:var(--ink-soft);border-color:var(--line-dark);transform:scale(1)}58%{transform:scale(1.16)}62%,100%{background:var(--orange-500);color:#fff;border-color:var(--orange-500);transform:scale(1)}}
-  @keyframes jrnN4{0%,79%{background:#fff;color:var(--ink-soft);border-color:var(--line-dark);transform:scale(1)}85%{transform:scale(1.28)}90%,100%{background:#16a34a;color:#fff;border-color:#16a34a;transform:scale(1)}}
-  @media(prefers-reduced-motion:reduce){.jrn-car{display:none}.jrn-fill{animation:none;width:calc(100% - 56px)}.jrn-ic{animation:none!important;background:var(--orange-500);color:#fff;border-color:var(--orange-500)}.jrn-node:nth-child(4) .jrn-ic{background:#16a34a;border-color:#16a34a}}
+  /* ===== Stappen (lesprogressie) ===== */
+  .stp{overflow:hidden;}
+  .stp-intro{text-align:center;max-width:640px;margin:0 auto 6px;padding:0 12px;}
+  .stp-intro h2{font-size:25px;line-height:1.2;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em;}
+  .stp-intro h2 .accent{color:var(--orange-500);}
+  .stp-hoe{display:inline-block;font-size:21px;font-weight:800;color:var(--orange-500);letter-spacing:.5px;animation:stpWobble 2.2s ease-in-out infinite;}
+  @keyframes stpWobble{0%,100%{transform:rotate(-2deg) scale(1)}50%{transform:rotate(2deg) scale(1.05)}}
+  @media(max-width:520px){.stp-intro h2{font-size:21px;} .stp-hoe{font-size:18px;}}
+  .stp-grid{position:relative;width:100%;max-width:440px;margin:24px auto 0;aspect-ratio:1/1.14;}
+  .stp-road,.stp-carlayer{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+  .stp-road{z-index:1;}
+  .stp-carlayer{z-index:3;}
+  .stp-road path{fill:none;stroke:var(--orange-500);stroke-width:1;stroke-linecap:round;stroke-dasharray:2.6 2.8;opacity:.35;}
+  .stp-card{position:absolute;width:47%;background:#fff;border:1px solid #e5e9ef;border-radius:15px;padding:12px 12px;z-index:2;box-shadow:0 6px 18px -10px rgba(22,41,59,.3);}
+  .stp-card.c1{top:1%;left:0;}
+  .stp-card.c2{top:1%;right:0;}
+  .stp-card.c3{bottom:1%;left:0;}
+  .stp-card.c4{bottom:1%;right:0;}
+  .stp-num{width:28px;height:28px;border-radius:50%;background:var(--orange-500);color:#fff;font-family:var(--font-mono);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:12.5px;margin-bottom:7px;}
+  .stp-card h4{margin:0 0 4px;font-size:13.5px;line-height:1.25;color:var(--ink);}
+  .stp-card h4 .sub{display:block;font-weight:600;color:#ea580c;font-size:11.5px;margin-top:2px;}
+  .stp-card p{margin:0;font-size:12px;color:var(--ink-soft);line-height:1.4;}
+  @media(max-width:360px){.stp-card p{font-size:11px;} .stp-card h4{font-size:12.5px;} .stp-card{padding:10px 10px;}}
+  .stp-closer{text-align:center;margin:22px auto 0;font-weight:800;font-size:16.5px;color:var(--ink);}
+  .stp-closer .accent{color:var(--orange-500);}
+  /* journey-strip (oude animatie) in de lege ruimte onder de kaarten */
+  .stp-jrn{position:relative;max-width:600px;margin:30px auto 4px;padding:0 8px;}
+  .stp-jttl{text-align:center;font-size:11px;font-weight:700;color:var(--ink-soft);letter-spacing:.05em;text-transform:uppercase;margin-bottom:18px;}
+  .stp-jwrap{position:relative;padding:4px 2px;}
+  .stp-jcar{position:absolute;top:0;left:6px;width:50px;height:27px;z-index:3;animation:stpJCar 7s ease-in-out infinite;filter:drop-shadow(0 5px 7px rgba(0,0,0,.4));}
+  .stp-jcar svg{width:100%;height:100%;}
+  .stp-jrow{position:relative;display:flex;justify-content:space-between;align-items:flex-start;}
+  .stp-jrow::before{content:"";position:absolute;left:26px;right:26px;top:26px;height:4px;border-radius:4px;background:repeating-linear-gradient(90deg,#d6dce4 0 7px,transparent 7px 15px);}
+  .stp-jfill{position:absolute;left:26px;top:26px;height:4px;border-radius:4px;background:var(--orange-500);width:0;z-index:1;animation:stpJFill 7s ease-in-out infinite;}
+  .stp-jnode{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;flex:1 1 0;min-width:0;text-align:center;}
+  .stp-jic{width:52px;height:52px;border-radius:50%;background:#fff;border:2px solid #cdd5de;color:var(--ink-soft);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(22,41,59,.35);}
+  .stp-jic svg{width:25px;height:25px;}
+  .stp-jlbl{margin-top:8px;font-size:12px;font-weight:700;color:var(--ink);line-height:1.2;padding:0 2px;}
+  .stp-jnode:nth-child(1) .stp-jic{animation:stpJ1 7s ease-in-out infinite;}
+  .stp-jnode:nth-child(2) .stp-jic{animation:stpJ2 7s ease-in-out infinite;}
+  .stp-jnode:nth-child(3) .stp-jic{animation:stpJ3 7s ease-in-out infinite;}
+  .stp-jnode:nth-child(4) .stp-jic{animation:stpJ4 7s ease-in-out infinite;}
+  @keyframes stpJCar{0%,7%{left:6px}86%,100%{left:calc(100% - 56px)}}
+  @keyframes stpJFill{0%,7%{width:0}86%,100%{width:calc(100% - 52px)}}
+  @keyframes stpJ1{0%,3%{background:#fff;color:var(--ink-soft);border-color:#cdd5de;transform:scale(1)}8%{transform:scale(1.16)}12%,100%{background:var(--orange-500);color:#fff;border-color:var(--orange-500);transform:scale(1)}}
+  @keyframes stpJ2{0%,28%{background:#fff;color:var(--ink-soft);border-color:#cdd5de;transform:scale(1)}33%{transform:scale(1.16)}37%,100%{background:var(--orange-500);color:#fff;border-color:var(--orange-500);transform:scale(1)}}
+  @keyframes stpJ3{0%,53%{background:#fff;color:var(--ink-soft);border-color:#cdd5de;transform:scale(1)}58%{transform:scale(1.16)}62%,100%{background:var(--orange-500);color:#fff;border-color:var(--orange-500);transform:scale(1)}}
+  @keyframes stpJ4{0%,79%{background:#fff;color:var(--ink-soft);border-color:#cdd5de;transform:scale(1)}85%{transform:scale(1.28)}90%,100%{background:#16a34a;color:#fff;border-color:#16a34a;transform:scale(1)}}
+  @media(max-width:360px){.stp-jlbl{font-size:11px;}.stp-jic{width:46px;height:46px;}.stp-jic svg{width:22px;height:22px;}.stp-jrow::before,.stp-jfill{left:23px;top:23px;}}
+  @media(prefers-reduced-motion:reduce){.stp-carlayer{display:none;}.stp-hoe{animation:none;}.stp-jcar{display:none;}.stp-jfill{animation:none;width:calc(100% - 52px)}.stp-jic{animation:none!important;background:var(--orange-500);color:#fff;border-color:var(--orange-500)}.stp-jnode:nth-child(4) .stp-jic{background:#16a34a;border-color:#16a34a}}
   </style>
-  <section class="section--tight jrn" id="zowerkt">
+  <section class="section--tight stp" id="zowerkt">
     <div class="container">
-      <div class="jrn-intro">
-        <h2 data-nl="Wij maken het je <span class='accent'>makkelijk</span>" data-en="We make it <span class='accent'>easy</span> for you">Wij maken het je <span class="accent">makkelijk</span></h2>
-        <p data-nl="Geen gedoe, geen stress — gewoon een duidelijke, rustige weg naar je rijbewijs." data-en="No hassle, no stress — just a clear, calm road to your licence.">Geen gedoe, geen stress — gewoon een duidelijke, rustige weg naar je rijbewijs.</p>
+      <div class="stp-intro">
+        <h2 data-nl="Wij maken het je <span class='accent'>makkelijker</span>" data-en="We make it <span class='accent'>easier</span> for you">Wij maken het je <span class="accent">makkelijker</span></h2>
+        <div class="stp-hoe" data-nl="Hoe dan?!" data-en="How then?!">Hoe dan?!</div>
       </div>
-      <div class="jrn-wrap">
-        <div class="jrn-car"><svg viewBox="0 0 64 34" fill="none"><path d="M3 23C3 19.5 6 19 9 18.8C12 18.6 13 18.6 15 18.6C17.5 12.8 21 11.6 27 11.3L38 11.1C44 11.2 48 13.2 51.5 18.2C54 18.4 57 18.6 58.5 18.8C61 19.1 61.8 20.5 61.8 23L61.8 25.8C61.8 26.6 61.2 27 60.3 27L4.2 27C3.3 27 3 25.5 3 23Z" fill="#121315"/><path d="M20.5 13.2C22 12.6 24 12.4 27 12.3L30.6 12.2L30.6 17.6L18.8 17.6C19 15.6 19.6 14.2 20.5 13.2Z" fill="#aebccd"/><path d="M32.2 12.2L38 12.1C43 12.2 46 13.8 48.6 17.2L32.2 17.6Z" fill="#aebccd"/><rect x="59" y="20.4" width="2.5" height="2.3" rx="0.7" fill="#fdf0c8"/><rect x="3.1" y="20.4" width="1.8" height="2.3" rx="0.5" fill="#e23b2e"/><circle cx="18" cy="27" r="6.6" fill="#0b0b0c"/><circle cx="18" cy="27" r="3" fill="#8f949b"/><circle cx="18" cy="27" r="1.1" fill="#26282c"/><circle cx="47" cy="27" r="6.6" fill="#0b0b0c"/><circle cx="47" cy="27" r="3" fill="#8f949b"/><circle cx="47" cy="27" r="1.1" fill="#26282c"/></svg></div>
-        <div class="jrn-fill"></div>
-        <div class="jrn-row">
-          <div class="jrn-node"><div class="jrn-ic"><svg viewBox="0 0 24 24" fill="none"><rect x="5.5" y="4" width="13" height="17" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M9 4h6v2.5H9z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.5 13l2 2 4-4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="jrn-num">1</div><div class="jrn-lbl" data-nl="Aanmelden" data-en="Sign up">Aanmelden</div></div>
-          <div class="jrn-node"><div class="jrn-ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.7"/><path d="M5 20c0-3.6 3.1-6.3 7-6.3s7 2.7 7 6.3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><div class="jrn-num">2</div><div class="jrn-lbl" data-nl="Proefles" data-en="Trial lesson">Proefles</div></div>
-          <div class="jrn-node"><div class="jrn-ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.2" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="2.4" stroke="currentColor" stroke-width="1.7"/><path d="M12 4.2v5.4M5.2 15l4.6-2.3M18.8 15l-4.6-2.3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><div class="jrn-num">3</div><div class="jrn-lbl" data-nl="Lessen" data-en="Lessons">Lessen</div></div>
-          <div class="jrn-node"><div class="jrn-ic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.7"/><circle cx="8" cy="11.5" r="2.1" stroke="currentColor" stroke-width="1.6"/><path d="M13 10.5h5M13 13.5h5M5.6 15.4c.3-1.2 1.3-1.8 2.4-1.8s2.1.6 2.4 1.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="jrn-num">4</div><div class="jrn-lbl" data-nl="Geslaagd!" data-en="Passed!">Geslaagd!</div></div>
+      <div class="stp-grid">
+        <svg class="stp-road" viewBox="0 0 100 114" preserveAspectRatio="none"><path d="M24,27 C42,13 58,13 76,27 C97,51 3,63 24,87 C42,101 58,101 76,87 C97,63 3,51 24,27 Z"/></svg>
+
+        <div class="stp-card c1"><div class="stp-num">1</div>
+          <h4>Les 1<span class="sub" data-nl="Alleen sturen, zonder stress" data-en="Just steering, no stress">Alleen sturen, zonder stress</span></h4>
+          <p data-nl="Jij leert sturen als een pro. Gas en rem doet je instructeur — dus minder stress, één ding tegelijk." data-en="You learn to steer like a pro. Your instructor does the gas and brake — so less stress, one thing at a time.">Jij leert sturen als een pro. Gas en rem doet je instructeur — dus minder stress, één ding tegelijk.</p></div>
+
+        <div class="stp-card c2"><div class="stp-num">2</div>
+          <h4>Les 2<span class="sub" data-nl="Nu neem jij het over" data-en="Now you take over">Nu neem jij het over</span></h4>
+          <p data-nl="Sturen lukt? Dan ga jij zelf gas en rem doen en leer je soepel door bochten rijden." data-en="Got the steering down? Then you take over gas and brake and learn to take bends smoothly.">Sturen lukt? Dan ga jij zelf gas en rem doen en leer je soepel door bochten rijden.</p></div>
+
+        <div class="stp-card c3"><div class="stp-num">3</div>
+          <h4>Les 3<span class="sub" data-nl="Lekker oefenen" data-en="Plenty of practice">Lekker oefenen</span></h4>
+          <p data-nl="Rustig verder oefenen: optrekken, afremmen en kruispunten — helemaal in jouw tempo." data-en="Calmly practising further: pulling away, braking and junctions — fully at your own pace.">Rustig verder oefenen: optrekken, afremmen en kruispunten — helemaal in jouw tempo.</p></div>
+
+        <div class="stp-card c4"><div class="stp-num">4-5</div>
+          <h4>Les 4-5<span class="sub" data-nl="Richting je examen" data-en="Towards your exam">Richting je examen</span></h4>
+          <p data-nl="Stap voor stap word je zelfstandig, tot rijden vanzelf gaat. Klaar voor het CBR." data-en="Step by step you become independent, until driving comes naturally. Ready for the CBR exam.">Stap voor stap word je zelfstandig, tot rijden vanzelf gaat. Klaar voor het CBR.</p></div>
+
+        <svg class="stp-carlayer" viewBox="0 0 100 114" preserveAspectRatio="none">
+          <g>
+            <g>
+              <rect x="-3" y="-3.1" width="2.3" height="1.1" rx="0.4" fill="#0b1220"/>
+              <rect x="-3" y="2" width="2.3" height="1.1" rx="0.4" fill="#0b1220"/>
+              <rect x="1" y="-3.1" width="2.3" height="1.1" rx="0.4" fill="#0b1220"/>
+              <rect x="1" y="2" width="2.3" height="1.1" rx="0.4" fill="#0b1220"/>
+              <path d="M-4.4,-2.4 L2.7,-2.4 Q4.7,-2.4 4.9,0 Q4.7,2.4 2.7,2.4 L-4.4,2.4 Q-5,2.4 -5,1.8 L-5,-1.8 Q-5,-2.4 -4.4,-2.4 Z" fill="#121315"/>
+              <path d="M1.3,-1.7 L2.5,-1.7 Q3.6,-1.6 3.9,0 Q3.6,1.6 2.5,1.7 L1.3,1.7 Z" fill="#7fb4ff" opacity=".9"/>
+              <rect x="-2.7" y="-1.7" width="3.6" height="3.4" rx="0.6" fill="#1f2937"/>
+              <path d="M-4,-1.5 L-3.1,-1.5 L-3.1,1.5 L-4,1.5 Q-4.3,1.5 -4.3,1 L-4.3,-1 Q-4.3,-1.5 -4,-1.5 Z" fill="#475569" opacity=".85"/>
+            </g>
+            <animateMotion dur="11s" repeatCount="indefinite" rotate="auto" path="M24,27 C42,13 58,13 76,27 C97,51 3,63 24,87 C42,101 58,101 76,87 C97,63 3,51 24,27 Z"/>
+          </g>
+        </svg>
+      </div>
+      <div class="stp-closer" data-nl="Gewoon — wij maken het <span class='accent'>makkelijk</span>. 🚗" data-en="Simply — we make it <span class='accent'>easy</span>. 🚗">Gewoon — wij maken het <span class="accent">makkelijk</span>. 🚗</div>
+
+      <div class="stp-jrn">
+        <div class="stp-jttl" data-nl="Zo werkt het" data-en="How it works">Zo werkt het</div>
+        <div class="stp-jwrap">
+          <div class="stp-jcar"><svg viewBox="0 0 64 34" fill="none"><path d="M3 23C3 19.5 6 19 9 18.8C12 18.6 13 18.6 15 18.6C17.5 12.8 21 11.6 27 11.3L38 11.1C44 11.2 48 13.2 51.5 18.2C54 18.4 57 18.6 58.5 18.8C61 19.1 61.8 20.5 61.8 23L61.8 25.8C61.8 26.6 61.2 27 60.3 27L4.2 27C3.3 27 3 25.5 3 23Z" fill="#121315"/><path d="M20.5 13.2C22 12.6 24 12.4 27 12.3L30.6 12.2L30.6 17.6L18.8 17.6C19 15.6 19.6 14.2 20.5 13.2Z" fill="#aebccd"/><path d="M32.2 12.2L38 12.1C43 12.2 46 13.8 48.6 17.2L32.2 17.6Z" fill="#aebccd"/><rect x="59" y="20.4" width="2.5" height="2.3" rx="0.7" fill="#fdf0c8"/><rect x="3.1" y="20.4" width="1.8" height="2.3" rx="0.5" fill="#e23b2e"/><circle cx="18" cy="27" r="6.6" fill="#0b0b0c"/><circle cx="18" cy="27" r="3" fill="#8f949b"/><circle cx="18" cy="27" r="1.1" fill="#26282c"/><circle cx="47" cy="27" r="6.6" fill="#0b0b0c"/><circle cx="47" cy="27" r="3" fill="#8f949b"/><circle cx="47" cy="27" r="1.1" fill="#26282c"/></svg></div>
+          <div class="stp-jfill"></div>
+          <div class="stp-jrow">
+            <div class="stp-jnode"><div class="stp-jic"><svg viewBox="0 0 24 24" fill="none"><rect x="5.5" y="4" width="13" height="17" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M9 4h6v2.5H9z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.5 13l2 2 4-4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="stp-jlbl" data-nl="Aanmelden" data-en="Sign up">Aanmelden</div></div>
+            <div class="stp-jnode"><div class="stp-jic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.7"/><path d="M5 20c0-3.6 3.1-6.3 7-6.3s7 2.7 7 6.3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><div class="stp-jlbl" data-nl="Proefles" data-en="Trial lesson">Proefles</div></div>
+            <div class="stp-jnode"><div class="stp-jic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.2" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="2.4" stroke="currentColor" stroke-width="1.7"/><path d="M12 4.2v5.4M5.2 15l4.6-2.3M18.8 15l-4.6-2.3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><div class="stp-jlbl" data-nl="Lessen" data-en="Lessons">Lessen</div></div>
+            <div class="stp-jnode"><div class="stp-jic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.7"/><circle cx="8" cy="11.5" r="2.1" stroke="currentColor" stroke-width="1.6"/><path d="M13 10.5h5M13 13.5h5M5.6 15.4c.3-1.2 1.3-1.8 2.4-1.8s2.1.6 2.4 1.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="stp-jlbl" data-nl="Geslaagd!" data-en="Passed!">Geslaagd!</div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -1305,7 +1367,6 @@
   <section class="hero">
     <div class="container hero__inner">
       <h1 class="seo-hidden">Rijschool Amersfoort &amp; Soest — rijlessen auto, taxi en vrachtwagen in Amersfoort, Soest en omgeving. Gratis proefles, spoedcursus rijbewijs, automaat rijles.</h1>
-      <p class="hero-tagline" data-nl="Bij ons haal je je rijbewijs op de makkelijke manier." data-en="With us, getting your licence is easy.">Bij ons haal je je rijbewijs op de makkelijke manier.</p>
       <p class="hero-national" data-nl="Dé rijschool voor Amersfoort, Soest &amp; omgeving" data-en="Your driving school for Amersfoort, Soest &amp; surroundings">Dé rijschool voor Amersfoort, Soest &amp; omgeving</p>
       <p class="lead" id="heroSub"
          data-nl="Gratis proefles en je eigen tempo — 7 dagen per week, ook een spoedtraject binnen 30 dagen."
