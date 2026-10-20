@@ -50,11 +50,21 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'AW-18306777925');
+  gtag('config', 'AW-18306777925', { 'allow_enhanced_conversions': true });
+
+  // gclid vastleggen bij binnenkomst via advertentie (voor offline conversie-matching)
+  (function(){
+    try{
+      var p = new URLSearchParams(location.search);
+      var id = p.get('gclid') || p.get('wbraid') || p.get('gbraid');
+      if(id){ localStorage.setItem('wm_gclid', id); localStorage.setItem('wm_gclid_ts', String(Date.now())); }
+    }catch(e){}
+  })();
+  window.wmGetGclid = function(){ try{ return localStorage.getItem('wm_gclid') || ''; }catch(e){ return ''; } };
   // Vuurt een Google Ads-conversie af bij klik op Bellen of WhatsApp.
   // Voor 'call' (tel:-links) wachten we tot de conversie is verstuurd
   // VOORDAT we de telefoon-app openen — anders gaat de meting verloren op mobiel.
-  function wmTrackConversion(type, url){
+  function wmTrackConversion(type, url, userData){
     var navigated = false;
     var go = function(){
       if(navigated) return;
@@ -63,6 +73,13 @@
     };
     try{
       if(typeof gtag==='function'){
+        // Enhanced conversions: gehashte e-mail/telefoon meesturen (Google hasht client-side)
+        if(userData && (userData.email || userData.phone)){
+          gtag('set', 'user_data', {
+            'email': userData.email || undefined,
+            'phone_number': userData.phone || undefined
+          });
+        }
         var wmSendTo = (type === 'lead')
           ? 'AW-18306777925/GRwtCOzhlJ8dEMWGrZlE'   /* Aanmelding formulier (echte lead) */
           : 'AW-18306777925/xI6uCKfg59QcEMWGrZlE';  /* WhatsApp / Bellen klik */
@@ -1987,7 +2004,7 @@ const STR = {
     adminDownload:'Download bijgewerkte website', adminDownloadNote:'Deze site heeft geen database — download het bestand na het bewerken en upload het naar je hosting om de wijzigingen voor iedereen zichtbaar te maken.',
     pinPrompt:'Voer de beheer-pincode in:', pinWrong:'Onjuiste pincode.', pinModalTitle:'Beheer ontgrendelen', pinConfirm:'Bevestigen',
     regTitle:'Meld je aan', regSub:'Vul je gegevens in — we nemen snel contact met je op om je proefles of lessenpakket te bevestigen.',
-    fieldFirstName:'Voornaam', fieldLastName:'Achternaam', fieldPhone:'Telefoonnummer', fieldEmail:'E-mailadres', fieldCity:'Woonplaats',
+    fieldFirstName:'Naam', fieldLastName:'Achternaam', fieldPhone:'Telefoonnummer', fieldEmail:'E-mailadres', fieldCity:'Woonplaats',
     fieldCategory:'Categorie', fieldPackage:'Pakket', fieldRemarks:'Bijzonderheden (optioneel)',
     registeringFor:'Je meldt je aan voor:',
     comingSoonTitle:'Binnenkort beschikbaar', comingSoonBody:'We werken nog aan dit onderdeel. Kom binnenkort terug, of bekijk onze andere categorieën.', comingSoonBack:'Terug naar WegMaster Rijopleidingen',
@@ -2070,7 +2087,7 @@ const STR = {
     adminDownload:'Download updated website', adminDownloadNote:'This site has no database — after editing, download the file and upload it to your hosting to make the changes visible to everyone.',
     pinPrompt:'Enter the admin PIN:', pinWrong:'Incorrect PIN.', pinModalTitle:'Unlock admin', pinConfirm:'Confirm',
     regTitle:'Register', regSub:'Fill in your details — we will contact you soon to confirm your trial lesson or lesson package.',
-    fieldFirstName:'First name', fieldLastName:'Last name', fieldPhone:'Phone number', fieldEmail:'Email address', fieldCity:'City',
+    fieldFirstName:'Name', fieldLastName:'Last name', fieldPhone:'Phone number', fieldEmail:'Email address', fieldCity:'City',
     fieldCategory:'Category', fieldPackage:'Package', fieldRemarks:'Special remarks (optional)',
     registeringFor:'You are registering for:',
     comingSoonTitle:'Coming soon', comingSoonBody:"We're still working on this. Check back soon, or take a look at our other categories.", comingSoonBack:'Back to WegMaster Rijopleidingen',
@@ -2411,9 +2428,7 @@ function renderRegisterPage(){
   const categoryFieldHtml = categoryKnown
     ? `<input type="hidden" name="categorie" value="${pendingRegistration.cat}">
        <div class="known-category-badge" style="grid-column:1/-1;">${ICONS.check}<span>${S.registeringFor} <strong>${CATS[pendingRegistration.cat][lang].title}</strong></span></div>`
-    : `<label style="grid-column:1/-1;">${S.fieldCategory}
-         <select name="categorie" id="registerCategorySelect">${catOptions}</select>
-       </label>`;
+    : `<input type="hidden" name="categorie" value="">`;
 
   page.innerHTML = `
     <section class="cat-hero" style="padding-bottom:36px;">
@@ -2431,7 +2446,6 @@ function renderRegisterPage(){
           <div class="form-grid">
             ${categoryFieldHtml}
             <label>${S.fieldFirstName}<input type="text" name="voornaam" required></label>
-            <label>${S.fieldLastName}<input type="text" name="achternaam" required></label>
             <label>${S.fieldPhone}<input type="tel" name="telefoon" required></label>
             <label>${S.fieldEmail}<input type="email" name="email" required></label>
             <label>${S.fieldCity}<input type="text" name="woonplaats" required></label>
@@ -2446,14 +2460,6 @@ function renderRegisterPage(){
       </div>
     </section>
   `;
-
-  const catSelectEl = document.getElementById('registerCategorySelect');
-  if(catSelectEl){
-    catSelectEl.addEventListener('change', (e)=>{
-      const ps = document.getElementById('registerPackageSelect');
-      if(ps) ps.innerHTML = pkgOptionsFor(e.target.value);
-    });
-  }
 }
 
 function showRegisterResult(state){
@@ -2473,7 +2479,6 @@ function handleRegisterSubmit(e){
   const S = STR[lang];
 
   const voornaam = form.voornaam.value.trim();
-  const achternaam = form.achternaam.value.trim();
   const telefoon = form.telefoon.value.trim();
   const email = form.email.value.trim();
   const woonplaats = form.woonplaats.value.trim();
@@ -2481,7 +2486,7 @@ function handleRegisterSubmit(e){
   const pakket = form.pakket.value;
   const bijzonderheden = form.bijzonderheden.value.trim();
 
-  if(!voornaam || !achternaam || !telefoon || !email || !woonplaats){
+  if(!voornaam || !telefoon || !email || !woonplaats){
     form.reportValidity();
     return;
   }
@@ -2490,7 +2495,7 @@ function handleRegisterSubmit(e){
   const pakketLabel = pakket === 'tbd' ? STR[lang].pkgTbd : `${pakket} ${STR[lang].lessonsLabel}`;
 
   const templateParams = {
-    from_name: voornaam + ' ' + achternaam,
+    from_name: voornaam,
     phone: telefoon,
     reply_to: email,
     student_email: email,
@@ -2499,7 +2504,8 @@ function handleRegisterSubmit(e){
     package: pakketLabel,
     remarks: bijzonderheden || '-',
     admin_email: EMAILJS_CONFIG.adminEmail,
-    submitted_at: new Date().toLocaleString('nl-NL')
+    submitted_at: new Date().toLocaleString('nl-NL'),
+    gclid: (window.wmGetGclid ? window.wmGetGclid() : '')
   };
 
   if(emailConfigured && window.emailjs){
@@ -2509,7 +2515,7 @@ function handleRegisterSubmit(e){
       emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.adminTemplateId, templateParams),
       emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.studentTemplateId, templateParams)
     ]).then(()=>{
-      wmTrackConversion('lead');   // Google Ads-conversie: telt alleen bij een gelukte aanmelding
+      wmTrackConversion('lead', undefined, { email: email, phone: telefoon });   // Google Ads-conversie + enhanced conversions; telt alleen bij een gelukte aanmelding
       showRegisterResult('success');
       form.reset();
     }).catch((err)=>{
@@ -3197,7 +3203,18 @@ function observeReveal(){
 /* =========================================================
    INIT
    ========================================================= */
+/* Taal uit URL: ?lang=en of ?lang=nl (voor Engelse advertenties) */
+(function(){
+  try{
+    var q = (new URLSearchParams(location.search).get('lang')||'').toLowerCase();
+    if(q === 'en' || q === 'nl') lang = q;
+  }catch(e){}
+})();
 applyStatic();
+try{
+  document.getElementById('langNlBtn').classList.toggle('active', lang==='nl');
+  document.getElementById('langEnBtn').classList.toggle('active', lang==='en');
+}catch(e){}
 showPageRoute((location.hash || '#home').replace('#',''));
 </script>
 <script>
