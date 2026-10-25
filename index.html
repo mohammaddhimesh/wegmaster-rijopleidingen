@@ -1539,6 +1539,23 @@
 #menuBtn[aria-expanded="true"] .menu-open-icon{display:none;}
 #menuBtn[aria-expanded="true"] .menu-close-icon{display:block;}
 </style>
+<style>.mobile-action-bar a.call{background:#17354d;color:#fff;}.mobile-action-bar a.call svg{color:#fff;}</style>
+<style id="unified-auto-package-cards">
+.home-auto-package.auto-package-card{display:flex;flex-direction:column;gap:0;padding:24px;border:1px solid #d4e0eb;border-radius:16px;background:#fff;box-shadow:none;min-width:0;}
+.auto-package-card h2,.auto-package-card h3{font-size:22px!important;line-height:1.25;margin:0 0 16px;color:#17354d;}
+.auto-package-card .package-lesson-count{display:flex;gap:8px;align-items:center;font-size:14px;line-height:1.5;color:#40586c;}
+.auto-package-card .package-lesson-count svg{width:16px;height:16px;flex-shrink:0;color:#b74c09;}
+.auto-package-card hr{width:100%;border:0;border-top:1px solid #d4e0eb;margin:12px 0 16px;}
+.auto-package-card .package-unit-price{font-size:17px;font-weight:700;line-height:1.4;color:#17354d;margin-bottom:12px;font-variant-numeric:tabular-nums;}
+.auto-package-card .package-unit-price span{font-size:14px;font-weight:500;}
+.auto-package-card .offer-old{font-size:14px;color:#526477;line-height:1.5;}
+.auto-package-card .offer-price{font-size:36px!important;font-weight:800;line-height:1.2;margin:6px 0 10px!important;color:#17354d;}
+.auto-package-card .offer-saving{font-size:14px;line-height:1.5;margin:0 0 22px;color:#245b36;}
+.home-auto-package.auto-package-card .btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:48px;margin-top:auto;padding:12px 10px;border-radius:999px;background:#f3801e;color:#17354d;font-size:14px;font-weight:700;line-height:1.4;box-shadow:none;}
+.home-auto-package.auto-package-card .btn:hover{background:#ff9c45;}
+.auto-pkg-scroll>.auto-package-card{flex:0 0 280px;scroll-snap-align:start;}
+@media(max-width:600px){.home-auto-package.auto-package-card{padding:20px;}.auto-pkg-scroll>.auto-package-card{flex-basis:82%;max-width:340px;}}
+</style>
 </head>
 <body>
 
@@ -2088,6 +2105,7 @@
 <!-- ========== ADMIN / DISCOUNT + CONTENT PANEL ========== -->
 <!-- ========== STICKY MOBILE CALL/WHATSAPP BAR ========== -->
 <div class="mobile-action-bar">
+<a class="call" href="tel:+31612452088" id="mobileCallBtn" onclick="return wmTrackConversion('call', this.href)"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 4h3l1.5 4-2 1.5a11 11 0 0 0 5.5 5.5l1.5-2 4 1.5v3a1.5 1.5 0 0 1-1.6 1.5C11.8 18.6 5.4 12.2 5 6.1A1.5 1.5 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span data-nl="Bellen" data-en="Call">Bellen</span></a>
   <a class="whatsapp" href="https://wa.me/31612452088?text=Hoi%20WegMaster%21%20Ik%20wil%20graag%20een%20proefles%20inplannen%20%F0%9F%9A%97" target="_blank" rel="noopener" id="mobileWaBtn">
     <svg viewBox="0 0 24 24" fill="#08381C"><path d="M12 2.5a9.5 9.5 0 0 0-8.1 14.4L2.5 21.5l4.7-1.4A9.5 9.5 0 1 0 12 2.5Zm0 17.3a7.8 7.8 0 0 1-4-1.1l-.3-.2-2.6.8.8-2.5-.2-.3a7.8 7.8 0 1 1 6.3 3.3Zm4.3-5.8c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-1.5-.6-2.5-1.4-3.3-2.8-.1-.2-.1-.4.1-.5.2-.2.4-.5.6-.7.2-.2.2-.4.1-.6-.1-.2-.6-1.4-.8-1.9-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.8 2.9 4.5 4 2.6 1 2.6.7 3.1.6.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
     <span data-nl="WhatsApp" data-en="WhatsApp">WhatsApp</span>
@@ -2273,7 +2291,7 @@ const STR = {
     lessonsLabelCap:'Lessen', priceLabelCap:'Prijs', tapRowNote:'Tik op een pakket om je aan te melden.',
     pkgLetterTitle:'Pakket', taxiFeatureBook:'Inclusief theorieboek', taxiFeatureSupport:'Begeleiding bij vragen over de theorie',
     taxiFeatureLessons:'{lessons} praktijklessen', taxiFeatureExam:'Examen boeken + geschikte oefenauto beschikbaar',
-    autoFeatureLessons:'{lessons} rijlessen van 60 min', autoFeatureExam:'CBR praktijkexamen inbegrepen', autoFeatureTTT:'Keuze: tussentijdse toets óf herexamen',
+    autoFeatureLessons:'{lessons} rijlessen', autoFeatureExam:'CBR praktijkexamen inbegrepen', autoFeatureTTT:'Keuze: tussentijdse toets óf herexamen',
     autoFeatureKeuze:'Kies zelf: herkansing (herexamen) óf tussentijdse toets',
     bnoExamPriceLabel:'BNO-examen',
     tttLabel:'Tussentijdse toets (TTT)',
@@ -2355,7 +2373,7 @@ const STR = {
     lessonsLabelCap:'Lessons', priceLabelCap:'Price', tapRowNote:'Tap a package to register.',
     pkgLetterTitle:'Package', taxiFeatureBook:'Theory book included', taxiFeatureSupport:'Support for theory questions',
     taxiFeatureLessons:'{lessons} practical lessons', taxiFeatureExam:'Exam booking + suitable practice car provided',
-    autoFeatureLessons:'{lessons} driving lessons of 60 min', autoFeatureExam:'CBR practical exam included', autoFeatureTTT:'Choice: interim test or re-exam',
+    autoFeatureLessons:'{lessons} driving lessons', autoFeatureExam:'CBR practical exam included', autoFeatureTTT:'Choice: interim test or re-exam',
     autoFeatureKeuze:'Your choice: re-exam (resit) or interim test',
     bnoExamPriceLabel:'BNO exam',
     tttLabel:'Interim test (TTT)',
@@ -2500,18 +2518,26 @@ function applyDataAttrText(){
   });
 }
 
+function renderAutoPackageCard(p, headingTag){
+  const en = lang === 'en';
+  const perLesson = '€' + (p.price / p.lessons).toLocaleString(en ? 'en-IE' : 'nl-NL', {minimumFractionDigits:2, maximumFractionDigits:2});
+  return `<article class="home-auto-package auto-package-card">
+    <${headingTag}>${p.lessons} ${en?'lessons':'lessen'}</${headingTag}>
+    <div class="package-lesson-count">${ICONS.check}<span>${STR[lang].autoFeatureLessons.replace('{lessons}',p.lessons)}</span></div>
+    <hr>
+    <div class="package-unit-price">${perLesson} <span>${en?'per lesson':'per les'}</span></div>
+    <div class="offer-old">${en?'Previous price':'Oude prijs'}: <del>${fmtPrice(p.originalPrice)}</del></div>
+    <div class="offer-price">${fmtPrice(p.price)}</div>
+    <p class="offer-saving">${en?'You save':'Je bespaart'} ${fmtPrice(p.originalPrice-p.price)}</p>
+    <a href="#register" data-register data-register-cat="auto" data-register-pkg="${p.lessons}" class="btn btn--primary">${en?'Book a trial lesson':'Proefles inplannen'}</a>
+  </article>`;
+}
+
 function renderHomeAutoPackages(){
   const target = document.getElementById('homeAutoPackages');
   if(!target) return;
   const en = lang === 'en';
-  target.innerHTML = CATS.auto.packages.map(p=>`
-    <article class="home-auto-package">
-      <h2>${p.lessons} ${en?'lessons':'rijlessen'}</h2>
-      <div class="offer-old">${en?'Previous price':'Oude prijs'} <del>${fmtPrice(p.originalPrice)}</del></div>
-      <div class="offer-price">${fmtPrice(p.price)}</div>
-      <p class="offer-saving">${en?'You save':'Je bespaart'} ${fmtPrice(p.originalPrice-p.price)}</p>
-      <a href="#register" data-register data-register-cat="auto" data-register-pkg="${p.lessons}" class="btn btn--primary">${en?'Book a trial lesson':'Proefles inplannen'}</a>
-    </article>`).join('');
+  target.innerHTML = CATS.auto.packages.map(p=>renderAutoPackageCard(p,'h2')).join('');
   target.setAttribute('aria-label', en?'Car lesson packages':'Auto lespakketten');
   const prev = document.getElementById('homePackagePrev');
   const next = document.getElementById('homePackageNext');
@@ -3037,19 +3063,7 @@ function renderCategory(key){
   }).join('') : '';
 
   const isAuto = key === 'auto';
-  const autoCard = (p) => {
-    const saving = p.originalPrice - p.price;
-    return `
-      <div class="taxi-pkg-card">
-        <h3>${p.lessons} ${S.lessonsLabel}</h3>
-        <ul><li>${ICONS.check}<span>${S.autoFeatureLessons.replace('{lessons}', p.lessons)}</span></li></ul>
-        <hr>
-        <div>${lang==='en'?'Previous price':'Oude prijs'}: <span class="price-original">${fmtPrice(p.originalPrice)}</span></div>
-        <div class="price-final">${fmtPrice(p.price)}</div>
-        <div class="owncar-note">${lang==='en'?'You save':'Je bespaart'} ${fmtPrice(saving)}</div>
-        <a href="#register" data-register data-register-cat="auto" data-register-pkg="${p.lessons}" class="btn btn--primary btn--block">${S.choosePkg}</a>
-      </div>`;
-  };
+  const autoCard = p => renderAutoPackageCard(p,'h3');
   const autoSingleHtml = isAuto ? `
     <div class="pkg-row-label"><span class="pkg-row-label__tag">${lang==='en'?'Lesson packages':'Lespakketten'}</span><span class="pkg-row-label__sub">${lang==='en'?'Previous price, discounted price and savings':'Oude prijs, actieprijs en voordeel'}</span></div>
     <div class="auto-pkg-scroll">
