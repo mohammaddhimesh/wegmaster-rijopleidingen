@@ -109,8 +109,9 @@
   // chat meteen ziet waar de lead vandaan komt (Google-advertentie of website).
   function wmWaUrlWithSource(url){
     try{
-      var cameFromAd = !!(window.wmGetGclid && window.wmGetGclid());
-      var tag = cameFromAd ? '(via Google advertentie)' : '(via website)';
+      var gclid = (window.wmGetGclid && window.wmGetGclid()) || '';
+      var tag = gclid ? '(via Google advertentie)' : '(via website)';
+      if(gclid){ tag += '\nref: ' + gclid; } // gclid meesturen voor latere offline conversie-import
       var idx = url.indexOf('text=');
       if(idx === -1){
         var sep = url.indexOf('?') === -1 ? '?' : '&';
