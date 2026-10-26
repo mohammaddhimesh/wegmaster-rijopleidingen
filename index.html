@@ -104,6 +104,59 @@
     }
     return true; // WhatsApp e.d.: opent in nieuw tabblad, pagina blijft leven
   }
+
+  // Voegt een herkomst-tag toe aan de WhatsApp-tekst, zodat de eigenaar in de
+  // chat meteen ziet waar de lead vandaan komt (Google-advertentie of website).
+  function wmWaUrlWithSource(url){
+    try{
+      var cameFromAd = !!(window.wmGetGclid && window.wmGetGclid());
+      var tag = cameFromAd ? '(via Google advertentie)' : '(via website)';
+      var idx = url.indexOf('text=');
+      if(idx === -1){
+        var sep = url.indexOf('?') === -1 ? '?' : '&';
+        return url + sep + 'text=' + encodeURIComponent(tag);
+      }
+      var before = url.slice(0, idx + 5); // t/m 'text='
+      var rest = url.slice(idx + 5);
+      var ampIdx = rest.indexOf('&');
+      var encoded = ampIdx === -1 ? rest : rest.slice(0, ampIdx);
+      var after = ampIdx === -1 ? '' : rest.slice(ampIdx);
+      var decoded;
+      try{ decoded = decodeURIComponent(encoded.replace(/\+/g, '%20')); }catch(e){ decoded = encoded; }
+      if(decoded.indexOf('(via ') !== -1){ return url; } // al getagd
+      decoded = (decoded ? decoded + '\n\n' : '') + tag;
+      return before + encodeURIComponent(decoded) + after;
+    }catch(e){ return url; }
+  }
+
+  // Opent WhatsApp betrouwbaar: vuurt eerst de conversie af en wacht op mobiel
+  // tot de meting is verstuurd VOORDAT de pagina naar de WhatsApp-app springt,
+  // anders gaat de conversie verloren (zelfde aanpak als de Bellen-knop).
+  function wmOpenWhatsApp(url){
+    url = wmWaUrlWithSource(url);
+    var ua = navigator.userAgent || '';
+    var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+
+    if(!isMobile){
+      // Desktop: opent in nieuw tabblad, de pagina blijft leven dus de ping voltooit.
+      try{ if(typeof gtag==='function'){ gtag('event','conversion',{'send_to':'AW-18306777925/xI6uCKfg59QcEMWGrZlE','value':1.0,'currency':'EUR'}); } }catch(e){}
+      window.open(url, '_blank', 'noopener');
+      return;
+    }
+    // Mobiel: wacht tot de conversie is verstuurd, open daarna WhatsApp.
+    var opened = false;
+    var go = function(){ if(opened) return; opened = true; window.location.href = url; };
+    try{
+      if(typeof gtag==='function'){
+        gtag('event','conversion',{
+          'send_to':'AW-18306777925/xI6uCKfg59QcEMWGrZlE',
+          'value':1.0,'currency':'EUR',
+          'event_callback': go
+        });
+      } else { go(); }
+    }catch(e){ go(); }
+    setTimeout(go, 800); // vangnet: open WhatsApp sowieso, ook als de callback uitblijft
+  }
 </script>
 
 <script type="application/ld+json">
@@ -3340,7 +3393,7 @@ document.getElementById('langEnBtn').addEventListener('click', ()=> setLang('en'
     modal.classList.remove('open');
     document.body.style.overflow = '';
   }
-  window.openWaForm = function(){ if(typeof wmTrackConversion==='function'){ wmTrackConversion('whatsapp'); } window.open('https://wa.me/31612452088','_blank','noopener'); };
+  window.openWaForm = function(){ wmOpenWhatsApp('https://wa.me/31612452088'); };
 
   /* single-select pills */
   modal.querySelectorAll('.wa-pills').forEach(function(group){
@@ -3358,10 +3411,13 @@ document.getElementById('langEnBtn').addEventListener('click', ()=> setLang('en'
     if(e.key === 'Escape' && modal.classList.contains('open')) closeWa();
   });
 
-  /* WhatsApp buttons go directly to WhatsApp (no form); just fire the conversion */
+  /* WhatsApp-knoppen: open via helper zodat de conversie zeker wordt verstuurd (ook op mobiel) */
   ['heroWaBtn','mobileWaBtn'].forEach(function(id){
     var el = document.getElementById(id);
-    if(el) el.addEventListener('click', function(){ if(typeof wmTrackConversion==='function'){ wmTrackConversion('whatsapp'); } });
+    if(el) el.addEventListener('click', function(e){
+      e.preventDefault();
+      wmOpenWhatsApp(this.getAttribute('href') || 'https://wa.me/31612452088');
+    });
   });
 
   function waSubmit(){
@@ -3387,8 +3443,7 @@ document.getElementById('langEnBtn').addEventListener('click', ()=> setLang('en'
     var url = 'https://wa.me/31612452088?text=' + encodeURIComponent(msg);
 
     closeWa();
-    if(typeof wmTrackConversion === 'function'){ wmTrackConversion('whatsapp'); }
-    window.open(url, '_blank', 'noopener');
+    wmOpenWhatsApp(url);
   }
   document.getElementById('waSendBtn').addEventListener('click', waSubmit);
 })();
