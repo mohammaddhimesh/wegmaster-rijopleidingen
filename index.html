@@ -75,9 +75,15 @@
       if(typeof gtag==='function'){
         // Enhanced conversions: gehashte e-mail/telefoon meesturen (Google hasht client-side)
         if(userData && (userData.email || userData.phone)){
+          // Normaliseren voor betere match: e-mail kleine letters, telefoon in E.164 (+31...)
+          var em = userData.email ? String(userData.email).trim().toLowerCase() : undefined;
+          var ph = userData.phone ? String(userData.phone).replace(/[^0-9+]/g,'') : '';
+          if(ph.indexOf('00') === 0) ph = '+' + ph.slice(2);
+          else if(ph.charAt(0) === '0') ph = '+31' + ph.slice(1);
+          else if(ph && ph.charAt(0) !== '+') ph = '+' + ph;
           gtag('set', 'user_data', {
-            'email': userData.email || undefined,
-            'phone_number': userData.phone || undefined
+            'email': em,
+            'phone_number': ph || undefined
           });
         }
         var wmSendTo = (type === 'lead')
