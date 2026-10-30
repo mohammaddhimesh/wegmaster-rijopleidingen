@@ -2028,7 +2028,6 @@ html.menu-locked,html.menu-locked body{overflow:hidden;}
           <span data-nl="Géén inschrijfkosten" data-en="No registration fee">Géén inschrijfkosten</span>
         </span>
       </div>
-      <div class="pkg-top-cta"><a href="#register" data-register data-register-cat="auto" class="btn btn--primary" data-nl="Proefles inplannen" data-en="Book a trial lesson">Proefles inplannen</a></div>
       <div class="home-package-slider">
         <div id="homeAutoPackages" class="home-auto-packages" tabindex="0" role="region" aria-label="Auto lespakketten"></div>
         <div class="home-package-nav">
@@ -2483,6 +2482,17 @@ html.menu-locked,html.menu-locked body{overflow:hidden;}
 @media(min-width:601px) and (max-width:1024px){
  #zowerkt .stp-photo img{object-fit:cover!important;object-position:calc(52vw - 796px) center!important;}
 }
+
+/* tijdens typen (toetsenbord open): zwevende knoppen verbergen zodat het formulier ruimte heeft */
+html.kb-open .mobile-action-bar,
+html.kb-open .wa-float,
+html.kb-open .admin-toggle{display:none!important;}
+html.kb-open body{padding-bottom:0!important;}
+
+/* beheer-knop (⚙️) verborgen voor bezoekers; alleen zichtbaar via ?admin */
+.admin-toggle{display:none!important;}
+html.is-admin .admin-toggle{display:flex!important;}
+html.is-admin.kb-open .admin-toggle{display:none!important;}
 </style>
 
 <button class="admin-toggle" id="adminToggleBtn" aria-label="Beheer">
@@ -3483,7 +3493,6 @@ function renderCategory(key){
   const isAuto = key === 'auto';
   const autoCard = p => renderAutoPackageCard(p,'h3');
   const autoSingleHtml = isAuto ? `
-    <div class="pkg-row-label"><span class="pkg-row-label__tag">${lang==='en'?'Lesson packages':'Lespakketten'}</span></div>
     <div class="auto-pkg-scroll">
       ${cat.packages.map(p=>autoCard(p)).join('')}
     </div>
@@ -3586,7 +3595,7 @@ function renderCategory(key){
           <p style="color:var(--ink-soft);">${S.packagesSub}</p>
         </div>
         ${isAuto ? '<div class="hero-trust cat-trust">' + ((document.querySelector('#page-home .hero-trust')||{}).innerHTML || '') + '</div>' : ''}
-        ${isAuto ? `<div class="pkg-top-cta"><a href="#register" data-register data-register-cat="auto" class="btn btn--primary">${lang==='en'?'Book a trial lesson':'Proefles inplannen'}</a></div>` : ''}
+        
         ${packagesBlock}
       </div>
     </section>
@@ -4104,6 +4113,28 @@ if (FAME_PHOTOS.length){
     },60);
   }, true);
   });
+})();
+</script>
+
+<script>
+/* Toetsenbord open op mobiel -> class kb-open op <html> */
+(function(){
+  var root=document.documentElement, t=null;
+  function isField(el){ return el && (el.tagName==='INPUT'||el.tagName==='TEXTAREA'||el.tagName==='SELECT') && !/^(checkbox|radio|button|submit|range|file)$/i.test(el.type||''); }
+  document.addEventListener('focusin',function(e){ if(isField(e.target)){ clearTimeout(t); root.classList.add('kb-open'); } });
+  document.addEventListener('focusout',function(e){ if(isField(e.target)){ clearTimeout(t); t=setTimeout(function(){ if(!isField(document.activeElement)) root.classList.remove('kb-open'); },120); } });
+})();
+</script>
+<script>
+/* ?admin  -> beheer-knop tonen (onthouden op dit apparaat) ; ?admin=off -> weer verbergen */
+(function(){
+  try{
+    var q=new URLSearchParams(location.search);
+    if(q.has('admin')){
+      if(q.get('admin')==='off'){ localStorage.removeItem('wm_admin'); } else { localStorage.setItem('wm_admin','1'); }
+    }
+    if(localStorage.getItem('wm_admin')==='1') document.documentElement.classList.add('is-admin');
+  }catch(e){}
 })();
 </script>
 </body>
