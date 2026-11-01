@@ -35,14 +35,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-<!-- ===== Microsoft Clarity — sessie-opnames & heatmaps (bezoekersgedrag) ===== -->
-<script type="text/javascript">
-  (function(c,l,a,r,i,t,y){
-    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-  })(window, document, "clarity", "script", "yxaoh4p5b0");
-</script>
+<!-- ===== Cookietoestemming + Consent Mode v2 (laadt Clarity pas na toestemming) ===== -->
+<script src="consent.js"></script>
 
 <!-- ===== Google Ads (gtag.js) — Conversie actief bij: Bellen, WhatsApp én gelukte formulier-aanmelding ===== -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18306777925"></script>
@@ -1349,7 +1343,7 @@
   #zowerkt .stp-closer,#zowerkt .stp-jttl,#zowerkt .stp-jlbl{text-shadow:0 1px 5px #fff,0 0 16px #fff;}
   @media(max-width:1024px){.stp-photo img{object-fit:contain;object-position:center bottom;}#zowerkt::before{background:linear-gradient(180deg,#eef4fb 0%,rgba(238,244,251,.97) 35%,rgba(238,244,251,.7) 62%,rgba(238,244,251,.15) 100%);}}
 
-@media(min-width:900px){.footer-grid{grid-template-columns:1.2fr 1fr 1fr 1.5fr}}.footer-regio ul{columns:2;column-gap:18px}.footer-regio li{break-inside:avoid}@media(max-width:600px){.footer-regio ul{columns:2}}</style>
+@media(min-width:900px){.footer-grid{grid-template-columns:1.2fr 1fr 1fr 1.5fr}}.footer-regio ul{columns:2;column-gap:18px}.footer-regio li{break-inside:avoid}@media(max-width:600px){.footer-regio ul{columns:2}}.cookie-settings-btn{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;cursor:pointer}</style>
 
 <style id="impeccable-refinements">
   /* Refine the existing orange/navy identity, without changing product facts. */
@@ -2385,7 +2379,7 @@ html.menu-locked,html.menu-locked body{overflow:hidden;}
   </div>
   <div class="container footer-bottom">
     <span>© 2026 WegMaster Rijopleidingen. <span id="rightsText" data-nl="Alle rechten voorbehouden." data-en="All rights reserved.">Alle rechten voorbehouden.</span></span>
-    <span id="privacyNote" data-nl="Deze site gebruikt cookies voor statistieken (Microsoft Clarity) en advertenties (Google Ads). Gegevens worden geanonimiseerd verwerkt." data-en="This site uses cookies for analytics (Microsoft Clarity) and advertising (Google Ads). Data is processed anonymously.">Deze site gebruikt cookies voor statistieken (Microsoft Clarity) en advertenties (Google Ads). Gegevens worden geanonimiseerd verwerkt.</span>
+    <span id="privacyNote" data-nl="Deze site gebruikt cookies voor statistieken (Microsoft Clarity) en advertenties (Google Ads). Gegevens worden geanonimiseerd verwerkt." data-en="This site uses cookies for analytics (Microsoft Clarity) and advertising (Google Ads). Data is processed anonymously.">Deze site gebruikt cookies voor statistieken (Microsoft Clarity) en advertenties (Google Ads). Gegevens worden geanonimiseerd verwerkt.</span> <button type="button" data-cookie-settings class="cookie-settings-btn">Cookie-instellingen</button>
   </div>
 </footer>
 
