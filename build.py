@@ -104,6 +104,7 @@ def extraheer_afbeeldingen(h, img_dir):
 # ---------- stadsblok ----------
 CSS = """<style>
 /* stadspagina (build.py) */
+.hero h2.hero-national{color:var(--ink);letter-spacing:-.015em}
 .city-sec{padding:40px 0;background:#f0f5fa}
 .city-sec .city-title{margin:0 0 6px;font-size:clamp(26px,3vw,36px);line-height:1.15;color:#17354d}
 .city-pickup{margin:0 0 12px;font-weight:700;color:#b74c09;font-size:16px}
