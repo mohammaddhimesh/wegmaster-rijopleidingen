@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://wegmaster-rijopleidingen.nl/</loc><lastmod>2026-11-07</lastmod><priority>1.0</priority></url>
+  <url><loc>https://wegmaster-rijopleidingen.nl/rijschool-amersfoort</loc><lastmod>2026-11-07</lastmod><priority>0.8</priority></url>
   <url><loc>https://wegmaster-rijopleidingen.nl/rijschool-soest</loc><lastmod>2026-11-07</lastmod><priority>0.8</priority></url>
   <url><loc>https://wegmaster-rijopleidingen.nl/rijschool-nijkerk</loc><lastmod>2026-11-07</lastmod><priority>0.8</priority></url>
   <url><loc>https://wegmaster-rijopleidingen.nl/rijschool-leusden</loc><lastmod>2026-11-07</lastmod><priority>0.8</priority></url>
@@ -12,18 +13,18 @@
   <url><loc>https://wegmaster-rijopleidingen.nl/rijschool-soesterberg</loc><lastmod>2026-11-07</lastmod><priority>0.8</priority></url>
   <url><loc>https://wegmaster-rijopleidingen.nl/rijschool-bilthoven</loc><lastmod>2026-11-07</lastmod><priority>0.8</priority></url>
   <url><loc>https://wegmaster-rijopleidingen.nl/rijschool-de-bilt</loc><lastmod>2026-11-07</lastmod><priority>0.8</priority></url>
-  <url><loc>https://wegmaster-rijopleidingen.nl/automaat-rijles-amersfoort</loc><lastmod>2026-11-07</lastmod><priority>0.6</priority></url>
-  <url><loc>https://wegmaster-rijopleidingen.nl/blog-automaat-of-schakelaar</loc><lastmod>2026-11-07</lastmod><priority>0.6</priority></url>
-  <url><loc>https://wegmaster-rijopleidingen.nl/blog-gezakt-rijexamen</loc><lastmod>2026-11-07</lastmod><priority>0.6</priority></url>
-  <url><loc>https://wegmaster-rijopleidingen.nl/blog-hoeveel-rijlessen</loc><lastmod>2026-11-07</lastmod><priority>0.6</priority></url>
-  <url><loc>https://wegmaster-rijopleidingen.nl/blog-kosten-rijschool</loc><lastmod>2026-11-07</lastmod><priority>0.6</priority></url>
-  <url><loc>https://wegmaster-rijopleidingen.nl/blog-rijbewijs-volwassene</loc><lastmod>2026-11-07</lastmod><priority>0.6</priority></url>
-  <url><loc>https://wegmaster-rijopleidingen.nl/blog-rijexamen-tips</loc><lastmod>2026-11-07</lastmod><priority>0.6</priority></url>
-  <url><loc>https://wegmaster-rijopleidingen.nl/blog-spoedcursus-rijbewijs</loc><lastmod>2026-11-07</lastmod><priority>0.6</priority></url>
-  <url><loc>https://wegmaster-rijopleidingen.nl/blog-taxi-chauffeurspas</loc><lastmod>2026-11-07</lastmod><priority>0.6</priority></url>
-  <url><loc>https://wegmaster-rijopleidingen.nl/blog-vrachtwagen-rijbewijs</loc><lastmod>2026-11-07</lastmod><priority>0.6</priority></url>
-  <url><loc>https://wegmaster-rijopleidingen.nl/rijschool-eemnes</loc><lastmod>2026-11-07</lastmod><priority>0.6</priority></url>
-  <url><loc>https://wegmaster-rijopleidingen.nl/rijschool-hoogland</loc><lastmod>2026-11-07</lastmod><priority>0.6</priority></url>
-  <url><loc>https://wegmaster-rijopleidingen.nl/rijschool-hooglanderveen</loc><lastmod>2026-11-07</lastmod><priority>0.6</priority></url>
-  <url><loc>https://wegmaster-rijopleidingen.nl/spoed-rijlessen-amersfoort</loc><lastmod>2026-11-07</lastmod><priority>0.6</priority></url>
+  <url><loc>https://wegmaster-rijopleidingen.nl/automaat-rijles-amersfoort</loc><lastmod>2026-11-06</lastmod><priority>0.6</priority></url>
+  <url><loc>https://wegmaster-rijopleidingen.nl/blog-automaat-of-schakelaar</loc><lastmod>2026-11-06</lastmod><priority>0.6</priority></url>
+  <url><loc>https://wegmaster-rijopleidingen.nl/blog-gezakt-rijexamen</loc><lastmod>2026-11-06</lastmod><priority>0.6</priority></url>
+  <url><loc>https://wegmaster-rijopleidingen.nl/blog-hoeveel-rijlessen</loc><lastmod>2026-11-06</lastmod><priority>0.6</priority></url>
+  <url><loc>https://wegmaster-rijopleidingen.nl/blog-kosten-rijschool</loc><lastmod>2026-11-06</lastmod><priority>0.6</priority></url>
+  <url><loc>https://wegmaster-rijopleidingen.nl/blog-rijbewijs-volwassene</loc><lastmod>2026-11-06</lastmod><priority>0.6</priority></url>
+  <url><loc>https://wegmaster-rijopleidingen.nl/blog-rijexamen-tips</loc><lastmod>2026-11-06</lastmod><priority>0.6</priority></url>
+  <url><loc>https://wegmaster-rijopleidingen.nl/blog-spoedcursus-rijbewijs</loc><lastmod>2026-11-06</lastmod><priority>0.6</priority></url>
+  <url><loc>https://wegmaster-rijopleidingen.nl/blog-taxi-chauffeurspas</loc><lastmod>2026-11-06</lastmod><priority>0.6</priority></url>
+  <url><loc>https://wegmaster-rijopleidingen.nl/blog-vrachtwagen-rijbewijs</loc><lastmod>2026-11-06</lastmod><priority>0.6</priority></url>
+  <url><loc>https://wegmaster-rijopleidingen.nl/rijschool-eemnes</loc><lastmod>2026-11-06</lastmod><priority>0.6</priority></url>
+  <url><loc>https://wegmaster-rijopleidingen.nl/rijschool-hoogland</loc><lastmod>2026-11-06</lastmod><priority>0.6</priority></url>
+  <url><loc>https://wegmaster-rijopleidingen.nl/rijschool-hooglanderveen</loc><lastmod>2026-11-06</lastmod><priority>0.6</priority></url>
+  <url><loc>https://wegmaster-rijopleidingen.nl/spoed-rijlessen-amersfoort</loc><lastmod>2026-11-06</lastmod><priority>0.6</priority></url>
 </urlset>

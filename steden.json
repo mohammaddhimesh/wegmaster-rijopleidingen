@@ -2,6 +2,52 @@
   "_uitleg": "Elke stad hieronder wordt door build.py een eigen pagina: /rijschool-<slug>. Tekst aanpassen? Pas het hier aan. Nieuwe stad? Kopieer een blok en verander de teksten.",
   "steden": [
     {
+      "slug": "amersfoort",
+      "naam": "Amersfoort",
+      "title": "Rijschool Amersfoort | Rijles auto & spoedcursus | WegMaster",
+      "meta": "Rijles in Amersfoort? Wij halen je thuis op. Examen bij CBR Leusden, in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "geo": [
+        52.1561,
+        5.3878
+      ],
+      "intro_nl": "Je praktijkexamen doe je bij CBR Leusden, in dezelfde lesauto waarin je les hebt gehad. Zo is niets nieuw op de grote dag. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "You take your practical exam at CBR Leusden, in the same lesson car you practised in. So nothing is new on the big day. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Amersfoort?",
+          "a_nl": "Ja, wij halen je thuis op in Amersfoort. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Amersfoort?",
+          "a_en": "Yes, we pick you up at home in Amersfoort. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Amersfoort woon?",
+          "a_nl": "Bij CBR Leusden. Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Amersfoort?",
+          "a_en": "At CBR Leusden. You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Bieden jullie in Amersfoort ook de taxi-chauffeurspas aan?",
+          "a_nl": "Ja. Naast rijles auto verzorgen wij ook de opleiding voor de taxi-chauffeurspas.",
+          "q_en": "Do you also offer the taxi driver's licence in Amersfoort?",
+          "a_en": "Yes. Besides car lessons we also provide training for the taxi driver's licence."
+        }
+      ],
+      "buren": [
+        [
+          "Leusden",
+          "/rijschool-leusden"
+        ],
+        [
+          "Hoevelaken",
+          "/rijschool-hoevelaken"
+        ],
+        [
+          "Soest",
+          "/rijschool-soest"
+        ]
+      ]
+    },
+    {
       "slug": "soest",
       "naam": "Soest",
       "title": "Rijschool Soest | Rijles auto & spoedcursus | WegMaster",
@@ -43,7 +89,7 @@
         ],
         [
           "Amersfoort",
-          "/"
+          "/rijschool-amersfoort"
         ]
       ]
     },
@@ -89,7 +135,7 @@
         ],
         [
           "Amersfoort",
-          "/"
+          "/rijschool-amersfoort"
         ]
       ]
     },
@@ -135,7 +181,7 @@
         ],
         [
           "Amersfoort",
-          "/"
+          "/rijschool-amersfoort"
         ]
       ]
     },
@@ -181,7 +227,7 @@
         ],
         [
           "Amersfoort",
-          "/"
+          "/rijschool-amersfoort"
         ]
       ]
     },
@@ -273,7 +319,7 @@
         ],
         [
           "Amersfoort",
-          "/"
+          "/rijschool-amersfoort"
         ]
       ]
     },
@@ -365,7 +411,7 @@
         ],
         [
           "Amersfoort",
-          "/"
+          "/rijschool-amersfoort"
         ]
       ]
     },

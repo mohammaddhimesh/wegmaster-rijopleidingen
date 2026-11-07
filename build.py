@@ -42,11 +42,11 @@ TRACKING = [
 # Vaste teksten in index.html waar de build zijn stadsteksten aan hangt.
 # Wijzig je één van deze in index.html, pas dan ook deze lijst aan
 # (of vraag het Claude).
-ANCHOR_OFFER = ('data-nl="Rijles in Amersfoort, morgen al rijden" '
-                'data-en="Lessons in Amersfoort, drive tomorrow">'
-                'Rijles in Amersfoort, morgen al rijden</h3>')
-ANCHOR_PAKKETTEN = ('<h1 class="hero-national" data-nl="Auto lespakketten in Amersfoort" '
-                    'data-en="Car lesson packages in Amersfoort">Auto lespakketten in Amersfoort</h1>')
+ANCHOR_OFFER = ('data-nl="Vandaag aanmelden, morgen al rijden" '
+                'data-en="Sign up today, drive tomorrow">'
+                'Vandaag aanmelden, morgen al rijden</h3>')
+ANCHOR_PAKKETTEN = ('<h1 class="hero-national" data-nl="Auto lespakketten" '
+                    'data-en="Car lesson packages">Auto lespakketten</h1>')
 ANCHOR_GESLAAGDEN = '<section class="section--tight gl-sec" id="geslaagden">'
 ANCHOR_BRON = "'Google advertentie' : 'Website (geen advertentie)'"
 
@@ -228,8 +228,8 @@ def bouw_stad(bron, s, img_dir):
             raise BuildFout(f"Tracking ontbreekt op rijschool-{slug}: {t}")
     if len(re.findall(r"<h1[\s>]", h.split('id="page-home"', 1)[1].split("</main>", 1)[0])) != 1:
         raise BuildFout(f"rijschool-{slug}: homepage-deel moet precies 1 <h1> hebben")
-    if "Amersfoort, morgen al rijden" in h:
-        raise BuildFout(f"rijschool-{slug}: kop 'Rijles in Amersfoort' niet vervangen")
+    if "Vandaag aanmelden, morgen al rijden" in h:
+        raise BuildFout(f"rijschool-{slug}: kop aanmeldkaart niet vervangen")
 
     with open(os.path.join(ROOT, f"rijschool-{slug}.html"), "w", encoding="utf-8") as f:
         f.write(h)
