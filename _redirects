@@ -50,3 +50,11 @@
 /rijschool-zeewolde        /   301!
 /rijschool-zeewolde.html   /   301!
 
+
+# Hoogland en Hooglanderveen horen bij Amersfoort; Eemnes niet meer in werkgebied
+/rijschool-hoogland              /rijschool-amersfoort   301!
+/rijschool-hoogland.html         /rijschool-amersfoort   301!
+/rijschool-hooglanderveen        /rijschool-amersfoort   301!
+/rijschool-hooglanderveen.html   /rijschool-amersfoort   301!
+/rijschool-eemnes                /                       301!
+/rijschool-eemnes.html           /                       301!
