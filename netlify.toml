@@ -1,0 +1,9 @@
+[build]
+  command = "python3 build.py"
+  publish = "."
+
+# Foto's van de stadspagina's: bestandsnaam = inhoud-hash, dus mag 1 jaar in de cache
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

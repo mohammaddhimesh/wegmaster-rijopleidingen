@@ -1,0 +1,557 @@
+{
+  "_uitleg": "Elke stad hieronder wordt door build.py een eigen pagina: /rijschool-<slug>. Tekst aanpassen? Pas het hier aan. Nieuwe stad? Kopieer een blok en verander de teksten.",
+  "steden": [
+    {
+      "slug": "amersfoort",
+      "naam": "Amersfoort",
+      "title": "Rijschool Amersfoort | Rijles auto & spoedcursus | WegMaster",
+      "meta": "Rijles in Amersfoort? Wij halen je thuis op. Examen bij CBR Leusden, in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "geo": [
+        52.1561,
+        5.3878
+      ],
+      "intro_nl": "Je praktijkexamen doe je bij CBR Leusden, in dezelfde lesauto waarin je les hebt gehad. Zo is niets nieuw op de grote dag. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "You take your practical exam at CBR Leusden, in the same lesson car you practised in. So nothing is new on the big day. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Amersfoort?",
+          "a_nl": "Ja, wij halen je thuis op in Amersfoort. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Amersfoort?",
+          "a_en": "Yes, we pick you up at home in Amersfoort. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Amersfoort woon?",
+          "a_nl": "Bij CBR Leusden. Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Amersfoort?",
+          "a_en": "At CBR Leusden. You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Bieden jullie in Amersfoort ook de taxi-chauffeurspas aan?",
+          "a_nl": "Ja. Naast rijles auto verzorgen wij ook de opleiding voor de taxi-chauffeurspas.",
+          "q_en": "Do you also offer the taxi driver's licence in Amersfoort?",
+          "a_en": "Yes. Besides car lessons we also provide training for the taxi driver's licence."
+        }
+      ],
+      "buren": [
+        [
+          "Leusden",
+          "/rijschool-leusden"
+        ],
+        [
+          "Hoevelaken",
+          "/rijschool-hoevelaken"
+        ],
+        [
+          "Soest",
+          "/rijschool-soest"
+        ]
+      ]
+    },
+    {
+      "slug": "soest",
+      "naam": "Soest",
+      "title": "Rijschool Soest | Rijles auto & spoedcursus | WegMaster",
+      "meta": "Rijles in Soest, onze thuisbasis. Wij halen je thuis op. 95% geslaagd (CBR), 5.0 op Google, 7 dagen per week. 15 lessen €795.",
+      "geo": [
+        52.1733,
+        5.2917
+      ],
+      "intro_nl": "Je praktijkexamen doe je bij CBR Leusden, in dezelfde lesauto waarin je les hebt gehad. Zo is niets nieuw op de grote dag. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "You take your practical exam at CBR Leusden, in the same lesson car you practised in. So nothing is new on the big day. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Soest?",
+          "a_nl": "Ja, wij halen je thuis op in Soest. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Soest?",
+          "a_en": "Yes, we pick you up at home in Soest. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Soest woon?",
+          "a_nl": "Bij CBR Leusden. Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Soest?",
+          "a_en": "At CBR Leusden. You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Is WegMaster echt een rijschool uit Soest?",
+          "a_nl": "Ja, WegMaster Rijopleidingen is in Soest gevestigd (KvK 93572891) en geeft 7 dagen per week les.",
+          "q_en": "Is WegMaster really a driving school from Soest?",
+          "a_en": "Yes, WegMaster Rijopleidingen is based in Soest (KvK 93572891) and teaches 7 days a week."
+        }
+      ],
+      "buren": [
+        [
+          "Soesterberg",
+          "/rijschool-soesterberg"
+        ],
+        [
+          "Baarn",
+          "/rijschool-baarn"
+        ],
+        [
+          "Amersfoort",
+          "/rijschool-amersfoort"
+        ]
+      ]
+    },
+    {
+      "slug": "nijkerk",
+      "naam": "Nijkerk",
+      "title": "Rijschool Nijkerk | Rijles auto & spoedcursus | WegMaster",
+      "meta": "Rijles in Nijkerk? Wij halen je thuis op. Examen bij CBR Leusden, in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "geo": [
+        52.2203,
+        5.4864
+      ],
+      "intro_nl": "Je praktijkexamen doe je bij CBR Leusden, in dezelfde lesauto waarin je les hebt gehad. Zo is niets nieuw op de grote dag. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "You take your practical exam at CBR Leusden, in the same lesson car you practised in. So nothing is new on the big day. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Nijkerk?",
+          "a_nl": "Ja, wij halen je thuis op in Nijkerk. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Nijkerk?",
+          "a_en": "Yes, we pick you up at home in Nijkerk. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Nijkerk woon?",
+          "a_nl": "Bij CBR Leusden. Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Nijkerk?",
+          "a_en": "At CBR Leusden. You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Hoe snel kan ik in Nijkerk beginnen?",
+          "a_nl": "Meestal binnen 1 à 2 dagen na je aanmelding.",
+          "q_en": "How soon can I start in Nijkerk?",
+          "a_en": "Usually within 1 to 2 days after you sign up."
+        }
+      ],
+      "buren": [
+        [
+          "Hoevelaken",
+          "/rijschool-hoevelaken"
+        ],
+        [
+          "Bunschoten-Spakenburg",
+          "/rijschool-bunschoten"
+        ],
+        [
+          "Amersfoort",
+          "/rijschool-amersfoort"
+        ]
+      ]
+    },
+    {
+      "slug": "leusden",
+      "naam": "Leusden",
+      "title": "Rijschool Leusden | Rijles auto & spoedcursus | WegMaster",
+      "meta": "Rijles in Leusden? Wij halen je thuis op. Examen bij CBR Leusden, in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "geo": [
+        52.1326,
+        5.429
+      ],
+      "intro_nl": "Je praktijkexamen doe je gewoon in Leusden, bij CBR Leusden, in dezelfde lesauto waarin je les hebt gehad. Zo is niets nieuw op de grote dag. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "You take your practical exam right here in Leusden, at CBR Leusden, in the same lesson car you practised in. So nothing is new on the big day. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Leusden?",
+          "a_nl": "Ja, wij halen je thuis op in Leusden. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Leusden?",
+          "a_en": "Yes, we pick you up at home in Leusden. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Leusden woon?",
+          "a_nl": "Bij CBR Leusden. Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Leusden?",
+          "a_en": "At CBR Leusden. You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Is het een voordeel dat het CBR in Leusden zit?",
+          "a_nl": "Ja: je examen is in je eigen woonplaats, op wegen die je tijdens de lessen al kent.",
+          "q_en": "Is it an advantage that the CBR is in Leusden?",
+          "a_en": "Yes: your exam is in your own town, on roads you already know from your lessons."
+        }
+      ],
+      "buren": [
+        [
+          "Woudenberg",
+          "/rijschool-woudenberg"
+        ],
+        [
+          "Soesterberg",
+          "/rijschool-soesterberg"
+        ],
+        [
+          "Amersfoort",
+          "/rijschool-amersfoort"
+        ]
+      ]
+    },
+    {
+      "slug": "hoevelaken",
+      "naam": "Hoevelaken",
+      "title": "Rijschool Hoevelaken | Rijles auto & spoedcursus | WegMaster",
+      "meta": "Rijles in Hoevelaken? Wij halen je thuis op. Examen bij CBR Leusden, in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "geo": [
+        52.175,
+        5.458
+      ],
+      "intro_nl": "Je praktijkexamen doe je bij CBR Leusden, in dezelfde lesauto waarin je les hebt gehad. Zo is niets nieuw op de grote dag. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "You take your practical exam at CBR Leusden, in the same lesson car you practised in. So nothing is new on the big day. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Hoevelaken?",
+          "a_nl": "Ja, wij halen je thuis op in Hoevelaken. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Hoevelaken?",
+          "a_en": "Yes, we pick you up at home in Hoevelaken. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Hoevelaken woon?",
+          "a_nl": "Bij CBR Leusden. Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Hoevelaken?",
+          "a_en": "At CBR Leusden. You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Kan ik vanuit Hoevelaken een spoedcursus doen?",
+          "a_nl": "Ja. Elk pakket kan als spoedcursus; de actuele spoedtoeslag staat op de pagina Spoedcursus.",
+          "q_en": "Can I take an intensive course from Hoevelaken?",
+          "a_en": "Yes. Every package can be taken as an intensive course; the current surcharge is on the Intensive course page."
+        }
+      ],
+      "buren": [
+        [
+          "Nijkerk",
+          "/rijschool-nijkerk"
+        ],
+        [
+          "Bunschoten-Spakenburg",
+          "/rijschool-bunschoten"
+        ],
+        [
+          "Amersfoort",
+          "/rijschool-amersfoort"
+        ]
+      ]
+    },
+    {
+      "slug": "zeist",
+      "naam": "Zeist",
+      "title": "Rijschool Zeist | Rijles auto & spoedcursus | WegMaster",
+      "meta": "Rijles in Zeist? Wij halen je thuis op. Examen bij CBR Leusden, in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "geo": [
+        52.0893,
+        5.2337
+      ],
+      "intro_nl": "Je praktijkexamen doe je bij CBR Leusden, in dezelfde lesauto waarin je les hebt gehad. Zo is niets nieuw op de grote dag. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "You take your practical exam at CBR Leusden, in the same lesson car you practised in. So nothing is new on the big day. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Zeist?",
+          "a_nl": "Ja, wij halen je thuis op in Zeist. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Zeist?",
+          "a_en": "Yes, we pick you up at home in Zeist. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Zeist woon?",
+          "a_nl": "Bij CBR Leusden. Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Zeist?",
+          "a_en": "At CBR Leusden. You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Kan ik in Zeist automaat én schakel leren?",
+          "a_nl": "Ja, je kunt bij ons leren rijden in automaat én schakel.",
+          "q_en": "Can I learn automatic and manual in Zeist?",
+          "a_en": "Yes, you can learn to drive both automatic and manual with us."
+        }
+      ],
+      "buren": [
+        [
+          "De Bilt",
+          "/rijschool-de-bilt"
+        ],
+        [
+          "Bilthoven",
+          "/rijschool-bilthoven"
+        ],
+        [
+          "Soesterberg",
+          "/rijschool-soesterberg"
+        ]
+      ]
+    },
+    {
+      "slug": "baarn",
+      "naam": "Baarn",
+      "title": "Rijschool Baarn | Rijles auto & spoedcursus | WegMaster",
+      "meta": "Rijles in Baarn? Wij halen je thuis op. Examen bij CBR Leusden, in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "geo": [
+        52.2117,
+        5.2878
+      ],
+      "intro_nl": "Je praktijkexamen doe je bij CBR Leusden, in dezelfde lesauto waarin je les hebt gehad. Zo is niets nieuw op de grote dag. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "You take your practical exam at CBR Leusden, in the same lesson car you practised in. So nothing is new on the big day. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Baarn?",
+          "a_nl": "Ja, wij halen je thuis op in Baarn. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Baarn?",
+          "a_en": "Yes, we pick you up at home in Baarn. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Baarn woon?",
+          "a_nl": "Bij CBR Leusden. Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Baarn?",
+          "a_en": "At CBR Leusden. You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Wat kost rijles in Baarn?",
+          "a_nl": "€53 per les van 45 min. 15 lessen €795; CBR praktijkexamen €350.",
+          "q_en": "What do driving lessons in Baarn cost?",
+          "a_en": "€53 per 45-minute lesson. 15 lessons €795; CBR practical exam €350."
+        }
+      ],
+      "buren": [
+        [
+          "Soest",
+          "/rijschool-soest"
+        ],
+        [
+          "Bunschoten-Spakenburg",
+          "/rijschool-bunschoten"
+        ],
+        [
+          "Amersfoort",
+          "/rijschool-amersfoort"
+        ]
+      ]
+    },
+    {
+      "slug": "bunschoten",
+      "naam": "Bunschoten-Spakenburg",
+      "title": "Rijschool Bunschoten-Spakenburg | Rijles & spoed | WegMaster",
+      "meta": "Rijles in Bunschoten-Spakenburg? Wij halen je thuis op. Examen in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "geo": [
+        52.244,
+        5.379
+      ],
+      "intro_nl": "Je praktijkexamen doe je bij CBR Leusden, in dezelfde lesauto waarin je les hebt gehad. Zo is niets nieuw op de grote dag. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "You take your practical exam at CBR Leusden, in the same lesson car you practised in. So nothing is new on the big day. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Bunschoten-Spakenburg?",
+          "a_nl": "Ja, wij halen je thuis op in Bunschoten-Spakenburg. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Bunschoten-Spakenburg?",
+          "a_en": "Yes, we pick you up at home in Bunschoten-Spakenburg. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Bunschoten-Spakenburg woon?",
+          "a_nl": "Bij CBR Leusden. Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Bunschoten-Spakenburg?",
+          "a_en": "At CBR Leusden. You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Kan ik ook in het weekend rijles krijgen?",
+          "a_nl": "Ja, wij geven 7 dagen per week les.",
+          "q_en": "Can I also take lessons at the weekend?",
+          "a_en": "Yes, we teach 7 days a week."
+        }
+      ],
+      "buren": [
+        [
+          "Nijkerk",
+          "/rijschool-nijkerk"
+        ],
+        [
+          "Baarn",
+          "/rijschool-baarn"
+        ],
+        [
+          "Hoevelaken",
+          "/rijschool-hoevelaken"
+        ]
+      ]
+    },
+    {
+      "slug": "woudenberg",
+      "naam": "Woudenberg",
+      "title": "Rijschool Woudenberg | Rijles auto & spoedcursus | WegMaster",
+      "meta": "Rijles in Woudenberg? Wij halen je thuis op. Examen bij CBR Leusden, in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "geo": [
+        52.0806,
+        5.4167
+      ],
+      "intro_nl": "Je praktijkexamen doe je bij CBR Leusden, in dezelfde lesauto waarin je les hebt gehad. Zo is niets nieuw op de grote dag. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "You take your practical exam at CBR Leusden, in the same lesson car you practised in. So nothing is new on the big day. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Woudenberg?",
+          "a_nl": "Ja, wij halen je thuis op in Woudenberg. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Woudenberg?",
+          "a_en": "Yes, we pick you up at home in Woudenberg. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Woudenberg woon?",
+          "a_nl": "Bij CBR Leusden. Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Woudenberg?",
+          "a_en": "At CBR Leusden. You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Wat als ik zak voor mijn examen?",
+          "a_nl": "Je krijgt een gratis herexamen als je instructeur aangeeft dat je klaar was.",
+          "q_en": "What if I fail my exam?",
+          "a_en": "You get a free re-exam if your instructor said you were ready."
+        }
+      ],
+      "buren": [
+        [
+          "Leusden",
+          "/rijschool-leusden"
+        ],
+        [
+          "Zeist",
+          "/rijschool-zeist"
+        ],
+        [
+          "Amersfoort",
+          "/rijschool-amersfoort"
+        ]
+      ]
+    },
+    {
+      "slug": "soesterberg",
+      "naam": "Soesterberg",
+      "title": "Rijschool Soesterberg | Rijles & spoed | WegMaster",
+      "meta": "Rijles in Soesterberg? Wij halen je thuis op. Examen bij CBR Leusden, in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "geo": [
+        52.1186,
+        5.2875
+      ],
+      "intro_nl": "Je praktijkexamen doe je bij CBR Leusden, in dezelfde lesauto waarin je les hebt gehad. Zo is niets nieuw op de grote dag. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "You take your practical exam at CBR Leusden, in the same lesson car you practised in. So nothing is new on the big day. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Soesterberg?",
+          "a_nl": "Ja, wij halen je thuis op in Soesterberg. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Soesterberg?",
+          "a_en": "Yes, we pick you up at home in Soesterberg. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Soesterberg woon?",
+          "a_nl": "Bij CBR Leusden. Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Soesterberg?",
+          "a_en": "At CBR Leusden. You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Hoeveel lessen heb ik nodig?",
+          "a_nl": "Dat bepaalt je instructeur na de proefles; daarna krijg je een advies en een passend pakket.",
+          "q_en": "How many lessons do I need?",
+          "a_en": "Your instructor decides after the trial lesson; then you get advice and a matching package."
+        }
+      ],
+      "buren": [
+        [
+          "Soest",
+          "/rijschool-soest"
+        ],
+        [
+          "Zeist",
+          "/rijschool-zeist"
+        ],
+        [
+          "Leusden",
+          "/rijschool-leusden"
+        ]
+      ]
+    },
+    {
+      "slug": "bilthoven",
+      "naam": "Bilthoven",
+      "title": "Rijschool Bilthoven | Rijles auto & spoedcursus | WegMaster",
+      "meta": "Rijles in Bilthoven? Wij halen je thuis op. Examen bij CBR Leusden, in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "geo": [
+        52.1286,
+        5.2009
+      ],
+      "intro_nl": "Je praktijkexamen doe je bij CBR Leusden, in dezelfde lesauto waarin je les hebt gehad. Zo is niets nieuw op de grote dag. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "You take your practical exam at CBR Leusden, in the same lesson car you practised in. So nothing is new on the big day. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Bilthoven?",
+          "a_nl": "Ja, wij halen je thuis op in Bilthoven. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Bilthoven?",
+          "a_en": "Yes, we pick you up at home in Bilthoven. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Bilthoven woon?",
+          "a_nl": "Bij CBR Leusden. Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Bilthoven?",
+          "a_en": "At CBR Leusden. You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Wat kost een proefles in Bilthoven?",
+          "a_nl": "€50, en die krijg je terug als je daarna een pakket koopt.",
+          "q_en": "What does a trial lesson in Bilthoven cost?",
+          "a_en": "€50, and you get it back if you then buy a package."
+        }
+      ],
+      "buren": [
+        [
+          "De Bilt",
+          "/rijschool-de-bilt"
+        ],
+        [
+          "Zeist",
+          "/rijschool-zeist"
+        ],
+        [
+          "Soest",
+          "/rijschool-soest"
+        ]
+      ]
+    },
+    {
+      "slug": "de-bilt",
+      "naam": "De Bilt",
+      "title": "Rijschool De Bilt | Rijles auto & spoedcursus | WegMaster",
+      "meta": "Rijles in De Bilt? Wij halen je thuis op. Examen bij CBR Leusden, in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "geo": [
+        52.11,
+        5.1806
+      ],
+      "intro_nl": "Je praktijkexamen doe je bij CBR Leusden, in dezelfde lesauto waarin je les hebt gehad. Zo is niets nieuw op de grote dag. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "You take your practical exam at CBR Leusden, in the same lesson car you practised in. So nothing is new on the big day. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in De Bilt?",
+          "a_nl": "Ja, wij halen je thuis op in De Bilt. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in De Bilt?",
+          "a_en": "Yes, we pick you up at home in De Bilt. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in De Bilt woon?",
+          "a_nl": "Bij CBR Leusden. Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in De Bilt?",
+          "a_en": "At CBR Leusden. You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Hoe lang duurt een rijles?",
+          "a_nl": "45 minuten; meestal rijden we twee lessen achter elkaar (1,5 uur).",
+          "q_en": "How long is a driving lesson?",
+          "a_en": "45 minutes; we usually drive two lessons in a row (1.5 hours)."
+        }
+      ],
+      "buren": [
+        [
+          "Bilthoven",
+          "/rijschool-bilthoven"
+        ],
+        [
+          "Zeist",
+          "/rijschool-zeist"
+        ],
+        [
+          "Soesterberg",
+          "/rijschool-soesterberg"
+        ]
+      ]
+    }
+  ]
+}
