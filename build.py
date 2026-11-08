@@ -236,6 +236,64 @@ def bouw_stad(bron, s, img_dir):
     return len(h.encode("utf-8")), aantal_img
 
 
+# ---------- dienstpagina's (zelfde pagina als de homepage) ----------
+# Oude losse pagina's die nu dezelfde inhoud en stijl krijgen als index.html.
+# De URL blijft gelijk (Google en links blijven werken).
+#   start = welke sectie je ziet als je de pagina opent (home = homepage, spoedcursus = spoed-sectie)
+DIENSTEN = [
+    {"bestand": "automaat-rijles-amersfoort", "start": "home",
+     "title": "Automaat rijles Amersfoort | WegMaster Rijopleidingen",
+     "kort": "Automaat rijles Amersfoort",
+     "meta": "Automaat rijles in Amersfoort, Soest en omgeving. Wij halen je thuis op. "
+             "95% geslaagd, 5.0 op Google. Plan je proefles bij WegMaster Rijopleidingen."},
+    {"bestand": "spoed-rijlessen-amersfoort", "start": "spoedcursus",
+     "title": "Spoedcursus rijbewijs Amersfoort | WegMaster Rijopleidingen",
+     "kort": "Spoedcursus Amersfoort",
+     "meta": "Spoedcursus rijbewijs in Amersfoort, Soest en omgeving: meer lessen per week, "
+             "een lesplan op jouw niveau. 95% geslaagd, 5.0 op Google."},
+]
+
+
+def bouw_dienst(bron, d, img_dir):
+    naam, url = d["bestand"], f"{SITE}/{d['bestand']}"
+    h = bron
+    h = vervang_regex(h, r"<title>.*?</title>", f"<title>{e(d['title'])}</title>", "<title>", re.S)
+    h = vervang_regex(h, r'<meta name="description" content="[^"]*">',
+                      f'<meta name="description" content="{e(d["meta"])}">', "meta description")
+    h = vervang_regex(h, r'<link rel="canonical" href="[^"]*">', f'<link rel="canonical" href="{url}">', "canonical")
+    h = vervang_regex(h, r'<meta property="og:url" content="[^"]*">', f'<meta property="og:url" content="{url}">', "og:url")
+    for tag in ('property="og:title"', 'name="twitter:title"'):
+        h = vervang_regex(h, rf'<meta {tag} content="[^"]*">', f'<meta {tag} content="{e(d["title"])}">', tag)
+    for tag in ('property="og:description"', 'name="twitter:description"'):
+        h = vervang_regex(h, rf'<meta {tag} content="[^"]*">', f'<meta {tag} content="{e(d["meta"])}">', tag)
+
+    # startsectie (zonder #... in de URL)
+    if d["start"] != "home":
+        n = h.count("(location.hash || '#home')")
+        if n < 3:
+            raise BuildFout(f"{naam}: route-code niet gevonden (location.hash || '#home')")
+        h = h.replace("(location.hash || '#home')", f"(location.hash || '#{d['start']}')")
+
+    # bron in de admin-mail
+    h = vervang_een(h, ANCHOR_BRON,
+                    f"'Google advertentie – {d['kort']}' : 'Website – {d['kort']}'", "bron (EmailJS)")
+    h = vervang_een(h, '<script src="consent.js"></script>', '<script src="/consent.js"></script>', "consent.js")
+    h = h.replace("'geslaagden/", "'/geslaagden/")
+
+    h, aantal_img = extraheer_afbeeldingen(h, img_dir)
+    h = re.sub(r'<img(?![^>]*fetchpriority)([^>]*loading="lazy")', r'<img fetchpriority="low"\1', h)
+    m = re.search(r'<img[^>]*fetchpriority="high"[^>]*src="(/img/[^"]+)"', h)
+    if m:
+        h = h.replace("</head>", f'<link rel="preload" as="image" href="{m.group(1)}" fetchpriority="high">\n</head>', 1)
+
+    for t in TRACKING:
+        if t not in h:
+            raise BuildFout(f"Tracking ontbreekt op {naam}: {t}")
+    with open(os.path.join(ROOT, f"{naam}.html"), "w", encoding="utf-8") as f:
+        f.write(h)
+    return len(h.encode("utf-8")), aantal_img
+
+
 # ---------- sitemap.xml ----------
 def redirect_bronnen():
     """Paden die in _redirects worden doorgestuurd (horen niet in de sitemap)."""
@@ -267,9 +325,10 @@ def schrijf_sitemap(steden):
     import datetime
     vandaag = datetime.date.today().isoformat()
     weg = redirect_bronnen()
-    gebouwd = {f"rijschool-{s['slug']}.html" for s in steden}
+    gebouwd = {f"rijschool-{s['slug']}.html" for s in steden} | {f"{d['bestand']}.html" for d in DIENSTEN}
     urls = [(SITE + "/", vandaag, "1.0")]
     urls += [(f"{SITE}/rijschool-{s['slug']}", vandaag, "0.8") for s in steden]
+    urls += [(f"{SITE}/{d['bestand']}", vandaag, "0.7") for d in DIENSTEN]
     overig = sorted(f for f in os.listdir(ROOT)
                     if f.endswith(".html") and f not in gebouwd and f != "index.html"
                     and not f.startswith("google") and "/" + f[:-5] not in weg)
@@ -295,9 +354,12 @@ def main():
     for s in steden:
         grootte, n_img = bouw_stad(bron, s, img_dir)
         print(f"  ✓ rijschool-{s['slug']}.html  {grootte/1024:.0f} KB  ({n_img} afbeeldingen in /img/)")
+    for d in DIENSTEN:
+        grootte, n_img = bouw_dienst(bron, d, img_dir)
+        print(f"  ✓ {d['bestand']}.html  {grootte/1024:.0f} KB  ({n_img} afbeeldingen in /img/)")
     n_urls = schrijf_sitemap(steden)
     print(f"  ✓ sitemap.xml  {n_urls} URL's")
-    print(f"build.py: {len(steden)} pagina's OK")
+    print(f"build.py: {len(steden)} stadspagina's + {len(DIENSTEN)} dienstpagina's OK")
 
 
 if __name__ == "__main__":

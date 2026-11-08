@@ -3700,6 +3700,9 @@ function showPageRoute(route){
   // Hide the sticky WhatsApp bar on the aanmelden (register) page so the visitor focuses on the form.
   var waBar = document.querySelector('.mobile-action-bar');
   if(waBar) waBar.style.display = (route === 'register') ? 'none' : '';
+  // Ook de footer verbergen op de aanmeldpagina: alleen het formulier, zodat de bezoeker zich daarop richt.
+  var siteFooter = document.querySelector('.site-footer');
+  if(siteFooter) siteFooter.style.display = (route === 'register') ? 'none' : '';
 
   document.getElementById('mobilePanel').classList.remove('open');
   document.getElementById('menuBtn').setAttribute('aria-expanded','false');
