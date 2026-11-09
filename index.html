@@ -196,7 +196,13 @@
     { "@type": "City", "name": "Hoevelaken" },
     { "@type": "City", "name": "Nijkerk" },
     { "@type": "City", "name": "Woudenberg" },
-    { "@type": "City", "name": "Zeist" }
+    { "@type": "City", "name": "Zeist" },
+    { "@type": "City", "name": "Hilversum" },
+    { "@type": "City", "name": "Huizen" },
+    { "@type": "City", "name": "Bussum" },
+    { "@type": "City", "name": "Naarden" },
+    { "@type": "City", "name": "Laren" },
+    { "@type": "City", "name": "Blaricum" }
   ],
   "makesOffer": [
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rijlessen auto (categorie B)" } },
@@ -1988,7 +1994,7 @@ html.is-admin.kb-open .admin-toggle{display:none!important;}
 []
 </script>
 <script type="application/json" id="stats-data">
-{"slagingspercentage":null,"jarenErvaring":null,"categorieen":3,"werkgebied":13}
+{"slagingspercentage":null,"jarenErvaring":null,"categorieen":3,"werkgebied":20}
 </script>
 <script type="application/json" id="testimonials-data">
 []
@@ -2508,7 +2514,7 @@ html.is-admin.kb-open .admin-toggle{display:none!important;}
     </div>
     <div class="footer-regio">
       <h4 data-nl="Werkgebied" data-en="Service area">Werkgebied</h4>
-      <ul><li><a href="/rijschool-amersfoort">Rijschool Amersfoort</a></li><li><a href="/rijschool-soest">Rijschool Soest</a></li><li><a href="/rijschool-nijkerk">Rijschool Nijkerk</a></li><li><a href="/rijschool-leusden">Rijschool Leusden</a></li><li><a href="/rijschool-hoevelaken">Rijschool Hoevelaken</a></li><li><a href="/rijschool-zeist">Rijschool Zeist</a></li><li><a href="/rijschool-baarn">Rijschool Baarn</a></li><li><a href="/rijschool-bunschoten">Rijschool Bunschoten-Spakenburg</a></li><li><a href="/rijschool-woudenberg">Rijschool Woudenberg</a></li><li><a href="/rijschool-soesterberg">Rijschool Soesterberg</a></li><li><a href="/rijschool-bilthoven">Rijschool Bilthoven</a></li><li><a href="/rijschool-de-bilt">Rijschool De Bilt</a></li><li><a href="/spoed-rijlessen-amersfoort">Spoedcursus Amersfoort</a></li><li><a href="/automaat-rijles-amersfoort">Automaat rijles Amersfoort</a></li></ul>
+      <ul><li><a href="/rijschool-amersfoort">Rijschool Amersfoort</a></li><li><a href="/rijschool-soest">Rijschool Soest</a></li><li><a href="/rijschool-nijkerk">Rijschool Nijkerk</a></li><li><a href="/rijschool-leusden">Rijschool Leusden</a></li><li><a href="/rijschool-hoevelaken">Rijschool Hoevelaken</a></li><li><a href="/rijschool-zeist">Rijschool Zeist</a></li><li><a href="/rijschool-baarn">Rijschool Baarn</a></li><li><a href="/rijschool-bunschoten">Rijschool Bunschoten-Spakenburg</a></li><li><a href="/rijschool-woudenberg">Rijschool Woudenberg</a></li><li><a href="/rijschool-soesterberg">Rijschool Soesterberg</a></li><li><a href="/rijschool-bilthoven">Rijschool Bilthoven</a></li><li><a href="/rijschool-de-bilt">Rijschool De Bilt</a></li><li><a href="/rijschool-hilversum">Rijschool Hilversum</a></li><li><a href="/rijschool-huizen">Rijschool Huizen</a></li><li><a href="/rijschool-bussum">Rijschool Bussum</a></li><li><a href="/rijschool-naarden">Rijschool Naarden</a></li><li><a href="/rijschool-laren">Rijschool Laren</a></li><li><a href="/rijschool-blaricum">Rijschool Blaricum</a></li><li><a href="/rijschool-eemnes">Rijschool Eemnes</a></li><li><a href="/spoed-rijlessen-amersfoort">Spoedcursus Amersfoort</a></li><li><a href="/automaat-rijles-amersfoort">Automaat rijles Amersfoort</a></li></ul>
     </div>
   </div>
   <div class="container footer-bottom">
@@ -2745,7 +2751,7 @@ const STR = {
     comingSoonTitle:'Binnenkort beschikbaar', comingSoonBody:'We werken nog aan dit onderdeel. Kom binnenkort terug, of bekijk onze andere categorieën.', comingSoonBack:'Terug naar WegMaster Rijopleidingen',
     fieldRemarksPh:'Bijv. speciale wensen, taalvoorkeur, medische aandachtspunten...',
     regSubmit:'Verstuur aanmelding', regSubmitting:'Versturen...',
-    regPrivacyNote:'Je gegevens worden alleen gebruikt om contact met je op te nemen.',
+    regPrivacyNote:'Je gegevens gebruiken we alleen om contact met je op te nemen en voor onze eigen leerlingenadministratie. We verkopen ze niet.',
     regSuccess:'Bedankt! Je aanmelding is verstuurd. Check ook je inbox voor een bevestiging.',
     regError:'Er ging iets mis bij het versturen. Probeer het opnieuw of neem rechtstreeks contact op via telefoon of e-mail.',
     regNotConfigured:'Automatisch versturen is nog niet ingesteld voor deze site. Neem rechtstreeks contact op via telefoon of e-mail — zie de contactgegevens in de footer.',
@@ -2828,7 +2834,7 @@ const STR = {
     comingSoonTitle:'Coming soon', comingSoonBody:"We're still working on this. Check back soon, or take a look at our other categories.", comingSoonBack:'Back to WegMaster Rijopleidingen',
     fieldRemarksPh:'E.g. special requests, language preference, medical considerations...',
     regSubmit:'Submit registration', regSubmitting:'Sending...',
-    regPrivacyNote:'Your details are only used to contact you.',
+    regPrivacyNote:'We only use your details to contact you and for our own student records. We never sell them.',
     regSuccess:'Thank you! Your registration has been sent. Check your inbox for a confirmation.',
     regError:'Something went wrong while sending. Please try again or contact us directly by phone or email.',
     regNotConfigured:'Automatic sending isn\'t set up yet for this site. Please contact us directly by phone or email — see the contact details in the footer.',
@@ -2913,6 +2919,24 @@ const EMAILJS_CONFIG = {
 const emailConfigured = !EMAILJS_CONFIG.publicKey.startsWith('YOUR_');
 let emailjsReady = false;
 function wmInitEmailjs(){ if(!emailjsReady && emailConfigured && window.emailjs){ emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey }); emailjsReady = true; } return emailjsReady; }
+
+/* Leads-sheet: na een gelukte aanmelding schrijft de site ook een regel in een Google Sheet
+   (via een Google Apps Script web-app). Leeg = uit. De e-mail en de conversie hangen hier NIET van af. */
+const WM_SHEET_URL = '';
+function wmLogLead(p){
+  if(!WM_SHEET_URL || !window.fetch) return;
+  var data = {
+    id: p.submission_id, datum: p.submitted_at, naam: p.from_name, telefoon: p.phone,
+    email: p.student_email, woonplaats: p.city, categorie: p.category, pakket: p.package,
+    opmerking: p.remarks, bron: p.bron, gclid: p.gclid, klikdatum: p.klik_datum,
+    pagina: location.pathname
+  };
+  try{
+    fetch(WM_SHEET_URL, { method:'POST', mode:'no-cors', keepalive:true,
+      headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify(data) })
+      .catch(function(){ console.warn('Lead-sheet niet bereikt; aanmelding is wel verstuurd.'); });
+  }catch(e){}
+}
 wmInitEmailjs(); /* emailjs laadt nu met defer: init gebeurt uiterlijk bij verzenden */
 
 let pendingRegistration = { cat:'', pkg:'' };
@@ -3093,7 +3117,7 @@ function renderStats(){
     { value:5.0, suffix:'', decimals:1, label:S.statGoogle },
     { value:60,  suffix:'', decimals:0, label:S.statMinLes },
     { value:7,   suffix:'', decimals:0, label:S.statDagen },
-    { value: (STATS.werkgebied ?? 13), suffix:'', decimals:0, label:S.statWerkgebied },
+    { value: (STATS.werkgebied ?? 20), suffix:'', decimals:0, label:S.statWerkgebied },
   ];
   // Optional: CBR success rate — only shown once the owner fills it in via Beheer.
   const sp = STATS.slagingspercentage;
@@ -3363,6 +3387,7 @@ function handleRegisterSubmit(e){
       try{
         wmTrackConversion('lead', undefined, { email: email, phone: telefoon }, submissionId);
       }catch(err){ console.warn('Registration accepted; conversion tracking failed.'); }
+      try{ wmLogLead(templateParams); }catch(err){}
       showRegisterResult('success');
       form.reset();
       // Do not report the registration as failed if the student's confirmation fails.
