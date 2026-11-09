@@ -2916,7 +2916,7 @@ function wmInitEmailjs(){ if(!emailjsReady && emailConfigured && window.emailjs)
 
 /* Leads-sheet: na een gelukte aanmelding schrijft de site ook een regel in een Google Sheet
    (via een Google Apps Script web-app). Leeg = uit. De e-mail en de conversie hangen hier NIET van af. */
-const WM_SHEET_URL = '';
+const WM_SHEET_URL = 'https://script.google.com/macros/s/AKfycbypCzSuBJJGVPRXVodbZtfIS4tFer0GLdyfEUmrMOCP3rRZmoXbaBYtKY23t2KKC0qrZg/exec';
 function wmLogLead(p){
   if(!WM_SHEET_URL || !window.fetch) return;
   var data = {
