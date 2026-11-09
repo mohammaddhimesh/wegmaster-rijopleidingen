@@ -552,6 +552,328 @@
           "/rijschool-soesterberg"
         ]
       ]
+    },
+    {
+      "slug": "hilversum",
+      "naam": "Hilversum",
+      "title": "Rijschool Hilversum | Rijles auto & spoedcursus | WegMaster",
+      "meta": "Rijles in Hilversum? Wij halen je thuis op. Examen bij CBR Eemnes, in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "intro_nl": "Rijles in Hilversum met een instructeur die je thuis of bij het station ophaalt. Je praktijkexamen doe je bij CBR Eemnes, in dezelfde lesauto waarin je les hebt gehad. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "Driving lessons in Hilversum with an instructor who picks you up at home or at the station. You take your practical exam at CBR Eemnes, in the same lesson car you practised in. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "geo": [
+        52.2292,
+        5.1669
+      ],
+      "buren": [
+        [
+          "Bussum",
+          "/rijschool-bussum"
+        ],
+        [
+          "Laren",
+          "/rijschool-laren"
+        ],
+        [
+          "Baarn",
+          "/rijschool-baarn"
+        ]
+      ],
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Hilversum?",
+          "a_nl": "Ja, wij halen je thuis op in Hilversum. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Hilversum?",
+          "a_en": "Yes, we pick you up at home in Hilversum. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Hilversum woon?",
+          "a_nl": "Bij CBR Eemnes (Bramenberg 6). Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Hilversum?",
+          "a_en": "At CBR Eemnes (Bramenberg 6). You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Kan ik in Hilversum automaat rijles krijgen?",
+          "a_nl": "Ja. Wij geven rijles in een automaat én in een schakelauto, 7 dagen per week.",
+          "q_en": "Can I take automatic lessons in Hilversum?",
+          "a_en": "Yes. We teach in an automatic and in a manual car, 7 days a week."
+        }
+      ]
+    },
+    {
+      "slug": "huizen",
+      "naam": "Huizen",
+      "title": "Rijschool Huizen | Rijles auto & spoedcursus | WegMaster",
+      "meta": "Rijles in Huizen? Wij halen je thuis op. Examen bij CBR Eemnes, in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "intro_nl": "Rijles in Huizen: wij halen je thuis op en oefenen ook op de drukke wegen richting het examen. Je praktijkexamen doe je bij CBR Eemnes, in dezelfde lesauto waarin je les hebt gehad. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "Driving lessons in Huizen: we pick you up at home and also practise on the busy roads you will meet at the exam. You take your practical exam at CBR Eemnes, in the same lesson car you practised in. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "geo": [
+        52.2994,
+        5.2417
+      ],
+      "buren": [
+        [
+          "Blaricum",
+          "/rijschool-blaricum"
+        ],
+        [
+          "Laren",
+          "/rijschool-laren"
+        ],
+        [
+          "Naarden",
+          "/rijschool-naarden"
+        ]
+      ],
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Huizen?",
+          "a_nl": "Ja, wij halen je thuis op in Huizen. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Huizen?",
+          "a_en": "Yes, we pick you up at home in Huizen. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Huizen woon?",
+          "a_nl": "Bij CBR Eemnes (Bramenberg 6). Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Huizen?",
+          "a_en": "At CBR Eemnes (Bramenberg 6). You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Hoe snel kan ik in Huizen beginnen?",
+          "a_nl": "Meestal binnen 1 à 2 dagen na je aanmelding.",
+          "q_en": "How soon can I start in Huizen?",
+          "a_en": "Usually within 1 to 2 days after you sign up."
+        }
+      ]
+    },
+    {
+      "slug": "bussum",
+      "naam": "Bussum",
+      "title": "Rijschool Bussum | Rijles auto & spoedcursus | WegMaster",
+      "meta": "Rijles in Bussum? Wij halen je thuis op. Examen bij CBR Eemnes, in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "intro_nl": "Rijles in Bussum, ook als spoedcursus. Je praktijkexamen doe je bij CBR Eemnes, in dezelfde lesauto waarin je les hebt gehad. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "Driving lessons in Bussum, also as a crash course. You take your practical exam at CBR Eemnes, in the same lesson car you practised in. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "geo": [
+        52.2733,
+        5.1611
+      ],
+      "buren": [
+        [
+          "Naarden",
+          "/rijschool-naarden"
+        ],
+        [
+          "Hilversum",
+          "/rijschool-hilversum"
+        ],
+        [
+          "Laren",
+          "/rijschool-laren"
+        ]
+      ],
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Bussum?",
+          "a_nl": "Ja, wij halen je thuis op in Bussum. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Bussum?",
+          "a_en": "Yes, we pick you up at home in Bussum. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Bussum woon?",
+          "a_nl": "Bij CBR Eemnes (Bramenberg 6). Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Bussum?",
+          "a_en": "At CBR Eemnes (Bramenberg 6). You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Kan ik vanuit Bussum een spoedcursus doen?",
+          "a_nl": "Ja. Met een spoedcursus rijd je meer lessen per week, met een lesplan op jouw niveau.",
+          "q_en": "Can I do a crash course from Bussum?",
+          "a_en": "Yes. With a crash course you drive more lessons per week, with a lesson plan at your level."
+        }
+      ]
+    },
+    {
+      "slug": "naarden",
+      "naam": "Naarden",
+      "title": "Rijschool Naarden | Rijles auto & spoedcursus | WegMaster",
+      "meta": "Rijles in Naarden? Wij halen je thuis op. Examen bij CBR Eemnes, in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "intro_nl": "Rijles in Naarden en Naarden-Vesting. Je praktijkexamen doe je bij CBR Eemnes, in dezelfde lesauto waarin je les hebt gehad. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "Driving lessons in Naarden and Naarden-Vesting. You take your practical exam at CBR Eemnes, in the same lesson car you practised in. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "geo": [
+        52.2953,
+        5.1622
+      ],
+      "buren": [
+        [
+          "Bussum",
+          "/rijschool-bussum"
+        ],
+        [
+          "Huizen",
+          "/rijschool-huizen"
+        ],
+        [
+          "Hilversum",
+          "/rijschool-hilversum"
+        ]
+      ],
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Naarden?",
+          "a_nl": "Ja, wij halen je thuis op in Naarden. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Naarden?",
+          "a_en": "Yes, we pick you up at home in Naarden. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Naarden woon?",
+          "a_nl": "Bij CBR Eemnes (Bramenberg 6). Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Naarden?",
+          "a_en": "At CBR Eemnes (Bramenberg 6). You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Wat kost rijles in Naarden?",
+          "a_nl": "Hetzelfde als overal bij ons: 15 lessen kosten €795. De proefles is gratis.",
+          "q_en": "What do driving lessons cost in Naarden?",
+          "a_en": "The same as everywhere with us: 15 lessons cost €795. The trial lesson is free."
+        }
+      ]
+    },
+    {
+      "slug": "laren",
+      "naam": "Laren",
+      "title": "Rijschool Laren | Rijles auto & spoedcursus | WegMaster",
+      "meta": "Rijles in Laren? Wij halen je thuis op. Examen bij CBR Eemnes, in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "intro_nl": "Rijles in Laren, dicht bij het examencentrum. Je praktijkexamen doe je bij CBR Eemnes, in dezelfde lesauto waarin je les hebt gehad. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "Driving lessons in Laren, close to the exam centre. You take your practical exam at CBR Eemnes, in the same lesson car you practised in. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "geo": [
+        52.2567,
+        5.2269
+      ],
+      "buren": [
+        [
+          "Blaricum",
+          "/rijschool-blaricum"
+        ],
+        [
+          "Eemnes",
+          "/rijschool-eemnes"
+        ],
+        [
+          "Hilversum",
+          "/rijschool-hilversum"
+        ]
+      ],
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Laren?",
+          "a_nl": "Ja, wij halen je thuis op in Laren. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Laren?",
+          "a_en": "Yes, we pick you up at home in Laren. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Laren woon?",
+          "a_nl": "Bij CBR Eemnes (Bramenberg 6). Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Laren?",
+          "a_en": "At CBR Eemnes (Bramenberg 6). You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Kan ik ook in het weekend rijles krijgen?",
+          "a_nl": "Ja, wij geven 7 dagen per week les, ook op zaterdag en zondag.",
+          "q_en": "Can I also take lessons at the weekend?",
+          "a_en": "Yes, we teach 7 days a week, including Saturday and Sunday."
+        }
+      ]
+    },
+    {
+      "slug": "blaricum",
+      "naam": "Blaricum",
+      "title": "Rijschool Blaricum | Rijles auto & spoedcursus | WegMaster",
+      "meta": "Rijles in Blaricum? Wij halen je thuis op. Examen bij CBR Eemnes, in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "intro_nl": "Rijles in Blaricum, met de examenroutes rond Eemnes vlakbij. Je praktijkexamen doe je bij CBR Eemnes, in dezelfde lesauto waarin je les hebt gehad. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "Driving lessons in Blaricum, with the exam routes around Eemnes close by. You take your practical exam at CBR Eemnes, in the same lesson car you practised in. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "geo": [
+        52.2722,
+        5.2444
+      ],
+      "buren": [
+        [
+          "Laren",
+          "/rijschool-laren"
+        ],
+        [
+          "Huizen",
+          "/rijschool-huizen"
+        ],
+        [
+          "Eemnes",
+          "/rijschool-eemnes"
+        ]
+      ],
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Blaricum?",
+          "a_nl": "Ja, wij halen je thuis op in Blaricum. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Blaricum?",
+          "a_en": "Yes, we pick you up at home in Blaricum. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Blaricum woon?",
+          "a_nl": "Bij CBR Eemnes (Bramenberg 6). Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Blaricum?",
+          "a_en": "At CBR Eemnes (Bramenberg 6). You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Hoeveel lessen heb ik nodig?",
+          "a_nl": "Dat hangt van jou af. In de gratis proefles kijken we wat je al kunt en geven we een eerlijk advies.",
+          "q_en": "How many lessons do I need?",
+          "a_en": "That depends on you. In the free trial lesson we see what you can already do and give honest advice."
+        }
+      ]
+    },
+    {
+      "slug": "eemnes",
+      "naam": "Eemnes",
+      "title": "Rijschool Eemnes | Rijles auto & spoedcursus | WegMaster",
+      "meta": "Rijles in Eemnes? Wij halen je thuis op. Examen bij CBR Eemnes, in je eigen lesauto. 95% geslaagd, 5.0 op Google. 15 lessen €795.",
+      "intro_nl": "Rijles in Eemnes, waar ook het CBR-examencentrum zit. Je praktijkexamen doe je bij CBR Eemnes, in dezelfde lesauto waarin je les hebt gehad. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les. 95% van onze leerlingen slaagt bij het CBR.",
+      "intro_en": "Driving lessons in Eemnes, home of the CBR exam centre. You take your practical exam at CBR Eemnes, in the same lesson car you practised in. Sign up today and you drive your first lesson within 1 to 2 days. 95% of our students pass at the CBR.",
+      "geo": [
+        52.2539,
+        5.2569
+      ],
+      "buren": [
+        [
+          "Laren",
+          "/rijschool-laren"
+        ],
+        [
+          "Blaricum",
+          "/rijschool-blaricum"
+        ],
+        [
+          "Baarn",
+          "/rijschool-baarn"
+        ]
+      ],
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij op in Eemnes?",
+          "a_nl": "Ja, wij halen je thuis op in Eemnes. Je hoeft dus niet naar een leslocatie te reizen.",
+          "q_en": "Do you pick me up in Eemnes?",
+          "a_en": "Yes, we pick you up at home in Eemnes. So you don't have to travel to a lesson location."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Eemnes woon?",
+          "a_nl": "Bij CBR Eemnes (Bramenberg 6). Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Eemnes?",
+          "a_en": "At CBR Eemnes (Bramenberg 6). You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Is het een voordeel dat het CBR in Eemnes zit?",
+          "a_nl": "Ja. Je oefent op de wegen waar je ook examen rijdt, dus op de grote dag is niets nieuw.",
+          "q_en": "Is it an advantage that the CBR is in Eemnes?",
+          "a_en": "Yes. You practise on the roads where you also take your exam, so nothing is new on the big day."
+        }
+      ]
     }
   ]
 }

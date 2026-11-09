@@ -3,10 +3,6 @@
 /rijschool-almere.html   /   301!
 /rijschool-almere-stad        /   301!
 /rijschool-almere-stad.html   /   301!
-/rijschool-blaricum        /   301!
-/rijschool-blaricum.html   /   301!
-/rijschool-bussum        /   301!
-/rijschool-bussum.html   /   301!
 /rijschool-diemen        /   301!
 /rijschool-diemen.html   /   301!
 /rijschool-driebergen        /   301!
@@ -15,22 +11,14 @@
 /rijschool-ermelo.html   /   301!
 /rijschool-harderwijk        /   301!
 /rijschool-harderwijk.html   /   301!
-/rijschool-hilversum        /   301!
-/rijschool-hilversum.html   /   301!
 /rijschool-houten        /   301!
 /rijschool-houten.html   /   301!
-/rijschool-huizen        /   301!
-/rijschool-huizen.html   /   301!
 /rijschool-ijsselstein        /   301!
 /rijschool-ijsselstein.html   /   301!
-/rijschool-laren        /   301!
-/rijschool-laren.html   /   301!
 /rijschool-lelystad        /   301!
 /rijschool-lelystad.html   /   301!
 /rijschool-maarssen        /   301!
 /rijschool-maarssen.html   /   301!
-/rijschool-naarden        /   301!
-/rijschool-naarden.html   /   301!
 /rijschool-nieuwegein        /   301!
 /rijschool-nieuwegein.html   /   301!
 /rijschool-nunspeet        /   301!
@@ -51,10 +39,8 @@
 /rijschool-zeewolde.html   /   301!
 
 
-# Hoogland en Hooglanderveen horen bij Amersfoort; Eemnes niet meer in werkgebied
+# Hoogland en Hooglanderveen horen bij Amersfoort
 /rijschool-hoogland              /rijschool-amersfoort   301!
 /rijschool-hoogland.html         /rijschool-amersfoort   301!
 /rijschool-hooglanderveen        /rijschool-amersfoort   301!
 /rijschool-hooglanderveen.html   /rijschool-amersfoort   301!
-/rijschool-eemnes                /                       301!
-/rijschool-eemnes.html           /                       301!
