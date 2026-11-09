@@ -2745,7 +2745,7 @@ const STR = {
     comingSoonTitle:'Binnenkort beschikbaar', comingSoonBody:'We werken nog aan dit onderdeel. Kom binnenkort terug, of bekijk onze andere categorieën.', comingSoonBack:'Terug naar WegMaster Rijopleidingen',
     fieldRemarksPh:'Bijv. speciale wensen, taalvoorkeur, medische aandachtspunten...',
     regSubmit:'Verstuur aanmelding', regSubmitting:'Versturen...',
-    regPrivacyNote:'Je gegevens worden alleen gebruikt om contact met je op te nemen.',
+    regPrivacyNote:'Je gegevens gebruiken we alleen om contact met je op te nemen en voor onze eigen leerlingenadministratie. We verkopen ze niet.',
     regSuccess:'Bedankt! Je aanmelding is verstuurd. Check ook je inbox voor een bevestiging.',
     regError:'Er ging iets mis bij het versturen. Probeer het opnieuw of neem rechtstreeks contact op via telefoon of e-mail.',
     regNotConfigured:'Automatisch versturen is nog niet ingesteld voor deze site. Neem rechtstreeks contact op via telefoon of e-mail — zie de contactgegevens in de footer.',
@@ -2828,7 +2828,7 @@ const STR = {
     comingSoonTitle:'Coming soon', comingSoonBody:"We're still working on this. Check back soon, or take a look at our other categories.", comingSoonBack:'Back to WegMaster Rijopleidingen',
     fieldRemarksPh:'E.g. special requests, language preference, medical considerations...',
     regSubmit:'Submit registration', regSubmitting:'Sending...',
-    regPrivacyNote:'Your details are only used to contact you.',
+    regPrivacyNote:'We only use your details to contact you and for our own student records. We never sell them.',
     regSuccess:'Thank you! Your registration has been sent. Check your inbox for a confirmation.',
     regError:'Something went wrong while sending. Please try again or contact us directly by phone or email.',
     regNotConfigured:'Automatic sending isn\'t set up yet for this site. Please contact us directly by phone or email — see the contact details in the footer.',
@@ -2913,6 +2913,24 @@ const EMAILJS_CONFIG = {
 const emailConfigured = !EMAILJS_CONFIG.publicKey.startsWith('YOUR_');
 let emailjsReady = false;
 function wmInitEmailjs(){ if(!emailjsReady && emailConfigured && window.emailjs){ emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey }); emailjsReady = true; } return emailjsReady; }
+
+/* Leads-sheet: na een gelukte aanmelding schrijft de site ook een regel in een Google Sheet
+   (via een Google Apps Script web-app). Leeg = uit. De e-mail en de conversie hangen hier NIET van af. */
+const WM_SHEET_URL = 'https://script.google.com/macros/s/AKfycbypCzSuBJJGVPRXVodbZtfIS4tFer0GLdyfEUmrMOCP3rRZmoXbaBYtKY23t2KKC0qrZg/exec';
+function wmLogLead(p){
+  if(!WM_SHEET_URL || !window.fetch) return;
+  var data = {
+    id: p.submission_id, datum: p.submitted_at, naam: p.from_name, telefoon: p.phone,
+    email: p.student_email, woonplaats: p.city, categorie: p.category, pakket: p.package,
+    opmerking: p.remarks, bron: p.bron, gclid: p.gclid, klikdatum: p.klik_datum,
+    pagina: location.pathname
+  };
+  try{
+    fetch(WM_SHEET_URL, { method:'POST', mode:'no-cors', keepalive:true,
+      headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify(data) })
+      .catch(function(){ console.warn('Lead-sheet niet bereikt; aanmelding is wel verstuurd.'); });
+  }catch(e){}
+}
 wmInitEmailjs(); /* emailjs laadt nu met defer: init gebeurt uiterlijk bij verzenden */
 
 let pendingRegistration = { cat:'', pkg:'' };
@@ -3363,6 +3381,7 @@ function handleRegisterSubmit(e){
       try{
         wmTrackConversion('lead', undefined, { email: email, phone: telefoon }, submissionId);
       }catch(err){ console.warn('Registration accepted; conversion tracking failed.'); }
+      try{ wmLogLead(templateParams); }catch(err){}
       showRegisterResult('success');
       form.reset();
       // Do not report the registration as failed if the student's confirmation fails.
