@@ -552,6 +552,54 @@
           "/rijschool-soesterberg"
         ]
       ]
+    },
+    {
+      "slug": "gooi",
+      "naam": "Gooi regio",
+      "in_naam": "de Gooi regio",
+      "in_naam_en": "the Gooi region",
+      "title": "Rijschool Gooi regio | Rijles automaat & schakel | WegMaster",
+      "meta": "Rijles in de Gooi regio: Hilversum, Huizen, Bussum, Naarden, Laren, Blaricum en Eemnes. Wij halen je thuis op. Examen bij CBR Eemnes. Hoog slagingspercentage.",
+      "geo": [
+        52.26,
+        5.22
+      ],
+      "intro_nl": "Wij geven rijles in Hilversum, Huizen, Bussum, Naarden, Laren, Blaricum en Eemnes, in een automaat of een schakelauto. Je praktijkexamen doe je bij CBR Eemnes, in dezelfde lesauto waarin je les hebt gehad. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les.",
+      "intro_en": "We give driving lessons in Hilversum, Huizen, Bussum, Naarden, Laren, Blaricum and Eemnes, in an automatic or a manual car. You take your practical exam at CBR Eemnes, in the same lesson car you practised in. Sign up today and you drive your first lesson within 1 to 2 days.",
+      "faq": [
+        {
+          "q_nl": "In welke plaatsen in het Gooi geven jullie rijles?",
+          "a_nl": "In Hilversum, Huizen, Bussum, Naarden, Laren, Blaricum en Eemnes. Wij halen je thuis op.",
+          "q_en": "Which places in the Gooi do you cover?",
+          "a_en": "Hilversum, Huizen, Bussum, Naarden, Laren, Blaricum and Eemnes. We pick you up at home."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in het Gooi woon?",
+          "a_nl": "Bij CBR Eemnes. Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in the Gooi?",
+          "a_en": "At CBR Eemnes. You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Kan ik in het Gooi ook automaat rijles krijgen?",
+          "a_nl": "Ja. Je kiest zelf: rijles in een automaat of in een schakelauto.",
+          "q_en": "Can I get automatic lessons in the Gooi?",
+          "a_en": "Yes. You choose: lessons in an automatic or a manual car."
+        }
+      ],
+      "buren": [
+        [
+          "Soest",
+          "/rijschool-soest"
+        ],
+        [
+          "Baarn",
+          "/rijschool-baarn"
+        ],
+        [
+          "Amersfoort",
+          "/rijschool-amersfoort"
+        ]
+      ]
     }
   ]
 }
