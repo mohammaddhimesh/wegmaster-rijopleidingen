@@ -586,18 +586,48 @@
           "a_en": "Yes. You choose: lessons in an automatic or a manual car."
         }
       ],
-      "buren": [
+      "buren": [],
+      "footer_plaatsen": [
+        "Hilversum",
+        "Huizen",
+        "Bussum",
+        "Naarden",
+        "Laren",
+        "Blaricum",
+        "Eemnes"
+      ],
+      "vervang": [
         [
-          "Soest",
-          "/rijschool-soest"
+          "We hebben meerdere instructeurs en geven les in Amersfoort, Soest en de plaatsen eromheen, zoals Hoogland, Leusden, Soesterberg, Baarn en Nijkerk.",
+          "We hebben meerdere instructeurs en geven les in Hilversum, Huizen, Bussum, Naarden, Laren, Blaricum en Eemnes."
         ],
         [
-          "Baarn",
-          "/rijschool-baarn"
+          "We have several instructors and teach in Amersfoort, Soest and the surrounding towns, such as Hoogland, Leusden, Soesterberg, Baarn and Nijkerk.",
+          "We have several instructors and teach in Hilversum, Huizen, Bussum, Naarden, Laren, Blaricum and Eemnes."
         ],
         [
-          "Amersfoort",
-          "/rijschool-amersfoort"
+          "in Amersfoort, Soest en omgeving",
+          "in het Gooi"
+        ],
+        [
+          "in Soest, Amersfoort en omgeving",
+          "in het Gooi"
+        ],
+        [
+          "in Amersfoort, Soest and nearby",
+          "in the Gooi"
+        ],
+        [
+          "in Soest, Amersfoort and surroundings",
+          "in the Gooi and surroundings"
+        ],
+        [
+          "Soest, Amersfoort en omgeving",
+          "Het Gooi en omgeving"
+        ],
+        [
+          "Soest, Amersfoort and surroundings",
+          "The Gooi and surroundings"
         ]
       ]
     }

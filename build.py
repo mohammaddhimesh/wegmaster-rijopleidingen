@@ -132,9 +132,9 @@ def stadsblok(s):
         f'data-en="📍 We pick you up at home in {e(s.get("in_naam_en", ni))}">📍 Wij halen je thuis op in {e(ni)}</p>\n'
         f'<p class="city-lead" data-nl="{e(s["intro_nl"])}" data-en="{e(s["intro_en"])}">{e(s["intro_nl"])}</p>\n'
         f'<div class="city-faq">{faq}</div>\n'
-        f'<div class="city-near"><span data-nl="Ook rijles in de buurt:" data-en="Also lessons nearby:">'
-        f'Ook rijles in de buurt:</span> {buren}</div>\n'
-        f'</div></section>\n'
+        + (f'<div class="city-near"><span data-nl="Ook rijles in de buurt:" data-en="Also lessons nearby:">'
+           f'Ook rijles in de buurt:</span> {buren}</div>\n' if buren else '')
+        + '</div></section>\n'
     )
 
 
@@ -207,6 +207,20 @@ def bouw_stad(bron, s, img_dir):
     # relatieve paden absoluut maken (werkt ook als de URL ooit een / krijgt)
     h = vervang_een(h, '<script src="consent.js"></script>', '<script src="/consent.js"></script>', "consent.js")
     h = h.replace("'geslaagden/", "'/geslaagden/")
+
+    # optioneel: eigen werkgebied in de footer (alleen tekst, geen links)
+    if s.get("footer_plaatsen"):
+        lijst = "".join(f"<li>{e(x)}</li>" for x in s["footer_plaatsen"])
+        h, n_ft = re.subn(r'(<div class="footer-regio">\s*<h4[^>]*>Werkgebied</h4>\s*)<ul>.*?</ul>',
+                          lambda m: m.group(1) + "<ul>" + lijst + "</ul>", h, count=1, flags=re.S)
+        if n_ft != 1:
+            raise BuildFout(f"rijschool-{slug}: footer-werkgebied niet gevonden")
+
+    # optioneel: vaste teksten vervangen (bv. regio in de algemene FAQ)
+    for oud, nieuw in s.get("vervang", []):
+        if oud not in h:
+            raise BuildFout(f"rijschool-{slug}: tekst niet gevonden: {oud[:50]}")
+        h = h.replace(oud, nieuw)
 
     # JSON-LD
     h = pas_jsonld_aan(h, s, url)
