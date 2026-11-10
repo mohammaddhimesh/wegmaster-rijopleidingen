@@ -1991,7 +1991,7 @@ html.is-admin.kb-open .admin-toggle{display:none!important;}
 {"slagingspercentage":null,"jarenErvaring":null,"categorieen":3,"werkgebied":13}
 </script>
 <script type="application/json" id="testimonials-data">
-[]
+[{"name": "Nabil A.", "quote_nl": "In 1x geslaagd!! Ik ben zo ontzettend blij! Vanaf mijn eerste proefles tot het examen heb ik me super op mijn gemak gevoeld. Mijn instructeur legde alles heel rustig en duidelijk uit. Als ik een fout maakte, bleef hij geduldig en legde hij het gewoon nog een keer uit. Echte aanrader!", "quote_en": "Passed first time!! I'm so incredibly happy! From my first trial lesson to the exam I felt completely at ease. My instructor explained everything calmly and clearly. When I made a mistake, he stayed patient and simply explained it again. Highly recommended!"}, {"name": "Yasmin J.", "quote_nl": "Net geslaagd!!! Altijd heel gezellig gehad en flexibel met tijden. Ik werk fulltime en Mohammed kon zich altijd aanpassen aan mijn werktijden! Echt een aanrader!!!!", "quote_en": "Just passed!!! Always had a great time and very flexible with times. I work full-time and Mohammed could always adapt to my working hours! Highly recommended!!!!"}, {"name": "Nihat B.", "quote_nl": "Een top ervaring! Pakket van 30 lessen genomen en in één keer geslaagd. Flexibele tijden en duidelijke aandacht van de instructeur. Rustige lessen en een fijne methode zonder stress.", "quote_en": "A great experience! Took the 30-lesson package and passed first time. Flexible times and clear attention from the instructor. Calm lessons and a pleasant method without stress."}, {"name": "Mohammed S.", "quote_nl": "Een top rij-instructeur, leert je alles wat je in je examen krijgt. Heeft ook veel geduld. Net geslaagd en nu de weg veilig op!", "quote_en": "A top driving instructor who teaches you everything you'll get in your exam. Very patient too. Just passed and now safely on the road!"}, {"name": "Marif A.", "quote_nl": "Het was een plezier om te leren autorijden. Het is een erg goede rijschool. Ik vond alles geweldig. Ik beveel het aan.", "quote_en": "It was a pleasure learning to drive. It's a very good driving school. I loved everything. I recommend it."}, {"name": "Jeware A.", "quote_nl": "De rijschool denkt echt met je mee als je een keer moet verzetten. Heel klantvriendelijk.", "quote_en": "The driving school really works with you when you need to reschedule. Very customer-friendly."}]
 </script>
 
 <!-- ========== SPOEDCURSUS TOP STRIP ========== -->
@@ -2220,6 +2220,30 @@ html.is-admin.kb-open .admin-toggle{display:none!important;}
     </div>
   </section>
 
+  <section id="testimonialSection">
+    <div class="container" style="max-width:760px;">
+      <div class="section-head" style="text-align:center;margin:0 auto 26px;">
+        <h2 id="reviewsTitleEl">—</h2>
+        <p id="reviewsSubEl" class="muted">—</p>
+      </div>
+      <div class="greview">
+        <span class="greview__g">
+          <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.7-.1-1.4-.2-2.1H12v4h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.2-4.8 3.2-7.9Z"/><path fill="#34A853" d="M12 23c2.9 0 5.4-1 7.2-2.6l-3.6-2.7c-1 .7-2.3 1.1-3.6 1.1-2.8 0-5.1-1.9-6-4.4H2.3v2.8A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6 14.4a6.6 6.6 0 0 1 0-4.2V7.4H2.3a11 11 0 0 0 0 9.8L6 14.4Z"/><path fill="#EA4335" d="M12 5.5c1.6 0 3 .5 4.1 1.6l3.1-3.1A11 11 0 0 0 2.3 7.4L6 10.2c.9-2.6 3.2-4.7 6-4.7Z"/></svg>
+        </span>
+        <div id="testimonialSlide"></div>
+        <div class="testimonial__nav">
+          <button id="testimonialPrev" aria-label="Vorige">‹</button>
+          <div class="testimonial__dots" id="testimonialDots"></div>
+          <button id="testimonialNext" aria-label="Volgende">›</button>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:22px;">
+        <a href="https://maps.app.goo.gl/FLZcQC79SSUtatW49" target="_blank" rel="noopener" class="btn btn--ghost-dark btn--small"
+           data-nl="Lees alle reviews op Google" data-en="Read all reviews on Google">Lees alle reviews op Google</a>
+      </div>
+    </div>
+  </section>
+
 
   <section class="section--tight">
     <div class="container">
@@ -2320,52 +2344,7 @@ html.is-admin.kb-open .admin-toggle{display:none!important;}
 
   
 
-  <section class="section--tight">
-    <div class="container">
-      <div class="reviews-band">
-        <div class="reviews-band__score">
-          <div class="reviews-band__num">5.0</div>
-          <div class="reviews-band__stars">★★★★★</div>
-          <div class="reviews-band__count" data-nl="Gebaseerd op echte Google-reviews" data-en="Based on real Google reviews">Gebaseerd op echte Google-reviews</div>
-        </div>
-        <div class="reviews-band__divider"></div>
-        <div class="reviews-band__text">
-          <span class="g">
-            <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.7-.1-1.4-.2-2.1H12v4h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.2-4.8 3.2-7.9Z"/><path fill="#34A853" d="M12 23c2.9 0 5.4-1 7.2-2.6l-3.6-2.7c-1 .7-2.3 1.1-3.6 1.1-2.8 0-5.1-1.9-6-4.4H2.3v2.8A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6 14.4a6.6 6.6 0 0 1 0-4.2V7.4H2.3a11 11 0 0 0 0 9.8L6 14.4Z"/><path fill="#EA4335" d="M12 5.5c1.6 0 3 .5 4.1 1.6l3.1-3.1A11 11 0 0 0 2.3 7.4L6 10.2c.9-2.6 3.2-4.7 6-4.7Z"/></svg>
-            <span data-nl="Beoordeeld op Google" data-en="Rated on Google">Beoordeeld op Google</span>
-          </span>
-          <p data-nl="Onze leerlingen waarderen ons met de hoogst mogelijke score. Lees waarom cursisten voor WegMaster kiezen."
-             data-en="Our students rate us with the highest possible score. Read why learners choose WegMaster.">Onze leerlingen waarderen ons met de hoogst mogelijke score. Lees waarom cursisten voor WegMaster kiezen.</p>
-          <a href="https://maps.app.goo.gl/FLZcQC79SSUtatW49" target="_blank" rel="noopener" class="btn btn--ghost-dark btn--small"
-             data-nl="Lees onze reviews" data-en="Read our reviews">Lees onze reviews</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section id="testimonialSection">
-    <div class="container" style="max-width:760px;">
-      <div class="section-head" style="text-align:center;margin:0 auto 26px;">
-        <h2 id="reviewsTitleEl">—</h2>
-        <p id="reviewsSubEl" class="muted">—</p>
-      </div>
-      <div class="greview">
-        <span class="greview__g">
-          <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.7-.1-1.4-.2-2.1H12v4h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.2-4.8 3.2-7.9Z"/><path fill="#34A853" d="M12 23c2.9 0 5.4-1 7.2-2.6l-3.6-2.7c-1 .7-2.3 1.1-3.6 1.1-2.8 0-5.1-1.9-6-4.4H2.3v2.8A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6 14.4a6.6 6.6 0 0 1 0-4.2V7.4H2.3a11 11 0 0 0 0 9.8L6 14.4Z"/><path fill="#EA4335" d="M12 5.5c1.6 0 3 .5 4.1 1.6l3.1-3.1A11 11 0 0 0 2.3 7.4L6 10.2c.9-2.6 3.2-4.7 6-4.7Z"/></svg>
-        </span>
-        <div id="testimonialSlide"></div>
-        <div class="testimonial__nav">
-          <button id="testimonialPrev" aria-label="Vorige">‹</button>
-          <div class="testimonial__dots" id="testimonialDots"></div>
-          <button id="testimonialNext" aria-label="Volgende">›</button>
-        </div>
-      </div>
-      <div style="text-align:center;margin-top:22px;">
-        <a href="https://maps.app.goo.gl/FLZcQC79SSUtatW49" target="_blank" rel="noopener" class="btn btn--ghost-dark btn--small"
-           data-nl="Lees alle reviews op Google" data-en="Read all reviews on Google">Lees alle reviews op Google</a>
-      </div>
-    </div>
-  </section>
 
 
   
@@ -2722,7 +2701,7 @@ const STR = {
     perLessonLabel:'per les',
     oneTimeCosts:'CBR-examenkosten worden apart doorberekend.',
     noFees:'Géén inschrijfkosten — je betaalt alleen je lespakket.',
-    reviewsTitle:'Zij zijn al geslaagd',
+    reviewsTitle:'Wat onze leerlingen zeggen',
     reviewsSub:'Echte Google-reviews van onze leerlingen',
     focusedLessons:'', spoedTitle:'Ook spoedcursus mogelijk',
     spoedDesc:'Versneld je rijbewijs halen met een intensief lesschema — meer lessen per week, sneller rijklaar.',
@@ -2804,7 +2783,7 @@ const STR = {
     perLessonLabel:'per lesson',
     oneTimeCosts:'CBR exam costs are charged separately.',
     noFees:'No registration fees — you only pay for your lesson package.',
-    reviewsTitle:'They already passed',
+    reviewsTitle:'What our students say',
     reviewsSub:'Real Google reviews from our students',
     focusedLessons:'', spoedTitle:'Fast-track course available',
     spoedDesc:'Get your licence faster with an intensive lesson schedule — more lessons per week, ready sooner.',
