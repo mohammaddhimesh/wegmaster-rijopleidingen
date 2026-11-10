@@ -1588,6 +1588,8 @@
 </style>
 <style id="right-hamburger-navigation">
 .site-header{position:sticky;top:0;}
+/* iPhone: header op eigen laag, zodat hij niet knippert/verdwijnt bij snel scrollen */
+.site-header{-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);-webkit-backface-visibility:hidden;backface-visibility:hidden;will-change:transform;contain:layout paint;}
 .site-header #navLinks{display:none!important;}
 .site-header .nav-row{height:auto;min-height:76px;flex-wrap:nowrap;padding-top:10px;padding-bottom:10px;}
 .site-header .nav-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
@@ -3176,6 +3178,7 @@ function wmRvDots(){
   document.querySelectorAll('#testimonialDots span').forEach((d,k)=>d.classList.toggle('active', k===testimonialIndex));
 }
 var wmRvTimer = null, wmRvPaused = false, wmRvReady = false, wmRvLastManual = 0;
+var wmPageScrollAt = 0;
 function wmRvSetup(){
   const track = document.getElementById('testimonialSlide');
   if(!track) return;
@@ -3196,6 +3199,7 @@ function wmRvSetup(){
     ['mouseenter','touchstart','focusin'].forEach(ev=>track.addEventListener(ev, ()=>{ wmRvPaused = true; }, { passive: true }));
     ['mouseleave','touchend','focusout'].forEach(ev=>track.addEventListener(ev, ()=>{ wmRvPaused = false; }, { passive: true }));
   }
+  if(!window.wmPageScrollHook){ window.wmPageScrollHook=1; window.addEventListener('scroll',()=>{ wmPageScrollAt=Date.now(); },{passive:true}); }
   if(wmRvTimer) clearInterval(wmRvTimer);
   const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(!reduce){
@@ -3203,6 +3207,9 @@ function wmRvSetup(){
       if(wmRvPaused || document.hidden || Date.now() - wmRvLastManual < 8000) return;
       const tr = document.getElementById('testimonialSlide');
       if(!tr || !tr.offsetParent) return;
+      const rr = tr.getBoundingClientRect();
+      if(rr.bottom < 0 || rr.top > window.innerHeight) return;   // alleen als slider in beeld is
+      if(Date.now() - wmPageScrollAt < 1500) return;             // niet tijdens pagina-scrollen
       const atEnd = tr.scrollLeft >= tr.scrollWidth - tr.clientWidth - 4;
       wmRvGo(atEnd ? 0 : testimonialIndex + 1);
     }, 5000);
