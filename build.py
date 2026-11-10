@@ -119,6 +119,7 @@ CSS = """<style>
 
 def stadsblok(s):
     n = s["naam"]
+    ni = s.get("in_naam", n)   # optioneel: tekst na "in" (bv. "de Gooi regio")
     faq = "".join(
         f'<details><summary data-nl="{e(f["q_nl"])}" data-en="{e(f["q_en"])}">{e(f["q_nl"])}</summary>'
         f'<p data-nl="{e(f["a_nl"])}" data-en="{e(f["a_en"])}">{e(f["a_nl"])}</p></details>'
@@ -127,13 +128,13 @@ def stadsblok(s):
     return (
         f'<section class="city-sec" id="rijles-in-{e(s["slug"])}"><div class="container">\n'
         f'<h1 class="city-title" data-nl="Rijschool {e(n)}" data-en="Driving school {e(n)}">Rijschool {e(n)}</h1>\n'
-        f'<p class="city-pickup" data-nl="📍 Wij halen je thuis op in {e(n)}" '
-        f'data-en="📍 We pick you up at home in {e(n)}">📍 Wij halen je thuis op in {e(n)}</p>\n'
+        f'<p class="city-pickup" data-nl="📍 Wij halen je thuis op in {e(ni)}" '
+        f'data-en="📍 We pick you up at home in {e(s.get("in_naam_en", ni))}">📍 Wij halen je thuis op in {e(ni)}</p>\n'
         f'<p class="city-lead" data-nl="{e(s["intro_nl"])}" data-en="{e(s["intro_en"])}">{e(s["intro_nl"])}</p>\n'
         f'<div class="city-faq">{faq}</div>\n'
-        f'<div class="city-near"><span data-nl="Ook rijles in de buurt:" data-en="Also lessons nearby:">'
-        f'Ook rijles in de buurt:</span> {buren}</div>\n'
-        f'</div></section>\n'
+        + (f'<div class="city-near"><span data-nl="Ook rijles in de buurt:" data-en="Also lessons nearby:">'
+           f'Ook rijles in de buurt:</span> {buren}</div>\n' if buren else '')
+        + '</div></section>\n'
     )
 
 
@@ -173,6 +174,8 @@ def pas_jsonld_aan(h, s, url):
 # ---------- één stad ----------
 def bouw_stad(bron, s, img_dir):
     n, slug = s["naam"], s["slug"]
+    ni = s.get("in_naam", n)
+    ne = s.get("in_naam_en", ni)
     url = f"{SITE}/rijschool-{slug}"
     h = bron
 
@@ -190,11 +193,11 @@ def bouw_stad(bron, s, img_dir):
 
     # zichtbare teksten
     h = vervang_een(h, ANCHOR_OFFER,
-                    f'data-nl="Rijles in {e(n)}, morgen al rijden" data-en="Lessons in {e(n)}, drive tomorrow">'
-                    f'Rijles in {e(n)}, morgen al rijden</h3>', "kop aanmeldkaart", aantal=2)
+                    f'data-nl="Rijles in {e(ni)}, morgen al rijden" data-en="Lessons in {e(ne)}, drive tomorrow">'
+                    f'Rijles in {e(ni)}, morgen al rijden</h3>', "kop aanmeldkaart", aantal=2)
     h = vervang_een(h, ANCHOR_PAKKETTEN,
-                    f'<h2 class="hero-national" data-nl="Auto lespakketten in {e(n)}" '
-                    f'data-en="Car lesson packages in {e(n)}">Auto lespakketten in {e(n)}</h2>', "kop pakketten")
+                    f'<h2 class="hero-national" data-nl="Auto lespakketten in {e(ni)}" '
+                    f'data-en="Car lesson packages in {e(ne)}">Auto lespakketten in {e(ni)}</h2>', "kop pakketten")
     h = vervang_een(h, ANCHOR_GESLAAGDEN, stadsblok(s) + ANCHOR_GESLAAGDEN, "sectie geslaagden")
 
     # bron in de admin-mail: welke stadspagina
@@ -204,6 +207,20 @@ def bouw_stad(bron, s, img_dir):
     # relatieve paden absoluut maken (werkt ook als de URL ooit een / krijgt)
     h = vervang_een(h, '<script src="consent.js"></script>', '<script src="/consent.js"></script>', "consent.js")
     h = h.replace("'geslaagden/", "'/geslaagden/")
+
+    # optioneel: eigen werkgebied in de footer (alleen tekst, geen links)
+    if s.get("footer_plaatsen"):
+        lijst = "".join(f"<li>{e(x)}</li>" for x in s["footer_plaatsen"])
+        h, n_ft = re.subn(r'(<div class="footer-regio">\s*<h4[^>]*>Werkgebied</h4>\s*)<ul>.*?</ul>',
+                          lambda m: m.group(1) + "<ul>" + lijst + "</ul>", h, count=1, flags=re.S)
+        if n_ft != 1:
+            raise BuildFout(f"rijschool-{slug}: footer-werkgebied niet gevonden")
+
+    # optioneel: vaste teksten vervangen (bv. regio in de algemene FAQ)
+    for oud, nieuw in s.get("vervang", []):
+        if oud not in h:
+            raise BuildFout(f"rijschool-{slug}: tekst niet gevonden: {oud[:50]}")
+        h = h.replace(oud, nieuw)
 
     # JSON-LD
     h = pas_jsonld_aan(h, s, url)
