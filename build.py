@@ -315,6 +315,36 @@ def bouw_dienst(bron, d, img_dir):
     return len(h.encode("utf-8")), aantal_img
 
 
+# ---------- homepage (snelle versie) ----------
+# index.html in de repo blijft de bron (met base64-afbeeldingen).
+# Alleen op Netlify (NETLIFY=true) wordt de gepubliceerde index.html vervangen door
+# dezelfde pagina met de afbeeldingen als losse bestanden in /img/ (zoals de stadspagina's).
+# Lokaal testen: WM_HOME_TEST=1 schrijft index.build.html (index.html blijft onaangeroerd).
+def bouw_home(bron, img_dir):
+    h = bron
+    h, aantal_img = extraheer_afbeeldingen(h, img_dir)
+    h = re.sub(r'<img(?![^>]*fetchpriority)([^>]*loading="lazy")', r'<img fetchpriority="low"\1', h)
+    m = re.search(r'<img[^>]*fetchpriority="high"[^>]*src="(/img/[^"]+)"', h)
+    if m:
+        h = h.replace("</head>", f'<link rel="preload" as="image" href="{m.group(1)}" fetchpriority="high">\n</head>', 1)
+    for t in TRACKING:
+        if t not in h:
+            raise BuildFout(f"Tracking ontbreekt op homepage: {t}")
+    if "data:image/" in h and IMG_RE.search(h):
+        raise BuildFout("homepage: nog base64-afbeeldingen over")
+    if len(re.findall(r"<h1[\s>]", h)) != len(re.findall(r"<h1[\s>]", bron)):
+        raise BuildFout("homepage: aantal <h1> veranderd")
+    if os.environ.get("NETLIFY") == "true":
+        doel = "index.html"
+    elif os.environ.get("WM_HOME_TEST") == "1":
+        doel = "index.build.html"
+    else:
+        return None, aantal_img
+    with open(os.path.join(ROOT, doel), "w", encoding="utf-8") as f:
+        f.write(h)
+    return (doel, len(h.encode("utf-8"))), aantal_img
+
+
 # ---------- sitemap.xml ----------
 def redirect_bronnen():
     """Paden die in _redirects worden doorgestuurd (horen niet in de sitemap)."""
@@ -351,7 +381,7 @@ def schrijf_sitemap(steden):
     urls += [(f"{SITE}/rijschool-{s['slug']}", vandaag, "0.8") for s in steden]
     urls += [(f"{SITE}/{d['bestand']}", vandaag, "0.7") for d in DIENSTEN]
     overig = sorted(f for f in os.listdir(ROOT)
-                    if f.endswith(".html") and f not in gebouwd and f != "index.html"
+                    if f.endswith(".html") and f not in gebouwd and f not in ("index.html", "index.build.html")
                     and not f.startswith("google") and "/" + f[:-5] not in weg)
     urls += [(f"{SITE}/{f[:-5]}", laatst_gewijzigd(f), "0.6") for f in overig]
     xml = ['<?xml version="1.0" encoding="UTF-8"?>',
@@ -378,6 +408,11 @@ def main():
     for d in DIENSTEN:
         grootte, n_img = bouw_dienst(bron, d, img_dir)
         print(f"  ✓ {d['bestand']}.html  {grootte/1024:.0f} KB  ({n_img} afbeeldingen in /img/)")
+    res, n_img = bouw_home(bron, img_dir)
+    if res:
+        print(f"  ✓ {res[0]} (homepage)  {res[1]/1024:.0f} KB  ({n_img} afbeeldingen in /img/)")
+    else:
+        print(f"  ✓ homepage gecontroleerd ({n_img} afbeeldingen); index.html wordt alleen op Netlify vervangen")
     n_urls = schrijf_sitemap(steden)
     print(f"  ✓ sitemap.xml  {n_urls} URL's")
     print(f"build.py: {len(steden)} stadspagina's + {len(DIENSTEN)} dienstpagina's OK")
