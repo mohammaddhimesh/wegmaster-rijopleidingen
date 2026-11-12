@@ -178,6 +178,7 @@ def bouw_stad(bron, s, img_dir):
     n, slug = s["naam"], s["slug"]
     ni = s.get("in_naam", n)
     ne = s.get("in_naam_en", ni)
+    nk, nke = s.get("kort_naam", ni), s.get("kort_naam_en", ne)   # korte naam voor de kop van de aanmeldkaart
     url = f"{SITE}/rijschool-{slug}"
     h = bron
 
@@ -195,8 +196,8 @@ def bouw_stad(bron, s, img_dir):
 
     # zichtbare teksten
     h = vervang_een(h, ANCHOR_OFFER,
-                    f'data-nl="Rijles in {e(ni)}, morgen al rijden" data-en="Lessons in {e(ne)}, drive tomorrow">'
-                    f'Rijles in {e(ni)}, morgen al rijden</h3>', "kop aanmeldkaart", aantal=2)
+                    f'data-nl="Rijles in {e(nk)}, morgen al rijden" data-en="Lessons in {e(nke)}, drive tomorrow">'
+                    f'Rijles in {e(nk)}, morgen al rijden</h3>', "kop aanmeldkaart", aantal=2)
     h = vervang_een(h, ANCHOR_PAKKETTEN,
                     f'<h2 class="hero-national" data-nl="Auto lespakketten in {e(ni)}" '
                     f'data-en="Car lesson packages in {e(ne)}">Auto lespakketten in {e(ni)}</h2>', "kop pakketten")
