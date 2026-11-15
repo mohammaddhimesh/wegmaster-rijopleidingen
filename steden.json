@@ -586,7 +586,12 @@
           "a_en": "Yes. You choose: lessons in an automatic or a manual car."
         }
       ],
-      "buren": [],
+      "buren": [
+        [
+          "Hilversum",
+          "/rijschool-hilversum"
+        ]
+      ],
       "footer_plaatsen": [
         "Hilversum",
         "Huizen",
@@ -632,6 +637,99 @@
       ],
       "kort_naam": "het Gooi",
       "kort_naam_en": "the Gooi"
+    },
+    {
+      "slug": "hilversum",
+      "naam": "Hilversum",
+      "in_naam": "Hilversum",
+      "in_naam_en": "Hilversum",
+      "title": "Rijschool Hilversum | Rijles automaat & schakel | WegMaster",
+      "meta": "Rijles in Hilversum? Wij halen je thuis op. Automaat of schakel, examen bij CBR Eemnes. Gratis proefles, 95% geslaagd, 5.0 op Google.",
+      "geo": [
+        52.223,
+        5.176
+      ],
+      "intro_nl": "Wij geven rijles in Hilversum, in een automaat of een schakelauto. We halen je thuis op en je praktijkexamen doe je bij CBR Eemnes, in dezelfde lesauto waarin je les hebt gehad. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les.",
+      "intro_en": "We give driving lessons in Hilversum, in an automatic or a manual car. We pick you up at home and you take your practical exam at CBR Eemnes, in the same lesson car you practised in. Sign up today and you drive your first lesson within 1 to 2 days.",
+      "faq": [
+        {
+          "q_nl": "Halen jullie mij thuis op in Hilversum?",
+          "a_nl": "Ja. We halen je op bij je huis in Hilversum en brengen je na de les weer terug.",
+          "q_en": "Do you pick me up at home in Hilversum?",
+          "a_en": "Yes. We pick you up at your home in Hilversum and bring you back after the lesson."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Hilversum woon?",
+          "a_nl": "Bij CBR Eemnes. Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Hilversum?",
+          "a_en": "At CBR Eemnes. You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Kan ik in Hilversum ook automaat rijles krijgen?",
+          "a_nl": "Ja. Je kiest zelf: rijles in een automaat of in een schakelauto.",
+          "q_en": "Can I get automatic lessons in Hilversum?",
+          "a_en": "Yes. You choose: lessons in an automatic or a manual car."
+        }
+      ],
+      "buren": [
+        [
+          "Huizen",
+          "/rijschool-gooi"
+        ],
+        [
+          "Bussum",
+          "/rijschool-gooi"
+        ],
+        [
+          "Laren",
+          "/rijschool-gooi"
+        ]
+      ],
+      "footer_plaatsen": [
+        "Hilversum",
+        "Huizen",
+        "Bussum",
+        "Naarden",
+        "Laren",
+        "Blaricum",
+        "Eemnes"
+      ],
+      "vervang": [
+        [
+          "We hebben meerdere instructeurs en geven les in Amersfoort, Soest en de plaatsen eromheen, zoals Hoogland, Leusden, Soesterberg, Baarn en Nijkerk.",
+          "We hebben meerdere instructeurs en geven les in Hilversum en de rest van het Gooi: Huizen, Bussum, Naarden, Laren, Blaricum en Eemnes."
+        ],
+        [
+          "We have several instructors and teach in Amersfoort, Soest and the surrounding towns, such as Hoogland, Leusden, Soesterberg, Baarn and Nijkerk.",
+          "We have several instructors and teach in Hilversum and the rest of the Gooi: Huizen, Bussum, Naarden, Laren, Blaricum and Eemnes."
+        ],
+        [
+          "in Amersfoort, Soest en omgeving",
+          "in Hilversum"
+        ],
+        [
+          "in Soest, Amersfoort en omgeving",
+          "in Hilversum"
+        ],
+        [
+          "in Amersfoort, Soest and nearby",
+          "in Hilversum"
+        ],
+        [
+          "in Soest, Amersfoort and surroundings",
+          "in Hilversum and surroundings"
+        ],
+        [
+          "Soest, Amersfoort en omgeving",
+          "Hilversum en omgeving"
+        ],
+        [
+          "Soest, Amersfoort and surroundings",
+          "Hilversum and surroundings"
+        ]
+      ],
+      "kort_naam": "Hilversum",
+      "kort_naam_en": "Hilversum"
     }
   ]
 }
