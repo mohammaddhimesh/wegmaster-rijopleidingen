@@ -267,11 +267,6 @@ DIENSTEN = [
      "kort": "Automaat rijles Amersfoort",
      "meta": "Automaat rijles in Amersfoort, Soest en omgeving. Wij halen je thuis op. "
              "95% geslaagd, 5.0 op Google. Plan je proefles bij WegMaster Rijopleidingen."},
-    {"bestand": "spoed-rijlessen-amersfoort", "start": "spoedcursus",
-     "title": "Spoedcursus rijbewijs Amersfoort | WegMaster Rijopleidingen",
-     "kort": "Spoedcursus Amersfoort",
-     "meta": "Spoedcursus rijbewijs in Amersfoort, Soest en omgeving: meer lessen per week, "
-             "een lesplan op jouw niveau. 95% geslaagd, 5.0 op Google."},
 ]
 
 
