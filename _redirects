@@ -57,3 +57,7 @@
 /rijschool-hooglanderveen.html   /rijschool-amersfoort   301!
 /rijschool-eemnes   /rijschool-gooi   301!
 /rijschool-eemnes.html   /rijschool-gooi   301!
+
+# Spoedpagina verwijderd (spoedcursus is nu een optie bij elk pakket)
+/spoed-rijlessen-amersfoort        /   301!
+/spoed-rijlessen-amersfoort.html   /   301!
