@@ -1785,8 +1785,8 @@ html.menu-locked,html.menu-locked body{overflow:hidden;}
  .stp-offer li{font-size:17px;}
  .stp-offer li svg{width:21px;height:21px;}
 }
-/* tablet (601-1024): stappen staan daar onder elkaar en zijn heel hoog -> aanbod gewoon in de flow, geen gat */
-@media(min-width:601px) and (max-width:1024px){
+/* tablet + desktop (601+): aanbod gewoon in de flow -> kader groeit mee met de inhoud, knop valt nooit buiten het kader */
+@media(min-width:601px){
  #zowerkt .stp-grid>*:not(.stp-offer){display:none!important;}
  #zowerkt .stp-grid{display:block!important;}
  #zowerkt .stp-grid>.stp-offer{position:relative;top:auto;bottom:auto;}
