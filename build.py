@@ -51,6 +51,7 @@ ANCHOR_GESLAAGDEN = '<section class="section--tight gl-sec" id="geslaagden">'
 ANCHOR_NA_REVIEWS = ('<section class="section--tight">\n    <div class="container">\n'
                      '      <div class="transmission-band">')   # eerste sectie na de reviews
 ANCHOR_BRON = "'Google advertentie' : 'Website (geen advertentie)'"
+ANCHOR_HERO_H2 = ('<h2 data-nl="Snel je rijbewijs halen? <span class=\'accent\'>Check!</span>"')
 
 
 class BuildFout(Exception):
@@ -103,6 +104,83 @@ def extraheer_afbeeldingen(h, img_dir):
     return IMG_RE.sub(sub, h), len(cache)
 
 
+# ---------- hero-foto's: elk apparaat laadt alleen wat het toont ----------
+# Desktop (>=1025px) toont .stp-clean; mobiel/tablet (<=1024px) toont .stp-s2 (boven) + .stp-city.
+# <picture> met een 1x1-pixel voor het andere formaat: zo downloadt een telefoon de desktopfoto niet
+# en andersom. display:contents = de <picture> verandert niets aan de opmaak.
+LEEG = "data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20width=%271%27%20height=%271%27/%3E"   # 1x1, geen download
+MQ_KLEIN, MQ_GROOT = "(max-width:1024px)", "(min-width:1025px)"
+VARIANT_DIR = "img-v"          # kleinere versies van .stp-s2 (in de repo; bestandsnaam = hash van het origineel)
+VARIANT_BREEDTES = (640, 960, 1280)
+
+
+def optimaliseer_hero(h, wat):
+    def tag(cls):
+        m = re.search(r'<img class="' + re.escape(cls) + r'"[^>]*>', h) or \
+            re.search(r'<img [^>]*class="' + re.escape(cls) + r'"[^>]*>', h)
+        if not m:
+            raise BuildFout(f"{wat}: hero-foto {cls} niet gevonden")
+        return m.group(0)
+
+    t_s2, t_clean, t_city = tag("stp-slide stp-s2"), tag("stp-clean"), tag("stp-city")
+    src = lambda t: re.search(r'src="(/img/[^"]+)"', t).group(1)
+    s2, clean, city = src(t_s2), src(t_clean), src(t_city)
+
+    # srcset voor .stp-s2 als de kleinere versies bestaan
+    naam = os.path.splitext(os.path.basename(s2))[0]
+    varianten = [(f"/{VARIANT_DIR}/{naam}-{w}.webp", w) for w in VARIANT_BREEDTES
+                 if os.path.exists(os.path.join(ROOT, VARIANT_DIR, f"{naam}-{w}.webp"))]
+    s2_srcset = ", ".join(f"{u} {w}w" for u, w in varianten + [(s2, 1672)]) if varianten else ""
+
+    # telefoon (<=600px): .stp-city als uitsnede = precies het deel dat je ziet (zelfde pixels, half zo groot)
+    naam_c = os.path.splitext(os.path.basename(city))[0]
+    city_m = f"/{VARIANT_DIR}/{naam_c}-m.webp" if os.path.exists(os.path.join(ROOT, VARIANT_DIR, f"{naam_c}-m.webp")) else ""
+
+    nieuw_s2 = t_s2
+    if s2_srcset:
+        nieuw_s2 = nieuw_s2.replace(f'src="{s2}"', f'src="{s2}" srcset="{s2_srcset}" sizes="100vw"')
+    nieuw_clean = re.sub(r'\s(loading="lazy"|fetchpriority="low")', "", t_clean)
+    nieuw_clean = nieuw_clean.replace("<img ", '<img fetchpriority="high" ', 1)
+    nieuw_city = t_city.replace("<img ", '<img fetchpriority="high" ', 1)
+
+    pic = lambda media, img: (f'<picture style="display:contents"><source media="{media}" srcset="{LEEG}">'
+                              f'{img}</picture>')
+    pic_city = pic(MQ_GROOT, nieuw_city)
+    if city_m:
+        pic_city = pic_city.replace("<img ", f'<source media="(max-width:600px)" srcset="{city_m}"><img ', 1)
+    for oud, nieuw in ((t_s2, pic(MQ_GROOT, nieuw_s2)), (t_clean, pic(MQ_KLEIN, nieuw_clean)),
+                       (t_city, pic_city)):
+        if h.count(oud) != 1:
+            raise BuildFout(f"{wat}: hero-foto niet precies 1x gevonden")
+        h = h.replace(oud, nieuw)
+
+    # preload per schermformaat (oude algemene preload vervalt)
+    pre_s2 = (f'<link rel="preload" as="image" href="{s2}" imagesrcset="{s2_srcset}" imagesizes="100vw" '
+              if s2_srcset else f'<link rel="preload" as="image" href="{s2}" ')
+    pre = (pre_s2 + f'media="{MQ_KLEIN}" fetchpriority="high">\n'
+           + (f'<link rel="preload" as="image" href="{city_m}" media="(max-width:600px)" fetchpriority="high">\n'
+              f'<link rel="preload" as="image" href="{city}" media="(min-width:601px) and (max-width:1024px)" fetchpriority="high">\n'
+              if city_m else
+              f'<link rel="preload" as="image" href="{city}" media="{MQ_KLEIN}" fetchpriority="high">\n') +
+           f'<link rel="preload" as="image" href="{clean}" media="{MQ_GROOT}" fetchpriority="high">\n')
+    h = h.replace("</head>", pre + "</head>", 1)
+
+    # achtergrondfoto van .hero (pakketten-sectie) pas laden als die sectie in beeld komt
+    m = re.search(r"(\.hero::before\{[^}]*?background:\s*)(linear-gradient\([^;]*?\)\)),\s*"
+                  r"(url\('/img/[^']+'\)[^;]*);", h)
+    if not m:
+        raise BuildFout(f"{wat}: .hero::before-achtergrond niet gevonden")
+    h = h[:m.start()] + m.group(1) + m.group(2) + ";" + h[m.end():]
+    h = h.replace("</head>", "<style>.hero.wm-bg::before{background:" + m.group(2) + ", " + m.group(3) +
+                  ";}</style>\n</head>", 1)
+    js = ("<script>(function(){var l=document.querySelectorAll('.hero');function on(e){e.classList.add('wm-bg');}"
+          "if(!('IntersectionObserver' in window)){l.forEach(on);return;}"
+          "var o=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){on(x.target);"
+          "o.unobserve(x.target);}});},{rootMargin:'800px 0px'});l.forEach(function(e){o.observe(e);});})();</script>")
+    h = h.replace("</body>", js + "\n</body>", 1)
+    return h
+
+
 # ---------- stadsblok ----------
 CSS = """<style>
 /* stadspagina (build.py) */
@@ -116,6 +194,14 @@ CSS = """<style>
 .city-faq details p{margin:8px 0 0;line-height:1.55}
 .city-near{margin-top:14px;font-size:14px;color:#17354d;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline}
 .city-near a{color:#b74c09;font-weight:700}
+/* stadsnaam bovenaan in de hero (Quality Score: zoekwoord direct zichtbaar) */
+#zowerkt .stp-intro h1.stp-kicker{display:inline-block;margin:0 0 6px;padding:3px 10px 3px 8px;border-radius:999px;
+  background:rgba(255,255,255,.92);color:#b74c09;font-size:15px;line-height:1.3;font-weight:800;letter-spacing:0;
+  box-shadow:0 2px 8px -4px rgba(11,27,46,.35);white-space:normal}
+#zowerkt .stp-intro h1.stp-kicker::before{content:"📍 ";}
+/* tablet/mobiel: de kop staat daar in de foto en de aanmeldkaart toont al "Rijles in <stad>" -> kicker alleen voor Google/schermlezers */
+@media(max-width:1024px){#zowerkt .stp-intro h1.stp-kicker{position:absolute!important;width:1px!important;height:1px!important;
+  padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;box-shadow:none!important}}
 </style>"""
 
 
@@ -129,7 +215,7 @@ def stadsblok(s):
     buren = "".join(f'<a href="{e(u)}">{e(t)}</a>' for t, u in s["buren"])
     return (
         f'<section class="city-sec" id="rijles-in-{e(s["slug"])}"><div class="container">\n'
-        f'<h1 class="city-title" data-nl="Rijschool {e(n)}" data-en="Driving school {e(n)}">Rijschool {e(n)}</h1>\n'
+        f'<h2 class="city-title" data-nl="Rijschool {e(n)}" data-en="Driving school {e(n)}">Rijschool {e(n)}</h2>\n'
         f'<p class="city-pickup" data-nl="📍 Wij halen je thuis op in {e(ni)}" '
         f'data-en="📍 We pick you up at home in {e(s.get("in_naam_en", ni))}">📍 Wij halen je thuis op in {e(ni)}</p>\n'
         f'<p class="city-lead" data-nl="{e(s["intro_nl"])}" data-en="{e(s["intro_en"])}">{e(s["intro_nl"])}</p>\n'
@@ -201,6 +287,10 @@ def bouw_stad(bron, s, img_dir):
     h = vervang_een(h, ANCHOR_PAKKETTEN,
                     f'<h2 class="hero-national" data-nl="Auto lespakketten in {e(ni)}" '
                     f'data-en="Car lesson packages in {e(ne)}">Auto lespakketten in {e(ni)}</h2>', "kop pakketten")
+    # stadsnaam bovenaan in de hero, als <h1> (de h1 in het stadsblok wordt een h2)
+    h = vervang_een(h, ANCHOR_HERO_H2,
+                    f'<h1 class="stp-kicker" data-nl="Rijschool {e(n)}" data-en="Driving school {e(n)}">'
+                    f'Rijschool {e(n)}</h1>\n        ' + ANCHOR_HERO_H2, "stadsnaam in hero")
     # volgorde: pakketten > geslaagden (foto's) > reviews > stadsblok > rest
     h = vervang_een(h, ANCHOR_NA_REVIEWS, stadsblok(s) + ANCHOR_NA_REVIEWS, "sectie na reviews")
 
@@ -239,9 +329,7 @@ def bouw_stad(bron, s, img_dir):
     h = re.sub(r'<img(?![^>]*fetchpriority)([^>]*loading="lazy")', r'<img fetchpriority="low"\1', h)
 
     # hero-afbeelding (LCP) direct laten laden: preload in <head>
-    m = re.search(r'<img[^>]*fetchpriority="high"[^>]*src="(/img/[^"]+)"', h)
-    if m:
-        h = h.replace("</head>", f'<link rel="preload" as="image" href="{m.group(1)}" fetchpriority="high">\n</head>', 1)
+    h = optimaliseer_hero(h, f"rijschool-{slug}")
 
     # controles
     for t in TRACKING:
@@ -298,9 +386,7 @@ def bouw_dienst(bron, d, img_dir):
 
     h, aantal_img = extraheer_afbeeldingen(h, img_dir)
     h = re.sub(r'<img(?![^>]*fetchpriority)([^>]*loading="lazy")', r'<img fetchpriority="low"\1', h)
-    m = re.search(r'<img[^>]*fetchpriority="high"[^>]*src="(/img/[^"]+)"', h)
-    if m:
-        h = h.replace("</head>", f'<link rel="preload" as="image" href="{m.group(1)}" fetchpriority="high">\n</head>', 1)
+    h = optimaliseer_hero(h, naam)
 
     for t in TRACKING:
         if t not in h:
@@ -319,9 +405,7 @@ def bouw_home(bron, img_dir):
     h = bron
     h, aantal_img = extraheer_afbeeldingen(h, img_dir)
     h = re.sub(r'<img(?![^>]*fetchpriority)([^>]*loading="lazy")', r'<img fetchpriority="low"\1', h)
-    m = re.search(r'<img[^>]*fetchpriority="high"[^>]*src="(/img/[^"]+)"', h)
-    if m:
-        h = h.replace("</head>", f'<link rel="preload" as="image" href="{m.group(1)}" fetchpriority="high">\n</head>', 1)
+    h = optimaliseer_hero(h, "homepage")
     for t in TRACKING:
         if t not in h:
             raise BuildFout(f"Tracking ontbreekt op homepage: {t}")

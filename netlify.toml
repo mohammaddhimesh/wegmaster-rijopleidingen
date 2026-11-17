@@ -7,3 +7,9 @@
   for = "/img/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# Kleinere versies van de hero-foto (bestandsnaam = hash van het origineel)
+[[headers]]
+  for = "/img-v/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
