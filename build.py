@@ -132,6 +132,10 @@ def optimaliseer_hero(h, wat):
                  if os.path.exists(os.path.join(ROOT, VARIANT_DIR, f"{naam}-{w}.webp"))]
     s2_srcset = ", ".join(f"{u} {w}w" for u, w in varianten + [(s2, 1672)]) if varianten else ""
 
+    # telefoon (<=600px): .stp-city als uitsnede = precies het deel dat je ziet (zelfde pixels, half zo groot)
+    naam_c = os.path.splitext(os.path.basename(city))[0]
+    city_m = f"/{VARIANT_DIR}/{naam_c}-m.webp" if os.path.exists(os.path.join(ROOT, VARIANT_DIR, f"{naam_c}-m.webp")) else ""
+
     nieuw_s2 = t_s2
     if s2_srcset:
         nieuw_s2 = nieuw_s2.replace(f'src="{s2}"', f'src="{s2}" srcset="{s2_srcset}" sizes="100vw"')
@@ -141,8 +145,11 @@ def optimaliseer_hero(h, wat):
 
     pic = lambda media, img: (f'<picture style="display:contents"><source media="{media}" srcset="{LEEG}">'
                               f'{img}</picture>')
+    pic_city = pic(MQ_GROOT, nieuw_city)
+    if city_m:
+        pic_city = pic_city.replace("<img ", f'<source media="(max-width:600px)" srcset="{city_m}"><img ', 1)
     for oud, nieuw in ((t_s2, pic(MQ_GROOT, nieuw_s2)), (t_clean, pic(MQ_KLEIN, nieuw_clean)),
-                       (t_city, pic(MQ_GROOT, nieuw_city))):
+                       (t_city, pic_city)):
         if h.count(oud) != 1:
             raise BuildFout(f"{wat}: hero-foto niet precies 1x gevonden")
         h = h.replace(oud, nieuw)
@@ -151,7 +158,10 @@ def optimaliseer_hero(h, wat):
     pre_s2 = (f'<link rel="preload" as="image" href="{s2}" imagesrcset="{s2_srcset}" imagesizes="100vw" '
               if s2_srcset else f'<link rel="preload" as="image" href="{s2}" ')
     pre = (pre_s2 + f'media="{MQ_KLEIN}" fetchpriority="high">\n'
-           f'<link rel="preload" as="image" href="{city}" media="{MQ_KLEIN}" fetchpriority="high">\n'
+           + (f'<link rel="preload" as="image" href="{city_m}" media="(max-width:600px)" fetchpriority="high">\n'
+              f'<link rel="preload" as="image" href="{city}" media="(min-width:601px) and (max-width:1024px)" fetchpriority="high">\n'
+              if city_m else
+              f'<link rel="preload" as="image" href="{city}" media="{MQ_KLEIN}" fetchpriority="high">\n') +
            f'<link rel="preload" as="image" href="{clean}" media="{MQ_GROOT}" fetchpriority="high">\n')
     h = h.replace("</head>", pre + "</head>", 1)
 
