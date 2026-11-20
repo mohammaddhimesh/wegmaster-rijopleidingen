@@ -636,8 +636,8 @@
         52.26,
         5.22
       ],
-      "intro_nl": "Wij geven rijles in Hilversum, Huizen, Bussum, Naarden, Laren, Blaricum en Eemnes, in een automaat of een schakelauto. Je praktijkexamen doe je bij CBR Eemnes, in dezelfde lesauto waarin je les hebt gehad. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les.",
-      "intro_en": "We give driving lessons in Hilversum, Huizen, Bussum, Naarden, Laren, Blaricum and Eemnes, in an automatic or a manual car. You take your practical exam at CBR Eemnes, in the same lesson car you practised in. Sign up today and you drive your first lesson within 1 to 2 days.",
+      "intro_nl": "Wij geven rijles in Hilversum, Huizen, Bussum, Naarden, Laren, Blaricum en Eemnes, in een automaat of een schakelauto. We trainen in heel het Gooi, waar je ook examen doet: je praktijkexamen rijd je bij CBR Eemnes, in dezelfde lesauto waarin je les hebt gehad. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les.",
+      "intro_en": "We give driving lessons in Hilversum, Huizen, Bussum, Naarden, Laren, Blaricum and Eemnes, in an automatic or a manual car. We train across the whole Gooi region, where you also take your exam: you drive your practical exam at CBR Eemnes, in the same lesson car you practised in. Sign up today and you drive your first lesson within 1 to 2 days.",
       "faq": [
         {
           "q_nl": "In welke plaatsen in het Gooi geven jullie rijles?",
@@ -720,44 +720,44 @@
           "id": "hilversum",
           "naam": "Hilversum",
           "link": "/rijschool-hilversum",
-          "nl": "We halen je thuis op in Hilversum, of je stapt in bij station Hilversum. We rijden altijd naar CBR Eemnes en oefenen vanaf daar op de examenroutes in heel het Gooi.",
-          "en": "We pick you up at home in Hilversum, or you get in at Hilversum station. We always drive to CBR Eemnes and from there practise on the exam routes across the whole Gooi region."
+          "nl": "We halen je thuis op in Hilversum, of je stapt in bij station Hilversum.",
+          "en": "We pick you up at home in Hilversum, or you get in at Hilversum station."
         },
         {
           "id": "huizen",
           "naam": "Huizen",
-          "nl": "We halen je thuis op in Huizen. We rijden altijd naar CBR Eemnes en oefenen vanaf daar op de examenroutes in heel het Gooi.",
-          "en": "We pick you up at home in Huizen. We always drive to CBR Eemnes and from there practise on the exam routes across the whole Gooi region."
+          "nl": "We halen je thuis op in Huizen.",
+          "en": "We pick you up at home in Huizen."
         },
         {
           "id": "bussum",
           "naam": "Bussum",
-          "nl": "We halen je thuis op in Bussum, of je stapt in bij station Naarden-Bussum. We rijden altijd naar CBR Eemnes en oefenen vanaf daar op de examenroutes in heel het Gooi.",
-          "en": "We pick you up at home in Bussum, or you get in at Naarden-Bussum station. We always drive to CBR Eemnes and from there practise on the exam routes across the whole Gooi region."
+          "nl": "We halen je thuis op in Bussum, of je stapt in bij station Naarden-Bussum.",
+          "en": "We pick you up at home in Bussum, or you get in at Naarden-Bussum station."
         },
         {
           "id": "naarden",
           "naam": "Naarden",
-          "nl": "We halen je thuis op in Naarden, of je stapt in bij station Naarden-Bussum. We rijden altijd naar CBR Eemnes en oefenen vanaf daar op de examenroutes in heel het Gooi.",
-          "en": "We pick you up at home in Naarden, or you get in at Naarden-Bussum station. We always drive to CBR Eemnes and from there practise on the exam routes across the whole Gooi region."
+          "nl": "We halen je thuis op in Naarden, of je stapt in bij station Naarden-Bussum.",
+          "en": "We pick you up at home in Naarden, or you get in at Naarden-Bussum station."
         },
         {
           "id": "laren",
           "naam": "Laren",
-          "nl": "We halen je thuis op in Laren. We rijden altijd naar CBR Eemnes en oefenen vanaf daar op de examenroutes in heel het Gooi.",
-          "en": "We pick you up at home in Laren. We always drive to CBR Eemnes and from there practise on the exam routes across the whole Gooi region."
+          "nl": "We halen je thuis op in Laren.",
+          "en": "We pick you up at home in Laren."
         },
         {
           "id": "blaricum",
           "naam": "Blaricum",
-          "nl": "We halen je thuis op in Blaricum. We rijden altijd naar CBR Eemnes en oefenen vanaf daar op de examenroutes in heel het Gooi.",
-          "en": "We pick you up at home in Blaricum. We always drive to CBR Eemnes and from there practise on the exam routes across the whole Gooi region."
+          "nl": "We halen je thuis op in Blaricum.",
+          "en": "We pick you up at home in Blaricum."
         },
         {
           "id": "eemnes",
           "naam": "Eemnes",
-          "nl": "We halen je thuis op in Eemnes. CBR Eemnes ligt om de hoek: vanaf daar oefenen we op de examenroutes in heel het Gooi.",
-          "en": "We pick you up at home in Eemnes. CBR Eemnes is around the corner: from there we practise on the exam routes across the whole Gooi region."
+          "nl": "We halen je thuis op in Eemnes.",
+          "en": "We pick you up at home in Eemnes."
         }
       ]
     },
