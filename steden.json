@@ -714,7 +714,52 @@
         ]
       ],
       "kort_naam": "het Gooi",
-      "kort_naam_en": "the Gooi"
+      "kort_naam_en": "the Gooi",
+      "dorpen": [
+        {
+          "id": "hilversum",
+          "naam": "Hilversum",
+          "link": "/rijschool-hilversum",
+          "nl": "We halen je thuis op in Hilversum, of je stapt in bij station Hilversum. Je oefent in het drukke centrum, op de vele rotondes en op de A27 richting CBR Eemnes.",
+          "en": "We pick you up at home in Hilversum, or you get in at Hilversum station. You practise in the busy centre, on the many roundabouts and on the A27 towards CBR Eemnes."
+        },
+        {
+          "id": "huizen",
+          "naam": "Huizen",
+          "nl": "We halen je thuis op in Huizen. Vanuit Huizen ben je snel bij CBR Eemnes, dus je oefent vaak op de routes die je ook op je examen rijdt.",
+          "en": "We pick you up at home in Huizen. From Huizen you are close to CBR Eemnes, so you often practise on the routes you also drive in your exam."
+        },
+        {
+          "id": "bussum",
+          "naam": "Bussum",
+          "nl": "We halen je thuis op in Bussum, of je stapt in bij station Naarden-Bussum. Je oefent in de smalle straten van het centrum en op de A1.",
+          "en": "We pick you up at home in Bussum, or you get in at Naarden-Bussum station. You practise in the narrow streets of the centre and on the A1."
+        },
+        {
+          "id": "naarden",
+          "naam": "Naarden",
+          "nl": "We halen je thuis op in Naarden, of je stapt in bij station Naarden-Bussum. De A1 ligt om de hoek, dus snelweg rijden oefen je hier vanaf het begin.",
+          "en": "We pick you up at home in Naarden, or you get in at Naarden-Bussum station. The A1 is around the corner, so you practise motorway driving from the start."
+        },
+        {
+          "id": "laren",
+          "naam": "Laren",
+          "nl": "We halen je thuis op in Laren. Je oefent op rustige dorpswegen en op de A1, en CBR Eemnes ligt dichtbij.",
+          "en": "We pick you up at home in Laren. You practise on quiet village roads and on the A1, and CBR Eemnes is close by."
+        },
+        {
+          "id": "blaricum",
+          "naam": "Blaricum",
+          "nl": "We halen je thuis op in Blaricum. Je oefent op de wegen naar Huizen en Eemnes, en op de A1 en A27.",
+          "en": "We pick you up at home in Blaricum. You practise on the roads to Huizen and Eemnes, and on the A1 and A27."
+        },
+        {
+          "id": "eemnes",
+          "naam": "Eemnes",
+          "nl": "We halen je thuis op in Eemnes. Je praktijkexamen doe je bij CBR Eemnes, dus je kent de examenroutes al voordat je afrijdt.",
+          "en": "We pick you up at home in Eemnes. You take your practical exam at CBR Eemnes, so you already know the exam routes before your test."
+        }
+      ]
     },
     {
       "slug": "hilversum",

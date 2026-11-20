@@ -202,7 +202,38 @@ CSS = """<style>
 /* tablet/mobiel: de kop staat daar in de foto en de aanmeldkaart toont al "Rijles in <stad>" -> kicker alleen voor Google/schermlezers */
 @media(max-width:1024px){#zowerkt .stp-intro h1.stp-kicker{position:absolute!important;width:1px!important;height:1px!important;
   padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;box-shadow:none!important}}
+.dorp-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.dorp-chips a{background:#fff;border:1px solid #cddae5;border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#17354d;text-decoration:none}
+.dorp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:0 0 22px}
+.dorp-kaart{background:#fff;border:1px solid #cddae5;border-radius:14px;padding:16px;scroll-margin-top:90px}
+.dorp-kaart h3{margin:0 0 6px;font-size:19px;color:#17354d}
+.dorp-kaart p{margin:0 0 12px;line-height:1.55;font-size:15px;color:#17354d}
+.dorp-knoppen{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.dorp-cta{background:#e8600a;color:#fff;border-radius:10px;padding:9px 14px;font-weight:700;font-size:14px;text-decoration:none}
+.dorp-meer{color:#b74c09;font-weight:700;font-size:14px}
 </style>"""
+
+
+def dorpenblok(s):
+    """Optioneel (steden.json "dorpen"): per plaats een kaart, met snelknoppen erboven."""
+    dorpen = s.get("dorpen") or []
+    if not dorpen:
+        return ""
+    chips = "".join(f'<a href="#dorp-{e(d["id"])}">{e(d["naam"])}</a>' for d in dorpen)
+    kaarten = ""
+    for d in dorpen:
+        n = e(d["naam"])
+        meer = (f'<a class="dorp-meer" href="{e(d["link"])}" data-nl="Meer over {n}" '
+                f'data-en="More about {n}">Meer over {n}</a>' if d.get("link") else "")
+        kaarten += (
+            f'<div class="dorp-kaart" id="dorp-{e(d["id"])}">'
+            f'<h3 data-nl="Rijles in {n}" data-en="Driving lessons in {n}">Rijles in {n}</h3>'
+            f'<p data-nl="{e(d["nl"])}" data-en="{e(d["en"])}">{e(d["nl"])}</p>'
+            f'<div class="dorp-knoppen"><a class="dorp-cta" href="#register" '
+            f'data-nl="Aanmelden in {n}" data-en="Sign up in {n}">Aanmelden in {n}</a>{meer}</div>'
+            f'</div>')
+    return (f'<div class="dorp-chips">{chips}</div>\n'
+            f'<div class="dorp-grid">{kaarten}</div>\n')
 
 
 def stadsblok(s):
@@ -219,7 +250,8 @@ def stadsblok(s):
         f'<p class="city-pickup" data-nl="📍 Wij halen je thuis op in {e(ni)}" '
         f'data-en="📍 We pick you up at home in {e(s.get("in_naam_en", ni))}">📍 Wij halen je thuis op in {e(ni)}</p>\n'
         f'<p class="city-lead" data-nl="{e(s["intro_nl"])}" data-en="{e(s["intro_en"])}">{e(s["intro_nl"])}</p>\n'
-        f'<div class="city-faq">{faq}</div>\n'
+        + dorpenblok(s)
+        + f'<div class="city-faq">{faq}</div>\n'
         + (f'<div class="city-near"><span data-nl="Ook rijles in de buurt:" data-en="Also lessons nearby:">'
            f'Ook rijles in de buurt:</span> {buren}</div>\n' if buren else '')
         + '</div></section>\n'
