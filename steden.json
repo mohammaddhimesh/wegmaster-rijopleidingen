@@ -664,12 +664,7 @@
           "a_en": "Most students are ready for their test after about 3 months."
         }
       ],
-      "buren": [
-        [
-          "Hilversum",
-          "/rijschool-hilversum"
-        ]
-      ],
+      "buren": [],
       "footer_plaatsen": [
         "Hilversum",
         "Huizen",
@@ -719,7 +714,6 @@
         {
           "id": "hilversum",
           "naam": "Hilversum",
-          "link": "/rijschool-hilversum",
           "nl": "We halen je thuis op in Hilversum, of je stapt in bij station Hilversum.",
           "en": "We pick you up at home in Hilversum, or you get in at Hilversum station."
         },

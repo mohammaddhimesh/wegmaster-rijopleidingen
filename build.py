@@ -215,11 +215,10 @@ CSS = """<style>
 
 
 def dorpenblok(s):
-    """Optioneel (steden.json "dorpen"): per plaats een kaart, met snelknoppen erboven."""
+    """Optioneel (steden.json "dorpen"): per plaats een kaart."""
     dorpen = s.get("dorpen") or []
     if not dorpen:
         return ""
-    chips = "".join(f'<a href="#dorp-{e(d["id"])}">{e(d["naam"])}</a>' for d in dorpen)
     kaarten = ""
     for d in dorpen:
         n = e(d["naam"])
@@ -232,8 +231,7 @@ def dorpenblok(s):
             f'<div class="dorp-knoppen"><a class="dorp-cta" href="#register" '
             f'data-nl="Aanmelden in {n}" data-en="Sign up in {n}">Aanmelden in {n}</a>{meer}</div>'
             f'</div>')
-    return (f'<div class="dorp-chips">{chips}</div>\n'
-            f'<div class="dorp-grid">{kaarten}</div>\n')
+    return f'<div class="dorp-grid">{kaarten}</div>\n'
 
 
 def stadsblok(s):
