@@ -1,5 +1,7 @@
 # Verre steden zonder echte lessen: doorsturen naar home
-# (Gooi-plaatsen gaan naar /rijschool-gooi; Hilversum heeft een eigen pagina)
+# (Gooi-plaatsen, ook Hilversum, gaan naar /rijschool-gooi)
+/rijschool-hilversum   /rijschool-gooi   301!
+/rijschool-hilversum.html   /rijschool-gooi   301!
 /rijschool-almere        /   301!
 /rijschool-almere.html   /   301!
 /rijschool-almere-stad        /   301!
