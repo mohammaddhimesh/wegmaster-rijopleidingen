@@ -2,7 +2,7 @@
    - Google Ads / GA4: altijd aan (consent standaard 'granted'), geen cookiebanner.
    - Microsoft Clarity: laadt altijd, met cookies.
    - Eigenaar-schakelaar: open 1x  /?owner=1  op je eigen telefoon/pc
-     -> Clarity laadt daar nooit meer (jij wordt niet opgenomen).
+     -> Clarity laadt daar nooit meer en GA4 telt je niet mee.
      Ongedaan maken: /?owner=0                                               */
 (function () {
   var OWNER_KEY = 'wm_owner';
@@ -24,6 +24,9 @@
     if (qs.get('owner') === '0') del(OWNER_KEY);
   } catch (e) {}
   var isOwner = read(OWNER_KEY) === '1';
+
+  // Eigenaar telt ook niet mee in Google Analytics 4 (Google Ads-conversies blijven gewoon werken)
+  if (isOwner) { window['ga-disable-G-RQ52QDSQX7'] = true; }
 
   // ---- Google Consent Mode v2: alles toegestaan ----
   gtag('consent', 'default', {
