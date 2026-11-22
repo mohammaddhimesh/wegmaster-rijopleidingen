@@ -135,6 +135,10 @@ def optimaliseer_hero(h, wat):
     # telefoon (<=600px): .stp-city als uitsnede = precies het deel dat je ziet (zelfde pixels, half zo groot)
     naam_c = os.path.splitext(os.path.basename(city))[0]
     city_m = f"/{VARIANT_DIR}/{naam_c}-m.webp" if os.path.exists(os.path.join(ROOT, VARIANT_DIR, f"{naam_c}-m.webp")) else ""
+    # nog kleinere versie van die uitsnede (voor telefoons met minder pixels)
+    city_m720 = f"/{VARIANT_DIR}/{naam_c}-m-720.webp" if city_m and os.path.exists(
+        os.path.join(ROOT, VARIANT_DIR, f"{naam_c}-m-720.webp")) else ""
+    city_m_set = f"{city_m720} 720w, {city_m} 855w" if city_m720 else city_m
 
     nieuw_s2 = t_s2
     if s2_srcset:
@@ -147,7 +151,8 @@ def optimaliseer_hero(h, wat):
                               f'{img}</picture>')
     pic_city = pic(MQ_GROOT, nieuw_city)
     if city_m:
-        pic_city = pic_city.replace("<img ", f'<source media="(max-width:600px)" srcset="{city_m}"><img ', 1)
+        pic_city = pic_city.replace("<img ", f'<source media="(max-width:600px)" srcset="{city_m_set}"'
+                                    + (' sizes="100vw"' if city_m720 else '') + '><img ', 1)
     for oud, nieuw in ((t_s2, pic(MQ_GROOT, nieuw_s2)), (t_clean, pic(MQ_KLEIN, nieuw_clean)),
                        (t_city, pic_city)):
         if h.count(oud) != 1:
@@ -158,7 +163,9 @@ def optimaliseer_hero(h, wat):
     pre_s2 = (f'<link rel="preload" as="image" href="{s2}" imagesrcset="{s2_srcset}" imagesizes="100vw" '
               if s2_srcset else f'<link rel="preload" as="image" href="{s2}" ')
     pre = (pre_s2 + f'media="{MQ_KLEIN}" fetchpriority="high">\n'
-           + (f'<link rel="preload" as="image" href="{city_m}" media="(max-width:600px)" fetchpriority="high">\n'
+           + (f'<link rel="preload" as="image" href="{city_m}" '
+              + (f'imagesrcset="{city_m_set}" imagesizes="100vw" ' if city_m720 else '')
+              + 'media="(max-width:600px)" fetchpriority="high">\n'
               f'<link rel="preload" as="image" href="{city}" media="(min-width:601px) and (max-width:1024px)" fetchpriority="high">\n'
               if city_m else
               f'<link rel="preload" as="image" href="{city}" media="{MQ_KLEIN}" fetchpriority="high">\n') +
@@ -178,6 +185,41 @@ def optimaliseer_hero(h, wat):
           "var o=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){on(x.target);"
           "o.unobserve(x.target);}});},{rootMargin:'800px 0px'});l.forEach(function(e){o.observe(e);});})();</script>")
     h = h.replace("</body>", js + "\n</body>", 1)
+    return h
+
+
+
+# ---------- kleinere foto's (versies in img-v/, gemaakt met Pillow en in de repo gezet) ----------
+# Bestaat er een kleinere versie van een foto, dan gebruikt de pagina die. Verandert een foto in
+# index.html, dan krijgt die een nieuwe naam (hash) en gebruikt de pagina gewoon het origineel.
+def variant(naam):
+    return os.path.exists(os.path.join(ROOT, VARIANT_DIR, naam))
+
+
+def gebruik_varianten(h, wat):
+    # 1) foto's van geslaagden (480x600 jpg, getoond op ~220px breed): 400px WebP
+    def kaart(m):
+        t, hsh = m.group(0), m.group(1)
+        if "srcset=" in t or not variant(f"{hsh}-400.webp"):
+            return t
+        v = f"/{VARIANT_DIR}/{hsh}-400.webp"
+        return t.replace(f'src="/img/{hsh}.jpg"',
+                         f'src="{v}" srcset="{v} 400w, /img/{hsh}.jpg 480w" sizes="220px"')
+    h = re.sub(r'<img [^>]*src="/img/([0-9a-f]{12})\.jpg"[^>]*>', kaart, h)
+
+    # 2) persoon in de hero (1000x1000): 600px versie voor telefoons
+    m = re.search(r'<img class="stp-person" src="/img/([0-9a-f]{12})\.webp"', h)
+    if m and variant(f"{m.group(1)}-600.webp"):
+        hsh = m.group(1)
+        h = h.replace(m.group(0), m.group(0) + f' srcset="/{VARIANT_DIR}/{hsh}-600.webp 600w, /img/{hsh}.webp 1000w"'
+                      ' sizes="(max-width:1024px) 77vw, min(46vw, 700px)"', 1)
+
+    # 3) achtergrond van de pakketten-sectie: 800px WebP op telefoon/tablet
+    m = re.search(r"<style>\.hero\.wm-bg::before\{background:(.*?), url\('/img/([0-9a-f]{12})\.jpg'\)([^;]*);\}</style>", h)
+    if m and variant(f"{m.group(2)}-800.webp"):
+        extra = ("<style>@media(max-width:900px){.hero.wm-bg::before{background:" + m.group(1) +
+                 f", url('/{VARIANT_DIR}/{m.group(2)}-800.webp')" + m.group(3) + ";}}</style>")
+        h = h.replace(m.group(0), m.group(0) + extra, 1)
     return h
 
 
@@ -417,6 +459,7 @@ def bouw_stad(bron, s, img_dir):
 
     # hero-afbeelding (LCP) direct laten laden: preload in <head>
     h = optimaliseer_hero(h, f"rijschool-{slug}")
+    h = gebruik_varianten(h, f"rijschool-{slug}")
 
     # controles
     for t in TRACKING:
@@ -497,6 +540,7 @@ def bouw_dienst(bron, d, img_dir):
     h, aantal_img = extraheer_afbeeldingen(h, img_dir)
     h = re.sub(r'<img(?![^>]*fetchpriority)([^>]*loading="lazy")', r'<img fetchpriority="low"\1', h)
     h = optimaliseer_hero(h, naam)
+    h = gebruik_varianten(h, naam)
 
     for t in TRACKING:
         if t not in h:
@@ -518,6 +562,7 @@ def bouw_home(bron, img_dir):
     h, aantal_img = extraheer_afbeeldingen(h, img_dir)
     h = re.sub(r'<img(?![^>]*fetchpriority)([^>]*loading="lazy")', r'<img fetchpriority="low"\1', h)
     h = optimaliseer_hero(h, "homepage")
+    h = gebruik_varianten(h, "homepage")
     for t in TRACKING:
         if t not in h:
             raise BuildFout(f"Tracking ontbreekt op homepage: {t}")
