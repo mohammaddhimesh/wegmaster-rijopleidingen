@@ -475,7 +475,6 @@ def bouw_stad(bron, s, img_dir):
     # hero-afbeelding (LCP) direct laten laden: preload in <head>
     h = optimaliseer_hero(h, f"rijschool-{slug}")
     h = gebruik_varianten(h, f"rijschool-{slug}")
-    h = consent_inline(h, f"rijschool-{slug}")
 
     # controles
     for t in TRACKING:
@@ -557,7 +556,6 @@ def bouw_dienst(bron, d, img_dir):
     h = re.sub(r'<img(?![^>]*fetchpriority)([^>]*loading="lazy")', r'<img fetchpriority="low"\1', h)
     h = optimaliseer_hero(h, naam)
     h = gebruik_varianten(h, naam)
-    h = consent_inline(h, naam)
 
     for t in TRACKING:
         if t not in h:
@@ -580,7 +578,6 @@ def bouw_home(bron, img_dir):
     h = re.sub(r'<img(?![^>]*fetchpriority)([^>]*loading="lazy")', r'<img fetchpriority="low"\1', h)
     h = optimaliseer_hero(h, "homepage")
     h = gebruik_varianten(h, "homepage")
-    h = consent_inline(h, "homepage")
     for t in TRACKING:
         if t not in h:
             raise BuildFout(f"Tracking ontbreekt op homepage: {t}")
