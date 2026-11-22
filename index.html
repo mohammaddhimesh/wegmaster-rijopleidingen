@@ -611,6 +611,8 @@
   .mission-band .eyebrow{justify-content:center;margin-bottom:14px;}
   .mission-band h2{font-size:clamp(22px,3vw,28px);color:var(--blue-500);}
   .mission-band p{margin-top:14px;font-size:15.5px;line-height:1.65;color:var(--ink-soft);}
+.mission-band--instructor .mission-band__icon{background:#fff;border-radius:50%;border:3px solid #F3801E;box-shadow:0 6px 18px -6px rgba(243,128,30,.55);}
+.mission-band--instructor .mission-band__icon svg{width:34px;height:34px;}
 .mission-band .mission-list{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px;text-align:left}
 .mission-band .mission-list li{position:relative;padding-left:30px;font-size:15.5px;line-height:1.5;color:var(--ink);font-weight:600}
 .mission-band .mission-list li::before{content:"";position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;background:var(--orange-400) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/12px no-repeat}
@@ -2317,7 +2319,7 @@ html.is-admin.kb-open .admin-toggle{display:none!important;}
           <p id="missionBody" data-nl="Professionele, vakkundige rijinstructeurs, en gewoon betaalbaar." data-en="Professional, skilled driving instructors, and simply affordable.">Professionele, vakkundige rijinstructeurs, en gewoon betaalbaar.</p>
           <ul class="mission-list">
             <li data-nl="Gratis proefles" data-en="Free trial lesson">Gratis proefles</li>
-            <li data-nl="Gratis herexamen (als je instructeur je examenklaar vindt)" data-en="Free re-exam (when your instructor says you're ready)">Gratis herexamen (als je instructeur je examenklaar vindt)</li>
+            <li data-nl="Gratis herexamen" data-en="Free re-exam">Gratis herexamen</li>
             <li data-nl="Flexibele lestijden, 7 dagen per week" data-en="Flexible lesson times, 7 days a week">Flexibele lestijden, 7 dagen per week</li>
             <li data-nl="Jij bepaalt hoe lang je lessen duren" data-en="You decide how long your lessons last">Jij bepaalt hoe lang je lessen duren</li>
           </ul>
@@ -3043,7 +3045,7 @@ function applyStatic(){
   renderSpoedPackages();
 
 
-  document.getElementById('missionIcon').innerHTML = ICONS.team;
+  document.getElementById('missionIcon').innerHTML = '<svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M18 32 26.5 40.5" stroke="#0E1C2F" stroke-width="7" stroke-linecap="round"/><path d="M26.5 40.5 45.5 21.5" stroke="#F3801E" stroke-width="7" stroke-linecap="round"/></svg>';
 
   document.querySelectorAll('[data-why-icon]').forEach(el=>{
     el.innerHTML = ICONS[el.getAttribute('data-why-icon')];
