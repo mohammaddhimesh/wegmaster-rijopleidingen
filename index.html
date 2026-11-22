@@ -611,6 +611,12 @@
   .mission-band .eyebrow{justify-content:center;margin-bottom:14px;}
   .mission-band h2{font-size:clamp(22px,3vw,28px);color:var(--blue-500);}
   .mission-band p{margin-top:14px;font-size:15.5px;line-height:1.65;color:var(--ink-soft);}
+.mission-band .mission-list{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px;text-align:left}
+.mission-band .mission-list li{position:relative;padding-left:30px;font-size:15.5px;line-height:1.5;color:var(--ink);font-weight:600}
+.mission-band .mission-list li::before{content:"";position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;background:var(--orange-400) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/12px no-repeat}
+.mission-band p.mission-cta-text{margin-top:16px;font-weight:600;color:var(--blue-500)}
+.mission-band .mission-cta{margin-top:12px}
+@media (max-width:900px){.mission-band .mission-list{display:inline-grid;margin-left:auto;margin-right:auto}}
 
   /* ---------- Instructeur: uitgeknipte foto naast tekst (Sodrive-stijl) ---------- */
   .mission-band--instructor{
@@ -2307,12 +2313,16 @@ html.is-admin.kb-open .admin-toggle{display:none!important;}
         <div class="mission-band__text">
           <div class="mission-band__icon" id="missionIcon"></div>
           <div class="eyebrow" id="missionEyebrow" style="color:var(--orange-400);" data-nl="Onze instructeurs" data-en="Our instructors">Onze instructeurs</div>
-          <h2 id="missionTitle" data-nl="Niet alleen naast je — wij leren je de fijnste details" data-en="Not just sitting beside you — we teach you the finest details">Niet alleen naast je — wij leren je de fijnste details</h2>
-          <p id="missionBody"
-             data-nl="Je werkt met ervaren instructeurs die elke handeling tot in detail uitleggen, zodat jij het — écht — zelf onder de knie krijgt. Ons succes hangt af van jouw succes."
-             data-en="You work with experienced instructors who explain every detail, so you truly master it yourself. Our success depends on yours.">
-            Je werkt met ervaren instructeurs die elke handeling tot in detail uitleggen, zodat jij het — écht — zelf onder de knie krijgt. Ons succes hangt af van jouw succes.
-          </p>
+          <h2 id="missionTitle" data-nl="Wij maken het makkelijk" data-en="We make it easy">Wij maken het makkelijk</h2>
+          <p id="missionBody" data-nl="Professionele, vakkundige rijinstructeurs, en gewoon betaalbaar." data-en="Professional, skilled driving instructors, and simply affordable.">Professionele, vakkundige rijinstructeurs, en gewoon betaalbaar.</p>
+          <ul class="mission-list">
+            <li data-nl="Gratis proefles" data-en="Free trial lesson">Gratis proefles</li>
+            <li data-nl="Gratis herexamen (als je instructeur je examenklaar vindt)" data-en="Free re-exam (when your instructor says you're ready)">Gratis herexamen (als je instructeur je examenklaar vindt)</li>
+            <li data-nl="Flexibele lestijden, 7 dagen per week" data-en="Flexible lesson times, 7 days a week">Flexibele lestijden, 7 dagen per week</li>
+            <li data-nl="Jij bepaalt hoe lang je lessen duren" data-en="You decide how long your lessons last">Jij bepaalt hoe lang je lessen duren</li>
+          </ul>
+          <p class="mission-cta-text" data-nl="Waar wacht je nog op? Plan je proefles bij een van onze vakkundige rijinstructeurs." data-en="What are you waiting for? Book your trial lesson with one of our skilled instructors.">Waar wacht je nog op? Plan je proefles bij een van onze vakkundige rijinstructeurs.</p>
+          <a href="#register" data-register class="btn btn--primary mission-cta" data-nl="Plan je gratis proefles &rarr;" data-en="Book your free trial lesson &rarr;">Plan je gratis proefles &rarr;</a>
         </div>
 
         <!-- WegMaster instructor portrait -->
@@ -2674,8 +2684,8 @@ const STR = {
     catTitle:'Kies je categorie', catSub:'Elke categorie heeft een eigen pad naar het examen — van proefles tot diploma.',
     catCtaLabel:'Bekijk pakketten',
     missionEyebrow:'Onze instructeurs',
-    missionTitle:'Niet alleen naast je — wij leren je de fijnste details',
-    missionBody:'Bij WegMaster Rijopleidingen werk je met een team van ervaren instructeurs. We gaan niet zomaar naast je zitten: we leggen elke handeling uit tot in de details, zodat jij het zelf onder de knie krijgt. Want ons succes hangt af van jouw succes — daar doen we het voor.',
+    missionTitle:'Wij maken het makkelijk',
+    missionBody:'Professionele, vakkundige rijinstructeurs, en gewoon betaalbaar.',
     ctaBandT:'Klaar om te starten?', ctaBandD:'Plan vandaag nog je gratis proefles, in elke categorie.', ctaBandBtn:'Boek gratis proefles',
     footNavT:'Ga naar', footContactT:'Contact', footArea:'Amersfoort en Utrecht — heel Nederland in opbouw',
     footerBrandDesc:'Persoonlijke rijlessen voor auto, taxi en vrachtwagen in Amersfoort en Utrecht.',
@@ -2756,8 +2766,8 @@ const STR = {
     catTitle:'Choose your category', catSub:'Each category has its own path to the exam — from trial lesson to certificate.',
     catCtaLabel:'View packages',
     missionEyebrow:'Our instructors',
-    missionTitle:'Not just sitting beside you — we teach you the finest details',
-    missionBody:"At WegMaster Rijopleidingen you work with a team of experienced instructors. We don't just sit next to you: we explain every detail, so you truly master it yourself. Because our success depends on your success — that's what drives us.",
+    missionTitle:'We make it easy',
+    missionBody:"Professional, skilled driving instructors, and simply affordable.",
     ctaBandT:'Ready to start?', ctaBandD:'Book your free trial lesson today, in any category.', ctaBandBtn:'Book free trial lesson',
     footNavT:'Go to', footContactT:'Contact', footArea:'Amersfoort and Utrecht — expanding nationwide',
     footerBrandDesc:'Personal driving lessons for car, taxi and truck licences in Amersfoort and Utrecht.',
