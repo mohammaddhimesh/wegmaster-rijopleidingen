@@ -58,10 +58,58 @@
     }catch(e){}
   })();
   window.wmGetGclid = function(){ try{ return localStorage.getItem('wm_gclid') || ''; }catch(e){ return ''; } };
+  /* Klikss: elk bezoek via een advertentie (gclid/gbraid/wbraid) komt als één regel in de
+     Google Sheet "Klikss": hoe lang, hoeveel kliks, scroll, prijzen gezien en of iemand zich
+     aanmeldde / WhatsApp / belde. Leeg = uit. Niet voor de eigenaar (?owner=1). */
+  (function(){
+    var KLIKSS_URL = '';
+    if(!KLIKSS_URL || !navigator.sendBeacon) return;
+    try{ if(localStorage.getItem('wm_owner') === '1') return; }catch(e){}
+    var KEY = 'wm_klik_visit', v = null;
+    try{ v = JSON.parse(sessionStorage.getItem(KEY) || 'null'); }catch(e){}
+    try{
+      var p = new URLSearchParams(location.search);
+      var id = p.get('gclid') || p.get('gbraid') || p.get('wbraid');
+      if(id && (!v || v.g !== id)){
+        v = { vid: 'v-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7), g: id,
+              t0: Date.now(), page: location.pathname || '/', secs: 0, kl: 0, sc: 0, pr: 0, act: '',
+              naam: '', tel: '', msg: '', dev: (/Mobi|Android|iPhone/i.test(navigator.userAgent) ? 'mobiel' : 'desktop') };
+      }
+    }catch(e){}
+    if(!v) return;
+    function save(){ try{ sessionStorage.setItem(KEY, JSON.stringify(v)); }catch(e){} }
+    function send(){
+      v.secs = Math.round((Date.now() - v.t0) / 1000); save();
+      try{ navigator.sendBeacon(KLIKSS_URL, JSON.stringify(v)); }catch(e){}
+    }
+    save();
+    document.addEventListener('click', function(){ v.kl++; save(); }, true);
+    window.addEventListener('scroll', function(){
+      var h = document.documentElement, t = h.scrollHeight - innerHeight;
+      var pc = t > 0 ? Math.round(h.scrollTop / t * 100) : 100;
+      if(pc > v.sc){ v.sc = Math.min(100, pc); }
+    }, { passive: true });
+    document.addEventListener('visibilitychange', function(){ if(document.visibilityState === 'hidden') send(); });
+    window.addEventListener('pagehide', send);
+    document.addEventListener('DOMContentLoaded', function(){
+      var el = document.querySelector('.auto-package-card, .pkg-card');
+      if(!el || !('IntersectionObserver' in window)) return;
+      var io = new IntersectionObserver(function(en){
+        if(en.some(function(x){ return x.isIntersecting; })){ v.pr = 1; save(); io.disconnect(); }
+      }, { threshold: 0.5 });
+      io.observe(el);
+    });
+    window.wmKlik = { action: function(a, d){
+      if(!v.act || a === 'Formulier') v.act = a;
+      if(d){ v.naam = d.naam || v.naam; v.tel = d.tel || v.tel; v.msg = d.msg || v.msg; }
+      send();
+    } };
+  })();
   // Vuurt een Google Ads-conversie af bij klik op Bellen of WhatsApp.
   // Voor 'call' (tel:-links) wachten we tot de conversie is verstuurd
   // VOORDAT we de telefoon-app openen — anders gaat de meting verloren op mobiel.
   function wmTrackConversion(type, url, userData, transactionId){
+    try{ if(window.wmKlik) wmKlik.action(type === 'lead' ? 'Formulier' : (type === 'call' ? 'Bellen' : 'WhatsApp')); }catch(e){}
     var navigated = false;
     var go = function(){
       if(navigated) return;
@@ -3430,6 +3478,7 @@ function handleRegisterSubmit(e){
     ).then(()=>{
       accepted = true;
       form.dataset.submissionState = 'sent';
+      try{ if(window.wmKlik) wmKlik.action('Formulier', { naam: voornaam, tel: telefoon, msg: bijzonderheden }); }catch(err){}
       try{
         wmTrackConversion('lead', undefined, { email: email, phone: telefoon }, submissionId);
       }catch(err){ console.warn('Registration accepted; conversion tracking failed.'); }
