@@ -289,6 +289,44 @@ def pas_jsonld_aan(h, s, url):
                      + json.dumps(crumb, ensure_ascii=False) + "</script>\n</head>", 1)
 
 
+
+# ---------- verkeersregelaar: eigen pagina ----------
+# De verkeersregelaar-opleiding staat in index.html als verborgen "pagina" (#verkeersregelaar).
+# Op de stadspagina's, dienstpagina's en de homepage halen we die inhoud weg, zodat Google
+# daar alleen rijles-inhoud ziet (betere Quality Score). Het menu en de footer linken naar
+# de eigen pagina /verkeersregelaar-opleiding (zie DIENSTEN), met precies dezelfde inhoud.
+VR_URL = "/verkeersregelaar-opleiding"
+VR_START = '<main class="page" id="page-verkeersregelaar" hidden>'
+VR_LINK_RE = re.compile(r'(<a\b[^>]*?)\s*data-route="verkeersregelaar"([^>]*?)href="#verkeersregelaar"'
+                        r'|(<a\b[^>]*?)href="#verkeersregelaar"([^>]*?)\s*data-route="verkeersregelaar"')
+VR_HASH_JS = ("<script>if(location.hash==='#verkeersregelaar')"
+              "location.replace('" + VR_URL + "');</script>")
+
+
+def zonder_verkeersregelaar(h, wat):
+    i = h.find(VR_START)
+    if i < 0 or h.count(VR_START) != 1:
+        raise BuildFout(f"{wat}: verkeersregelaar-pagina (page-verkeersregelaar) niet 1x gevonden")
+    j = h.find("</main>", i)
+    if j < 0 or "<main" in h[i + len(VR_START):j]:
+        raise BuildFout(f"{wat}: einde van de verkeersregelaar-pagina niet gevonden")
+    h = h[:i] + h[j + len("</main>"):]
+
+    def link(m):
+        if m.group(1) is not None:
+            return m.group(1) + m.group(2) + 'href="' + VR_URL + '"'
+        return m.group(3) + 'href="' + VR_URL + '"' + m.group(4)
+
+    h, n = VR_LINK_RE.subn(link, h)
+    if n < 2:
+        raise BuildFout(f"{wat}: menu/footer-links naar verkeersregelaar niet gevonden ({n}x)")
+    if 'href="#verkeersregelaar"' in h or 'data-route="verkeersregelaar"' in h:
+        raise BuildFout(f"{wat}: er staat nog een oude #verkeersregelaar-link")
+    # oude links met #verkeersregelaar sturen we door naar de eigen pagina
+    h = h.replace("</head>", VR_HASH_JS + "\n</head>", 1)
+    return h
+
+
 # ---------- één stad ----------
 def bouw_stad(bron, s, img_dir):
     n, slug = s["naam"], s["slug"]
@@ -323,6 +361,9 @@ def bouw_stad(bron, s, img_dir):
                     f'Rijschool {e(n)}</h1>\n        ' + ANCHOR_HERO_H2, "stadsnaam in hero")
     # volgorde: pakketten > geslaagden (foto's) > reviews > stadsblok > rest
     h = vervang_een(h, ANCHOR_NA_REVIEWS, stadsblok(s) + ANCHOR_NA_REVIEWS, "sectie na reviews")
+
+    # verkeersregelaar-inhoud weg, link naar de eigen pagina
+    h = zonder_verkeersregelaar(h, f"rijschool-{slug}")
 
     # bron in de admin-mail: welke stadspagina
     h = vervang_een(h, ANCHOR_BRON,
@@ -385,6 +426,12 @@ DIENSTEN = [
      "kort": "Automaat rijles Amersfoort",
      "meta": "Automaat rijles in Amersfoort, Soest en omgeving. Wij halen je thuis op. "
              "95% geslaagd, 5.0 op Google. Plan je proefles bij WegMaster Rijopleidingen."},
+    # Eigen pagina voor de verkeersregelaar-opleiding (opent direct op #verkeersregelaar).
+    {"bestand": "verkeersregelaar-opleiding", "start": "verkeersregelaar",
+     "title": "Opleiding Verkeersregelaar in 1 dag | €700 | WegMaster",
+     "kort": "Verkeersregelaar",
+     "meta": "Word in één dag beroepsverkeersregelaar. Theorie, praktijk en beide examens op dezelfde dag, "
+             "€700 all-in. WegMaster is SVNL-opleidingsinstituut. Meld je aan via WhatsApp."},
 ]
 
 
@@ -407,6 +454,13 @@ def bouw_dienst(bron, d, img_dir):
         if n < 3:
             raise BuildFout(f"{naam}: route-code niet gevonden (location.hash || '#home')")
         h = h.replace("(location.hash || '#home')", f"(location.hash || '#{d['start']}')")
+
+    if d["start"] == "verkeersregelaar":
+        # op deze pagina is de verkeersregelaar-titel de hoofdkop
+        h = vervang_regex(h, r'<h2 class="page-title"( data-nl="Opleiding Verkeersregelaar"[^>]*>[^<]*)</h2>',
+                          r'<h1 class="page-title"\1</h1>', "verkeersregelaar-titel")
+    else:
+        h = zonder_verkeersregelaar(h, naam)
 
     # bron in de admin-mail
     h = vervang_een(h, ANCHOR_BRON,
@@ -433,6 +487,7 @@ def bouw_dienst(bron, d, img_dir):
 # Lokaal testen: WM_HOME_TEST=1 schrijft index.build.html (index.html blijft onaangeroerd).
 def bouw_home(bron, img_dir):
     h = bron
+    h = zonder_verkeersregelaar(h, "homepage")
     h, aantal_img = extraheer_afbeeldingen(h, img_dir)
     h = re.sub(r'<img(?![^>]*fetchpriority)([^>]*loading="lazy")', r'<img fetchpriority="low"\1', h)
     h = optimaliseer_hero(h, "homepage")
