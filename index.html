@@ -613,6 +613,11 @@
   .mission-band p{margin-top:14px;font-size:15.5px;line-height:1.65;color:var(--ink-soft);}
 .mission-band--instructor .mission-band__icon{background:#fff;border-radius:50%;border:3px solid #F3801E;box-shadow:0 6px 18px -6px rgba(243,128,30,.55);}
 .mission-band--instructor .mission-band__icon svg{width:34px;height:34px;}
+.mission-band--instructor .mission-head{display:flex;align-items:center;gap:14px;margin:0 0 16px;}
+.mission-band--instructor .mission-head .mission-band__icon{margin:0;flex:0 0 auto;}
+.mission-band--instructor .mission-head .eyebrow{margin:0;font-size:clamp(17px,2.2vw,20px);letter-spacing:.08em;font-weight:800;}
+.mission-band--instructor .mission-head .eyebrow::before{display:none;}
+@media (max-width:900px){.mission-band--instructor .mission-head{justify-content:center;}}
 .mission-band .mission-list{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px;text-align:left}
 .mission-band .mission-list li{position:relative;padding-left:30px;font-size:15.5px;line-height:1.5;color:var(--ink);font-weight:600}
 .mission-band .mission-list li::before{content:"";position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;background:var(--orange-400) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/12px no-repeat}
@@ -2313,8 +2318,8 @@ html.is-admin.kb-open .admin-toggle{display:none!important;}
     <div class="container">
       <div class="mission-band mission-band--instructor">
         <div class="mission-band__text">
-          <div class="mission-band__icon" id="missionIcon"></div>
-          <div class="eyebrow" id="missionEyebrow" style="color:var(--orange-400);" data-nl="Onze instructeurs" data-en="Our instructors">Onze instructeurs</div>
+          <div class="mission-head"><div class="mission-band__icon" id="missionIcon"></div>
+          <div class="eyebrow" id="missionEyebrow" style="color:var(--orange-400);" data-nl="Onze instructeurs" data-en="Our instructors">Onze instructeurs</div></div>
           <h2 id="missionTitle" data-nl="Wij maken het makkelijk" data-en="We make it easy">Wij maken het makkelijk</h2>
           <p id="missionBody" data-nl="Professionele, vakkundige rijinstructeurs, en gewoon betaalbaar." data-en="Professional, skilled driving instructors, and simply affordable.">Professionele, vakkundige rijinstructeurs, en gewoon betaalbaar.</p>
           <ul class="mission-list">
