@@ -72,14 +72,17 @@
       var id = p.get('gclid') || p.get('gbraid') || p.get('wbraid');
       if(id && (!v || v.g !== id)){
         v = { vid: 'v-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7), g: id,
-              t0: Date.now(), page: location.pathname || '/', secs: 0, kl: 0, sc: 0, pr: 0, act: '',
+              t0: Date.now(), page: location.pathname || '/', secs: 0, ms: 0, kl: 0, sc: 0, pr: 0, act: '',
               naam: '', tel: '', msg: '', dev: (/Mobi|Android|iPhone/i.test(navigator.userAgent) ? 'mobiel' : 'desktop') };
       }
     }catch(e){}
     if(!v) return;
     function save(){ try{ sessionStorage.setItem(KEY, JSON.stringify(v)); }catch(e){} }
+    /* Seconden = alleen de tijd dat de pagina echt op het scherm staat (niet als iemand naar een andere app gaat) */
+    var since = document.visibilityState === 'hidden' ? 0 : Date.now();
+    function tick(){ if(since){ v.ms = (v.ms || 0) + (Date.now() - since); since = Date.now(); } v.secs = Math.round((v.ms || 0) / 1000); }
     function send(){
-      v.secs = Math.round((Date.now() - v.t0) / 1000); save();
+      tick(); save();
       try{ navigator.sendBeacon(KLIKSS_URL, JSON.stringify(v)); }catch(e){}
     }
     save();
@@ -89,8 +92,11 @@
       var pc = t > 0 ? Math.round(h.scrollTop / t * 100) : 100;
       if(pc > v.sc){ v.sc = Math.min(100, pc); }
     }, { passive: true });
-    document.addEventListener('visibilitychange', function(){ if(document.visibilityState === 'hidden') send(); });
-    window.addEventListener('pagehide', send);
+    document.addEventListener('visibilitychange', function(){
+      if(document.visibilityState === 'hidden'){ send(); since = 0; }
+      else { since = Date.now(); }
+    });
+    window.addEventListener('pagehide', function(){ send(); since = 0; });
     document.addEventListener('DOMContentLoaded', function(){
       var el = document.querySelector('.auto-package-card, .pkg-card');
       if(!el || !('IntersectionObserver' in window)) return;
