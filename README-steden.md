@@ -11,6 +11,11 @@
 
 De homepage (`/`) is algemeen ("WegMaster Rijopleidingen"). Amersfoort heeft een eigen pagina: `/rijschool-amersfoort`. In Google Ads gaat elk zoekwoord naar de pagina van zijn stad; de homepage wordt in Ads niet gebruikt.
 
+## Snelheid
+
+- `consent.js` wordt door de build direct in elke pagina gezet (geen extra bestand dat het tonen ophoudt). Je bewerkt gewoon `consent.js`.
+- In `img-v/` staan kleinere versies van foto's (WebP): de foto's van geslaagden (400px), de persoon in de hero (600px), de hero-uitsnede voor telefoon (720px) en de achtergrond van de pakketten (800px). De naam is de hash van het origineel. Vervang je een foto in `index.html`, dan gebruikt de site automatisch het origineel tot er een nieuwe kleine versie in `img-v/` staat (vraag Claude om die te maken).
+
 ## Wat moet ik doen als ik iets wil aanpassen?
 
 | Wat | Waar | Resultaat |
