@@ -297,10 +297,37 @@ def pas_jsonld_aan(h, s, url):
 # de eigen pagina /verkeersregelaar-opleiding (zie DIENSTEN), met precies dezelfde inhoud.
 VR_URL = "/verkeersregelaar-opleiding"
 VR_START = '<main class="page" id="page-verkeersregelaar" hidden>'
-VR_LINK_RE = re.compile(r'(<a\b[^>]*?)\s*data-route="verkeersregelaar"([^>]*?)href="#verkeersregelaar"'
-                        r'|(<a\b[^>]*?)href="#verkeersregelaar"([^>]*?)\s*data-route="verkeersregelaar"')
-VR_HASH_JS = ("<script>if(location.hash==='#verkeersregelaar')"
-              "location.replace('" + VR_URL + "');</script>")
+
+# Routes die een eigen pagina hebben (route in index.html -> URL). Op alle andere pagina's
+# wijzen menu- en footerlinks met data-route="<route>" naar die URL, en oude #<route>-links
+# worden doorgestuurd. (Vrachtwagen staat nog op "binnenkort" en krijgt later een eigen pagina.)
+EIGEN_PAGINAS = {"verkeersregelaar": VR_URL, "taxi": "/taxi-opleiding"}
+A_TAG_RE = re.compile(r"<a\b[^>]*>")
+
+
+def links_naar_eigen_pagina(h, route, url, wat):
+    def tag(m):
+        t = m.group(0)
+        if f'data-route="{route}"' not in t:
+            return t
+        t = re.sub(r'\s*data-route="' + re.escape(route) + '"', "", t)
+        return re.sub(r'href="#' + re.escape(route) + '"', f'href="{url}"', t)
+
+    h, _ = A_TAG_RE.subn(tag, h)
+    n = h.count(f'href="{url}"')
+    if n < 2:
+        raise BuildFout(f"{wat}: menu/footer-links naar {url} niet gevonden ({n}x)")
+    if f'href="#{route}"' in h or f'data-route="{route}"' in h:
+        raise BuildFout(f"{wat}: er staat nog een oude #{route}-link")
+    js = f"<script>if(location.hash==='#{route}')location.replace('{url}');</script>"
+    return h.replace("</head>", js + "\n</head>", 1)
+
+
+def eigen_pagina_links(h, wat, behalve=None):
+    for route, url in EIGEN_PAGINAS.items():
+        if route != behalve:
+            h = links_naar_eigen_pagina(h, route, url, wat)
+    return h
 
 
 def zonder_verkeersregelaar(h, wat):
@@ -312,18 +339,6 @@ def zonder_verkeersregelaar(h, wat):
         raise BuildFout(f"{wat}: einde van de verkeersregelaar-pagina niet gevonden")
     h = h[:i] + h[j + len("</main>"):]
 
-    def link(m):
-        if m.group(1) is not None:
-            return m.group(1) + m.group(2) + 'href="' + VR_URL + '"'
-        return m.group(3) + 'href="' + VR_URL + '"' + m.group(4)
-
-    h, n = VR_LINK_RE.subn(link, h)
-    if n < 2:
-        raise BuildFout(f"{wat}: menu/footer-links naar verkeersregelaar niet gevonden ({n}x)")
-    if 'href="#verkeersregelaar"' in h or 'data-route="verkeersregelaar"' in h:
-        raise BuildFout(f"{wat}: er staat nog een oude #verkeersregelaar-link")
-    # oude links met #verkeersregelaar sturen we door naar de eigen pagina
-    h = h.replace("</head>", VR_HASH_JS + "\n</head>", 1)
     return h
 
 
@@ -364,6 +379,7 @@ def bouw_stad(bron, s, img_dir):
 
     # verkeersregelaar-inhoud weg, link naar de eigen pagina
     h = zonder_verkeersregelaar(h, f"rijschool-{slug}")
+    h = eigen_pagina_links(h, f"rijschool-{slug}")
 
     # bron in de admin-mail: welke stadspagina
     h = vervang_een(h, ANCHOR_BRON,
@@ -432,6 +448,12 @@ DIENSTEN = [
      "kort": "Verkeersregelaar",
      "meta": "Word in één dag beroepsverkeersregelaar. Theorie, praktijk en beide examens op dezelfde dag, "
              "€700 all-in. WegMaster is SVNL-opleidingsinstituut. Meld je aan via WhatsApp."},
+    # Eigen pagina voor de taxi-opleiding (opent direct op #taxi).
+    {"bestand": "taxi-opleiding", "start": "taxi",
+     "title": "Taxi opleiding & taxi-examen | Chauffeurskaart | WegMaster",
+     "kort": "Taxi",
+     "meta": "Taxi opleiding bij WegMaster: theorieboek, begeleiding bij de theorie, praktijklessen en "
+             "examen boeken met een geschikte oefenauto. Op weg naar je chauffeurskaart."},
 ]
 
 
@@ -461,6 +483,10 @@ def bouw_dienst(bron, d, img_dir):
                           r'<h1 class="page-title"\1</h1>', "verkeersregelaar-titel")
     else:
         h = zonder_verkeersregelaar(h, naam)
+    if d["start"] == "taxi":
+        # duidelijkere hoofdkop op de taxipagina
+        h = vervang_een(h, "nl:{ title:'Taxi', intro:", "nl:{ title:'Taxi opleiding', intro:", "taxi-titel")
+    h = eigen_pagina_links(h, naam, behalve=d["start"])
 
     # bron in de admin-mail
     h = vervang_een(h, ANCHOR_BRON,
@@ -488,6 +514,7 @@ def bouw_dienst(bron, d, img_dir):
 def bouw_home(bron, img_dir):
     h = bron
     h = zonder_verkeersregelaar(h, "homepage")
+    h = eigen_pagina_links(h, "homepage")
     h, aantal_img = extraheer_afbeeldingen(h, img_dir)
     h = re.sub(r'<img(?![^>]*fetchpriority)([^>]*loading="lazy")', r'<img fetchpriority="low"\1', h)
     h = optimaliseer_hero(h, "homepage")
