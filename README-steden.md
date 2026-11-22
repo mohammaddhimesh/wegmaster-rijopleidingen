@@ -5,6 +5,7 @@
 - 12 stadspagina's: `/rijschool-amersfoort`, `/rijschool-soest`, `/rijschool-nijkerk`, `/rijschool-leusden`, `/rijschool-hoevelaken`, `/rijschool-zeist`, `/rijschool-baarn`, `/rijschool-bunschoten`, `/rijschool-woudenberg`, `/rijschool-soesterberg`, `/rijschool-bilthoven`, `/rijschool-de-bilt`
 - de map `/img/` (de foto's van de stadspagina's als losse bestanden)
 - 1 dienstpagina, precies dezelfde pagina als de homepage: `/automaat-rijles-amersfoort`. Instellingen: `DIENSTEN` in `build.py`. (`/spoed-rijlessen-amersfoort` is verwijderd en wordt via `_redirects` doorgestuurd naar de homepage.)
+- 1 pagina voor de verkeersregelaar-opleiding: `/verkeersregelaar-opleiding` (dezelfde pagina als de homepage, maar opent direct op de verkeersregelaar-inhoud). Op de stadspagina's, de dienstpagina en de homepage wordt die inhoud weggehaald; het menu en de footer linken daar naar `/verkeersregelaar-opleiding`. Zo zien Google en Google Ads op een stadspagina alleen rijles-inhoud.
 - `sitemap.xml`
 
 De homepage (`/`) is algemeen ("WegMaster Rijopleidingen"). Amersfoort heeft een eigen pagina: `/rijschool-amersfoort`. In Google Ads gaat elk zoekwoord naar de pagina van zijn stad; de homepage wordt in Ads niet gebruikt.
