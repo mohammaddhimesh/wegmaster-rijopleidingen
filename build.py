@@ -223,21 +223,6 @@ def gebruik_varianten(h, wat):
     return h
 
 
-# ---------- consent.js direct in de pagina (geen extra bestand dat het tonen ophoudt) ----------
-def consent_inline(h, wat):
-    with open(os.path.join(ROOT, "consent.js"), encoding="utf-8") as f:
-        js = f.read()
-    if "</script" in js.lower():
-        raise BuildFout("consent.js bevat '</script': kan niet inline")
-    n = 0
-    for tag in ('<script src="/consent.js"></script>', '<script src="consent.js"></script>'):
-        n += h.count(tag)
-        h = h.replace(tag, "<script>\n" + js + "\n</script>")
-    if n != 1:
-        raise BuildFout(f"{wat}: consent.js-script niet precies 1x gevonden ({n}x)")
-    return h
-
-
 # ---------- stadsblok ----------
 CSS = """<style>
 /* stadspagina (build.py) */
