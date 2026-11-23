@@ -778,6 +778,15 @@
     padding:9px 16px;border-radius:999px;background:var(--orange-100,#ffe9d6);
     color:var(--orange-600,#b4590f);font-weight:700;font-size:14px;line-height:1.2;}
   .reg-intro-badge svg{width:17px;height:17px;flex-shrink:0;}
+  .reg-trust{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:15px;color:var(--blue-900,#17354d);}
+  .reg-trust li{display:flex;align-items:center;gap:6px;}
+  .reg-proof{display:flex;align-items:center;gap:14px;margin:0 0 22px;padding:14px 16px;border-radius:16px;background:#fff;border:1px solid #dbe6ef;box-shadow:0 6px 18px rgba(23,53,77,.06);}
+  .reg-proof__faces{display:flex;flex-shrink:0;}
+  .reg-proof__faces img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:3px solid #fff;margin-left:-12px;box-shadow:0 2px 6px rgba(23,53,77,.18);}
+  .reg-proof__faces img:first-child{margin-left:0;}
+  .reg-proof__text{margin:0;font-size:15px;line-height:1.35;color:var(--blue-900,#17354d);}
+  .reg-laststep{margin:18px 0 0;text-align:center;font-weight:700;color:var(--orange-600,#b4590f);font-size:15px;}
+  @media(max-width:420px){.reg-proof__faces img{width:38px;height:38px;}.reg-proof__faces img:nth-child(n+5){display:none;}}
   .cat-hero{background:var(--surface);color:var(--ink);padding:60px 0 56px;position:relative;overflow:hidden;}
   .cat-hero__icon{width:64px;height:64px;border-radius:16px;background:var(--orange-500);display:flex;align-items:center;justify-content:center;margin-bottom:22px;}
   .cat-hero__icon svg{width:32px;height:32px;color:var(--ink);}
@@ -3336,10 +3345,19 @@ function renderRegisterPage(){
         <h1>${S.regTitle}</h1>
         <p class="lead">${S.regSub}</p>
         <div class="reg-intro-badge">${ICONS.check}<span>${lang==='en'?'We have multiple instructors available':'We hebben meerdere instructeurs beschikbaar'}</span></div>
+        <ul class="reg-trust">
+          <li>📞 ${lang==='en'?'We contact you <b>within 1 hour</b>':'Binnen <b>1 uur</b> nemen we contact met je op'}</li>
+          <li>⭐ ${lang==='en'?'<b>5.0</b> on Google':'<b>5.0</b> op Google'}</li>
+          <li>🎓 ${lang==='en'?'Free trial lesson · free re-exam':'Gratis proefles · gratis herexamen'}</li>
+        </ul>
       </div>
     </section>
     <section>
       <div class="container" style="max-width:600px;">
+        <div class="reg-proof" id="regProof" hidden>
+          <div class="reg-proof__faces" id="regProofFaces"></div>
+          <p class="reg-proof__text">${lang==='en'?'They passed with WegMaster. <b>You\'re next!</b>':'Zij slaagden bij WegMaster. <b>Jij bent de volgende!</b>'}</p>
+        </div>
         <div id="registerResult"></div>
         <form id="registerForm" novalidate>
           <div class="form-grid">
@@ -3354,12 +3372,19 @@ function renderRegisterPage(){
               <textarea name="bijzonderheden" rows="3" placeholder="${S.fieldRemarksPh}"></textarea>
             </label>
           </div>
-          <button type="submit" class="btn btn--primary btn--block" id="registerSubmitBtn" style="margin-top:20px;">${S.regSubmit}</button>
+          <p class="reg-laststep">${lang==='en'?'✅ Last step — after sending we call you within 1 hour.':'✅ Laatste stap — na het versturen bellen we je binnen 1 uur.'}</p>
+          <button type="submit" class="btn btn--primary btn--block" id="registerSubmitBtn" style="margin-top:10px;">${S.regSubmit}</button>
           <p class="admin-note" style="text-align:center;margin-top:12px;">${S.regPrivacyNote}</p>
         </form>
       </div>
     </section>
-  `;
+  `;  try{
+    const faces=[...document.querySelectorAll('.gl-card img')].map(i=>i.currentSrc||i.getAttribute('src')).filter(Boolean).slice(0,6);
+    if(faces.length){
+      document.getElementById('regProofFaces').innerHTML=faces.map(s=>`<img src="${s}" alt="" loading="lazy" decoding="async">`).join('');
+      document.getElementById('regProof').hidden=false;
+    }
+  }catch(e){}
 }
 
 function showRegisterResult(state){
