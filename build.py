@@ -51,7 +51,7 @@ ANCHOR_GESLAAGDEN = '<section class="section--tight gl-sec" id="geslaagden">'
 ANCHOR_NA_REVIEWS = ('<section class="section--tight">\n    <div class="container">\n'
                      '      <div class="transmission-band">')   # eerste sectie na de reviews
 ANCHOR_BRON = "'Google advertentie' : 'Website (geen advertentie)'"
-ANCHOR_HERO_H2 = ('<h2 data-nl="Snel je rijbewijs halen? <span class=\'accent\'>Check!</span>"')
+ANCHOR_HERO_H2 = ('<h2 data-nl="Wij maken het <span class=\'accent\'>makkelijk</span>"')
 
 
 class BuildFout(Exception):
