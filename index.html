@@ -4274,5 +4274,25 @@ if (FAME_PHOTOS.length){
   }catch(e){}
 })();
 </script>
+<script id="hero-person-waist">
+/* mobiel/tablet: onderkant van de instructeur-foto altijd achter het "Binnen 1 uur"-blok (geen afgesneden middel) */
+(function(){
+  function fix(){
+    var z=document.getElementById('zowerkt'); if(!z) return;
+    var per=z.querySelector('.stp-person'), c=z.querySelector('.stp-closer'), ph=z.querySelector('.stp-photo');
+    if(!per||!c||!ph) return;
+    if(window.innerWidth>1024){ per.style.removeProperty('top'); per.style.removeProperty('bottom'); return; }
+    var pb=ph.getBoundingClientRect(), cb=c.getBoundingClientRect(), h=per.getBoundingClientRect().height;
+    if(!h) return;
+    var top=(cb.bottom-pb.top)-12-h;
+    per.style.setProperty('top', Math.round(top)+'px','important');
+    per.style.setProperty('bottom','auto','important');
+  }
+  window.addEventListener('load',fix); window.addEventListener('resize',fix);
+  document.addEventListener('DOMContentLoaded',fix);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fix);
+  if(window.ResizeObserver){ document.addEventListener('DOMContentLoaded',function(){ var z=document.getElementById('zowerkt'); if(z) new ResizeObserver(fix).observe(z.querySelector('.container')||z); }); }
+})();
+</script>
 </body>
 </html>
