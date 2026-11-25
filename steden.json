@@ -806,20 +806,7 @@
           "a_en": "Most students are ready for their test after about 3 months."
         }
       ],
-      "buren": [
-        [
-          "Zeist",
-          "/rijschool-zeist"
-        ],
-        [
-          "De Bilt",
-          "/rijschool-de-bilt"
-        ],
-        [
-          "Bilthoven",
-          "/rijschool-bilthoven"
-        ]
-      ],
+      "buren": [],
       "footer_plaatsen": [
         "Utrecht",
         "Nieuwegein",
