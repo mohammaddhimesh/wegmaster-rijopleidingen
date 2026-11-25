@@ -1,5 +1,10 @@
 # Verre steden zonder echte lessen: doorsturen naar home
 # (Gooi-plaatsen, ook Hilversum, gaan naar /rijschool-gooi)
+# (Nieuwegein en Houten gaan naar /rijschool-utrecht)
+/rijschool-nieuwegein   /rijschool-utrecht   301!
+/rijschool-nieuwegein.html   /rijschool-utrecht   301!
+/rijschool-houten   /rijschool-utrecht   301!
+/rijschool-houten.html   /rijschool-utrecht   301!
 /rijschool-hilversum   /rijschool-gooi   301!
 /rijschool-hilversum.html   /rijschool-gooi   301!
 /rijschool-almere        /   301!
@@ -18,8 +23,6 @@
 /rijschool-ermelo.html   /   301!
 /rijschool-harderwijk        /   301!
 /rijschool-harderwijk.html   /   301!
-/rijschool-houten        /   301!
-/rijschool-houten.html   /   301!
 /rijschool-huizen   /rijschool-gooi   301!
 /rijschool-huizen.html   /rijschool-gooi   301!
 /rijschool-ijsselstein        /   301!
@@ -32,16 +35,12 @@
 /rijschool-maarssen.html   /   301!
 /rijschool-naarden   /rijschool-gooi   301!
 /rijschool-naarden.html   /rijschool-gooi   301!
-/rijschool-nieuwegein        /   301!
-/rijschool-nieuwegein.html   /   301!
 /rijschool-nunspeet        /   301!
 /rijschool-nunspeet.html   /   301!
 /rijschool-putten        /   301!
 /rijschool-putten.html   /   301!
 /rijschool-rhenen        /   301!
 /rijschool-rhenen.html   /   301!
-/rijschool-utrecht        /   301!
-/rijschool-utrecht.html   /   301!
 /rijschool-veenendaal        /   301!
 /rijschool-veenendaal.html   /   301!
 /rijschool-weesp        /   301!
