@@ -754,6 +754,121 @@
           "en": "We pick you up at home in Eemnes."
         }
       ]
+    },
+    {
+      "slug": "utrecht",
+      "naam": "Utrecht",
+      "in_naam": "Utrecht, Nieuwegein en Houten",
+      "in_naam_en": "Utrecht, Nieuwegein and Houten",
+      "title": "Rijschool Utrecht | Rijles automaat & schakel | WegMaster",
+      "meta": "Rijles in Utrecht, Nieuwegein en Houten. Wij halen je thuis op. Examen bij CBR Utrecht, in je eigen lesauto. Automaat of schakel. 15 lessen €795.",
+      "geo": [
+        52.0907,
+        5.1214
+      ],
+      "intro_nl": "Wij geven rijles in Utrecht, Nieuwegein en Houten, in een automaat of een schakelauto. Je praktijkexamen rijd je bij CBR Utrecht, in dezelfde lesauto waarin je les hebt gehad. Zo is niets nieuw op de grote dag. Meld je vandaag aan en je rijdt binnen 1 à 2 dagen je eerste les.",
+      "intro_en": "We give driving lessons in Utrecht, Nieuwegein and Houten, in an automatic or a manual car. You drive your practical exam at CBR Utrecht, in the same lesson car you practised in. So nothing is new on the big day. Sign up today and you drive your first lesson within 1 to 2 days.",
+      "faq": [
+        {
+          "q_nl": "In welke plaatsen rond Utrecht geven jullie rijles?",
+          "a_nl": "In Utrecht, Nieuwegein en Houten. Wij halen je thuis op.",
+          "q_en": "Which places around Utrecht do you cover?",
+          "a_en": "Utrecht, Nieuwegein and Houten. We pick you up at home."
+        },
+        {
+          "q_nl": "Waar doe ik praktijkexamen als ik in Utrecht woon?",
+          "a_nl": "Bij CBR Utrecht. Je rijdt examen in dezelfde lesauto waarin je les hebt gehad.",
+          "q_en": "Where do I take my practical exam if I live in Utrecht?",
+          "a_en": "At CBR Utrecht. You drive your exam in the same lesson car you practised in."
+        },
+        {
+          "q_nl": "Kan ik in Utrecht rijles in een automaat krijgen?",
+          "a_nl": "Ja. Je kiest zelf: rijles in een automaat of in een schakelauto.",
+          "q_en": "Can I take automatic driving lessons in Utrecht?",
+          "a_en": "Yes. You choose: lessons in an automatic or in a manual car."
+        },
+        {
+          "q_nl": "Hoe lang duurt het voordat ik kan afrijden?",
+          "a_nl": "De meeste leerlingen kunnen na ongeveer 3 maanden afrijden.",
+          "q_en": "How long does it take before I can take my driving test?",
+          "a_en": "Most students are ready for their test after about 3 months."
+        }
+      ],
+      "buren": [
+        [
+          "Zeist",
+          "/rijschool-zeist"
+        ],
+        [
+          "De Bilt",
+          "/rijschool-de-bilt"
+        ],
+        [
+          "Bilthoven",
+          "/rijschool-bilthoven"
+        ]
+      ],
+      "footer_plaatsen": [
+        "Utrecht",
+        "Nieuwegein",
+        "Houten"
+      ],
+      "vervang": [
+        [
+          "We hebben meerdere instructeurs en geven les in Amersfoort, Soest en de plaatsen eromheen, zoals Hoogland, Leusden, Soesterberg, Baarn en Nijkerk.",
+          "We hebben meerdere instructeurs en geven les in Utrecht, Nieuwegein en Houten."
+        ],
+        [
+          "We have several instructors and teach in Amersfoort, Soest and the surrounding towns, such as Hoogland, Leusden, Soesterberg, Baarn and Nijkerk.",
+          "We have several instructors and teach in Utrecht, Nieuwegein and Houten."
+        ],
+        [
+          "in Amersfoort, Soest en omgeving",
+          "in Utrecht en omgeving"
+        ],
+        [
+          "in Soest, Amersfoort en omgeving",
+          "in Utrecht en omgeving"
+        ],
+        [
+          "in Amersfoort, Soest and nearby",
+          "in Utrecht and nearby"
+        ],
+        [
+          "in Soest, Amersfoort and surroundings",
+          "in Utrecht and surroundings"
+        ],
+        [
+          "Soest, Amersfoort en omgeving",
+          "Utrecht en omgeving"
+        ],
+        [
+          "Soest, Amersfoort and surroundings",
+          "Utrecht and surroundings"
+        ]
+      ],
+      "kort_naam": "Utrecht",
+      "kort_naam_en": "Utrecht",
+      "dorpen": [
+        {
+          "id": "utrecht",
+          "naam": "Utrecht",
+          "nl": "We halen je thuis op in Utrecht.",
+          "en": "We pick you up at home in Utrecht."
+        },
+        {
+          "id": "nieuwegein",
+          "naam": "Nieuwegein",
+          "nl": "We halen je thuis op in Nieuwegein.",
+          "en": "We pick you up at home in Nieuwegein."
+        },
+        {
+          "id": "houten",
+          "naam": "Houten",
+          "nl": "We halen je thuis op in Houten.",
+          "en": "We pick you up at home in Houten."
+        }
+      ]
     }
   ]
 }

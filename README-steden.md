@@ -2,7 +2,7 @@
 
 **Kort:** je bewerkt alleen `index.html` (en soms `steden.json`). Netlify draait bij elke deploy `python3 build.py`, en dat maakt automatisch:
 
-- 12 stadspagina's: `/rijschool-amersfoort`, `/rijschool-soest`, `/rijschool-nijkerk`, `/rijschool-leusden`, `/rijschool-hoevelaken`, `/rijschool-zeist`, `/rijschool-baarn`, `/rijschool-bunschoten`, `/rijschool-woudenberg`, `/rijschool-soesterberg`, `/rijschool-bilthoven`, `/rijschool-de-bilt`
+- 14 stadspagina's: `/rijschool-amersfoort`, `/rijschool-soest`, `/rijschool-nijkerk`, `/rijschool-leusden`, `/rijschool-hoevelaken`, `/rijschool-zeist`, `/rijschool-baarn`, `/rijschool-bunschoten`, `/rijschool-woudenberg`, `/rijschool-soesterberg`, `/rijschool-bilthoven`, `/rijschool-de-bilt`, `/rijschool-gooi` (Gooi regio), `/rijschool-utrecht` (Utrecht, Nieuwegein, Houten)
 - de map `/img/` (de foto's van de stadspagina's als losse bestanden)
 - 1 dienstpagina, precies dezelfde pagina als de homepage: `/automaat-rijles-amersfoort`. Instellingen: `DIENSTEN` in `build.py`. (`/spoed-rijlessen-amersfoort` is verwijderd en wordt via `_redirects` doorgestuurd naar de homepage.)
 - 1 pagina voor de verkeersregelaar-opleiding: `/verkeersregelaar-opleiding` (dezelfde pagina als de homepage, maar opent direct op de verkeersregelaar-inhoud). Op de stadspagina's, de dienstpagina en de homepage wordt die inhoud weggehaald; het menu en de footer linken daar naar `/verkeersregelaar-opleiding`. Zo zien Google en Google Ads op een stadspagina alleen rijles-inhoud.
@@ -19,7 +19,7 @@ De homepage (`/`) is algemeen ("WegMaster Rijopleidingen"). Amersfoort heeft een
 
 | Wat | Waar | Resultaat |
 | --- | --- | --- |
-| Prijzen, foto's, teksten, design | `index.html` | Na upload naar GitHub worden binnen 1–2 min ook alle 12 stadspagina's bijgewerkt |
+| Prijzen, foto's, teksten, design | `index.html` | Na upload naar GitHub worden binnen 1–2 min ook alle 14 stadspagina's bijgewerkt |
 | Tekst van één stad (title, meta, intro, FAQ, buurplaatsen) | `steden.json` | Alleen die stad verandert |
 | Nieuwe stad | `steden.json`: kopieer een blok, pas `slug`, `naam` en de teksten aan | Er komt automatisch een nieuwe pagina bij (zet hem ook in de footer "Werkgebied" in `index.html`) |
 
