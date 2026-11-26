@@ -38,6 +38,55 @@
   gtag('set', 'ads_data_redaction', false);
   gtag('set', 'url_passthrough', true);
 
+  // ---- Herkomst onthouden: Meta-advertentie (utm_source=meta of fbclid) ----
+  try {
+    var q2 = new URLSearchParams(location.search);
+    if (q2.get('utm_source') === 'meta' || q2.get('fbclid')) {
+      write('wm_meta_ts', String(Date.now()));
+      write('wm_meta_ad', q2.get('utm_content') || '');
+    }
+  } catch (e) {}
+  // Bron voor e-mail en WhatsApp: de laatste advertentie-klik wint
+  window.wmBron = function () {
+    var mts = Number(read('wm_meta_ts') || 0), gts = Number(read('wm_gclid_ts') || 0);
+    var hasG = !!read('wm_gclid');
+    if (mts && mts >= gts) { var ad = read('wm_meta_ad'); return 'Meta advertentie' + (ad ? ' (' + ad + ')' : ''); }
+    return hasG ? 'Google advertentie' : 'Website (geen advertentie)';
+  };
+
+  // ---- Meta Pixel (niet voor de eigenaar). Leeg ID = uit. ----
+  var META_PIXEL_ID = '';
+  window.wmMeta = function () {};
+  if (META_PIXEL_ID && !isOwner) {
+    var n = window.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+    if (!window._fbq) window._fbq = n;
+    n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+    fbq('init', META_PIXEL_ID);
+    fbq('track', 'PageView');
+    window.wmMeta = function (ev, params) { try { fbq('track', ev, params || {}); } catch (e) {} };
+    // Script pas laden na de pagina, zodat het de laadsnelheid niet raakt
+    var loadFb = function () {
+      var t = document.createElement('script'); t.async = true;
+      t.src = 'https://connect.facebook.net/en_US/fbevents.js';
+      document.head.appendChild(t);
+    };
+    if (document.readyState === 'complete') setTimeout(loadFb, 1500);
+    else window.addEventListener('load', function () { setTimeout(loadFb, 1500); });
+    // ViewContent: 1x per pagina zodra een pakketkaart in beeld komt
+    var seen = false, tries = 0;
+    var watchCards = function () {
+      if (seen || !('IntersectionObserver' in window)) return;
+      var cards = document.querySelectorAll('.auto-package-card, .pkg-card');
+      if (cards.length) {
+        var io = new IntersectionObserver(function (es) {
+          es.forEach(function (x) { if (x.isIntersecting && !seen) { seen = true; window.wmMeta('ViewContent', { content_name: 'Lespakketten' }); io.disconnect(); } });
+        }, { threshold: 0.5 });
+        cards.forEach(function (c) { io.observe(c); });
+      } else if (++tries < 10) { setTimeout(watchCards, 1500); }
+    };
+    window.addEventListener('load', watchCards);
+  }
+
   // ---- Microsoft Clarity (niet voor de eigenaar) ----
   if (!isOwner) {
     (function (c, l, a, r, i, t, y) {
