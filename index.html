@@ -62,6 +62,7 @@
   // Voor 'call' (tel:-links) wachten we tot de conversie is verstuurd
   // VOORDAT we de telefoon-app openen — anders gaat de meting verloren op mobiel.
   function wmTrackConversion(type, url, userData, transactionId){
+    try{ if(window.wmMeta){ if(type === 'lead') window.wmMeta('Lead'); else if(type === 'call') window.wmMeta('Contact'); } }catch(e){}
     var navigated = false;
     var go = function(){
       if(navigated) return;
@@ -113,7 +114,9 @@
   function wmWaUrlWithSource(url){
     try{
       var gclid = (window.wmGetGclid && window.wmGetGclid()) || '';
-      var tag = gclid ? '(via Google advertentie)' : '(via website)';
+      var bron = window.wmBron ? window.wmBron() : '';
+      var tag = bron.indexOf('Meta') === 0 ? '(via ' + bron + ')' : (gclid ? '(via Google advertentie)' : '(via website)');
+      if(bron.indexOf('Meta') === 0){ gclid = ''; }
       if(gclid){ tag += '\nref: ' + gclid; } // gclid meesturen voor latere offline conversie-import
       var idx = url.indexOf('text=');
       if(idx === -1){
@@ -137,6 +140,7 @@
   // tot de meting is verstuurd VOORDAT de pagina naar de WhatsApp-app springt,
   // anders gaat de conversie verloren (zelfde aanpak als de Bellen-knop).
   function wmOpenWhatsApp(url){
+    try{ if(window.wmMeta) window.wmMeta('Contact'); }catch(e){}
     url = wmWaUrlWithSource(url);
     var ua = navigator.userAgent || '';
     var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
@@ -3448,7 +3452,7 @@ function handleRegisterSubmit(e){
     admin_email: EMAILJS_CONFIG.adminEmail,
     submitted_at: new Date().toLocaleString('nl-NL'),
     gclid: (window.wmGetGclid ? window.wmGetGclid() : ''),
-    bron: ((window.wmGetGclid && window.wmGetGclid()) ? 'Google advertentie' : 'Website (geen advertentie)'),
+    bron: (window.wmBron ? window.wmBron() : ((window.wmGetGclid && window.wmGetGclid()) ? 'Google advertentie' : 'Website (geen advertentie)')),
     klik_datum: (function(){ try{ var t = localStorage.getItem('wm_gclid_ts'); return t ? new Date(+t).toLocaleString('nl-NL') : '-'; }catch(e){ return '-'; } })()
   };
 
